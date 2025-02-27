@@ -1,0 +1,241 @@
+/* Estilos para el banner */
+
+.banner-image {
+    width: 300px;
+    height: 400px;
+    padding: 0;
+    margin: 0;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Ajustes solo para pantallas pequeñas */
+@media (max-width: 768px) {
+    .banner-container {
+        height: 300px; /* Reducir altura en pantallas pequeñas */
+    }
+}
+
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background: rgba(0, 0, 0, 0.5); Fondo oscuro semi-transparente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.banner-title, .banner-subtitle {
+    color: #0066cc; /* Azul similar al del logo */
+    text-shadow: 
+        -1px -1px 0 #fff,  
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff,
+         2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Estilos para las tarjetas de servicios */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-icon {
+    background-color: #0e6ec5; /* Color de fondo para el ícono */
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px auto 20px; /* Centrar el ícono */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon img {
+    filter: brightness(0) invert(1); /* Convertir ícono a blanco */
+}
+
+.card-title {
+    color: #0e6ec5; /* Color del título */
+}
+
+.card-text {
+    color: #555; /* Color del texto */
+}
+
+
+
+.efect-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1.5rem;
+}
+
+.service-title {
+    color: #2d3748;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.service-description {
+    color: #718096;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.logo {
+    max-width: 150px; /* Ajusta el tamaño según lo necesites */
+    height: auto; /* Mantiene la proporción */
+}
+
+.rounded-input {
+    border-radius: 8px;
+}
+
+.fondo-contenedor {
+    background-color: #F5F5F5;
+}
+
+.boton {
+    background-color: #6A5ACD;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  .boton:hover {
+    background-color: #4A90E2;
+  }
+  
+  .cmn-divfloat {
+    position: fixed;
+    bottom: 45px;
+    right: 15px;
+    display: none; /* Ocultar por defecto */
+    z-index: 1000;
+}
+
+.cmn-btncircle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 22px;
+    background-color: #0e6ec5;
+    color: white;
+    text-decoration: none;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.cmn-btncircle:hover {
+    background-color: #084c94;
+}
+
+.convertir_de_linea_a_bloque {
+    display: inline-block;
+}
+
+.dropdown-menu {
+
+    width: 100%;
+
+    max-height: 200px; /* Limita el tamaño y agrega scroll */
+
+    overflow-y: auto;
+
+}
+
+
+
+/* Estilo de los items */
+
+.dropdown-item:hover {
+
+    background-color: #0d6efd;
+
+    color: white;
+
+}
+
+
+.table {
+    min-width: 1000px !important;
+    width: 100%;
+    background: #fff; }
+    .table thead.thead-primary {
+      background: #1089ff; }
+    .table thead th {
+      border: none;
+      padding: 20px 30px;
+      font-size: 14px;
+      color: #fff; }
+    .table tbody tr {
+      margin-bottom: 10px; }
+    .table tbody th, .table tbody td {
+      border: none;
+      padding: 20px 30px;
+      border-bottom: 3px solid #f8f9fd;
+      font-size: 14px; }
+
+.btn-referencia {
+    background-color: #1f37e4;
+    color: #fff;
+}
+
+.button {
+  cursor: pointer;
+  padding: 1em;
+  font-size: 1em;
+  width: 7em;
+  aspect-ratio: 1/0.25;
+  color: white;
+  background: #212121;
+  background-size: cover;
+  background-blend-mode: overlay;
+  border-radius: 0.5em;
+  outline: 0.1em solid #353535;
+  border: 0;
+  box-shadow: 0 0 1em 1em rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 1em 0.45em rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, #212121, #252525);
+  background: radial-gradient(
+    circle at bottom,
+    rgba(50, 100, 180, 0.5) 10%,
+    #212121 70%
+  );
+  outline: 0;
+}
+
+.button-inicio:hover {
+    border: 1px solid #2196F3;
+    border-radius: 25px;
+}
