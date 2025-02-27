@@ -1167,6 +1167,8 @@ function addListeners(){
         document.getElementById("tblCatalogoPacientesUrologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
+    retrocederVistaLaboratorista();
+
 };
 
 function initView(){
@@ -1204,6 +1206,20 @@ function navegacionPage() {
     document.getElementById("card_tbla_examenes").addEventListener('click', () => {
         Navegar.examenes();
     })
+}
+
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
+
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
+        modalPacientesCoprologia();
+    }
+
+    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
+        modalPacientesUrologia();
+    }
 }
 
 function getAbrirModalCoprologia() {
