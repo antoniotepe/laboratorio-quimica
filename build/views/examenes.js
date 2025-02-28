@@ -109,7 +109,7 @@ function getView() {
                                             </tr>
                                             </thead>
                                             <tbody id="tblDeExamenes">
-                                        </tbody>
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>

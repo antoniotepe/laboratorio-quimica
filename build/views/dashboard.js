@@ -35,40 +35,64 @@ function getView(){
                
             `
         },
-        vista_inicio_dashboard:()=> {
+        vista_inicio_dashboard: () => {
             return `
                 <div class="container-fluid">
                     <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mt-2">
-                                <h3 class="text-center mt-5">ADMINISTRACION</h3>
-                            </div>
-                        </div>
-                    <div class="row text-center">
-                        <div class="col-12 col-md-6">
-                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_usuarios">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center negrita">USUARIOS</h5>
-                                    <img src="../img/usuarios.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="USUARIOS" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_reporte">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center negrita">
-                                        REPORTES
-                                    </h5>
-                                    <img src="../img/estadisticas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ESTADISTICAS" />
-                                </div>
-                            </div>
+                        <div class="col-md-6 text-center mt-2">
+                            <h3 class="text-center mt-5 negrita">ADMNISTRACION</h3>
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
-                    <i class="fal fa-lock"></i>
-                </button>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-primary text-white">
+                            <tr>
+                                <td>EXAMENES</td>
+                                <td>EXAMENES</td>
+                                <td>EXAMENES</td>
+                            </tr>
+                        </thead>
+                        <tbody id="tblExamenesAdmin">
+                        </tbody>
+                    </table>
+                </div>
             `;
         },
+        // vista_inicio_dashboard:()=> {
+        //     return `
+        //         <div class="container-fluid">
+        //             <div class="row justify-content-center">
+        //                     <div class="col-md-6 text-center mt-2">
+        //                         <h3 class="text-center mt-5">ADMINISTRACION</h3>
+        //                     </div>
+        //                 </div>
+        //             <div class="row text-center">
+        //                 <div class="col-12 col-md-6">
+        //                     <div class="card card-rounded m-2 p-3 hand shadow" id="card_usuarios">
+        //                         <div class="card-body">
+        //                             <h5 class="card-title text-center negrita">USUARIOS</h5>
+        //                             <img src="../img/usuarios.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="USUARIOS" />
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //                 <div class="col-12 col-md-6">
+        //                     <div class="card card-rounded m-2 p-3 hand shadow" id="card_reporte">
+        //                         <div class="card-body">
+        //                             <h5 class="card-title text-center negrita">
+        //                                 REPORTES
+        //                             </h5>
+        //                             <img src="../img/estadisticas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ESTADISTICAS" />
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //         <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
+        //             <i class="fal fa-lock"></i>
+        //         </button>
+        //     `;
+        // },
         vista_tabla_usuarios:()=>{
             return `
             <div class="card card-rounded shadow">
