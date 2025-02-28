@@ -53,10 +53,10 @@ function getView(){
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_estadistica">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_reporte">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">
-                                        ESTADISTICA
+                                        REPORTES
                                     </h5>
                                     <img src="../img/estadisticas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ESTADISTICAS" />
                                 </div>
