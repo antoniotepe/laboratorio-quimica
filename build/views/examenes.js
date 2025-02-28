@@ -202,7 +202,7 @@ async function pintarTablaExamen(tipo, mes, anio) {
         })
 }
 
-async function getEliminarExamen(id) {
+function getEliminarExamen(id) {
     F.Confirmacion("¿Estás seguro de que deseas eliminar este examen?")
     .then((value) => {
         if(value == true) {
@@ -219,7 +219,7 @@ async function getEliminarExamen(id) {
   }
 
 function getAbrirExamenEnPdf() {
-
+    
 }
 
 function getEditarExamen() {

@@ -158,7 +158,7 @@ function getView(){
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
-                                <input class="form-control bg-amarillo" type="text" placeholder="$ Ingreso de importe" autocomplete="off" id="FloatImporteCiprologia">
+                                <input class="form-control bg-amarillo" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="FloatImporteCiprologia">
                             </div>
                         </div>
                     </div>
@@ -353,7 +353,7 @@ function getView(){
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
-                            <input class="form-control" type="search" placeholder="Buscar paciente..." autcomplete="off" id="txtFiltrarPacientesUrologia" disabled>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesUrologia" disabled>
                             <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesUrologia()">
                                 <i class="fal fa-search"></i>
                             </button>
@@ -368,7 +368,7 @@ function getView(){
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
-                            <input class="form-control bg-amarillo rounded" type="text" placeholder="$ Ingreso de importe" autocomplete="off" id="FloatImporteUrologia">
+                            <input class="form-control bg-amarillo rounded" type="text" placeholder="Q. Ingreso el valor del importe" autocomplete="off" id="FloatImporteUrologia">
                         </div>
                     </div>
                 </div>
@@ -623,60 +623,51 @@ function getView(){
             return `
                 <div class="container-fluid mt-4">
                
-                <div class="row bg-info text-white p-2 align-items-center mb-2 rounded">
+                <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                    
-                    <div class="col-12 col-md-6">
-                        <h1 class="mb-0">ENFERMEDADES INFECCIOSAS</h1>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <div class="d-flex flex-column align-items-end">
-                            <div class="mb-2">
-                                <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" value="FEB25-001" readonly>
-                            </div>
-                        
-                            <div>
-                                <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="text" class="form-control" value="6/02/2025" readonly>
-                            
-                            </div>
+                    <div class="col-12 col-md-6 mt-3">
+                        <div class="h3" id="txtTipoExamenEmfeInfecciosas">
+                            <strong>ENFERMEDADES INFECCIOSAS</strong>
                         </div>
                     </div>
-                   
-                </div>
-
-                
-                <div class="row mb-4">
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Nombre:</label>
-                            <div class="col-sm-9">
-                                <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Buscar paciente" autocomplete="off" />
-                                    <button class="btn btn-info btn-sm hand shadow" id="">
-                                        <i class="fal fa-search"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Fecha nacimiento:</label>
-                            <div class="col-sm-9">
-                                <input type="date" class="form-control" id="fechaNacimientoPacienteEnfermedadesInfec">
-                            </div>
+                    <div class="col-12 col-md-3">
+                        <div class="mb-2">
+                            <label class="form-label mb-0 text-white">REF:</label>
+                            <input type="text" class="form-control" id="txtRefEnferInfe" value="FEB25-001" readonly />
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Tratante:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" placeholder="Buscar medico" />
-                            </div>
+                    <div class="col-12 col-md-3">
+                        <div>
+                            <label class="form-label mb-0 text-white">Fecha:</label>
+                            <input type="date" class="form-control" id="fechaEnfermedadesInfecciosas" />
                         </div>
-                       
                     </div>
                 </div>
 
+                <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                            id="txtFiltrarPacienteEnfermedadesInfecciosas" disabled/>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesEnfInfecciosass">
+                                <i class="fal fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoEnferInfeccio" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                            <input class="form-control bg-amarillo rounded" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="floatImporteEnfInfecciosas">
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="card mb-4">
                     <div class="card-header bg-info text-center">
@@ -732,13 +723,12 @@ function getView(){
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <button class="btn btn-info btn-lg">
-                            <i class="fal fa-save"></i> Guardar
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                    <i class="fal fa-arrow-left"></i>
+                </button>
+                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenEnfermedadesInfecc">
+                        <i class="fal fa-save"></i>
+                </button>
             </div>
             `;
         },
@@ -1068,6 +1058,7 @@ function addListeners(){
     navegacionPage();
     document.getElementById("fechaCoprologia").value = F.getFecha();
     document.getElementById("fechaUrologia").value = F.getFecha();
+    document.getElementById("fechaEnfermedadesInfecciosas").value = F.getFecha();
 
     catalogoPacientes()
     .then((data) => {
