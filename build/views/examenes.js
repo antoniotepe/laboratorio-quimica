@@ -1,7 +1,6 @@
-
-function getView(){
+function getView() {
     let view = {
-        body:()=>{
+        body: () => {
             return `
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
@@ -35,7 +34,7 @@ function getView(){
                
             `
         },
-        vista_listado:()=>{
+        vista_listado: () => {
             return `
             <div class="container-fluid">
                         <div class="row justify-content-center">
@@ -121,8 +120,61 @@ function getView(){
                     </button>
             `
         },
-        vista_nuevo:()=>{
+        vista_modal_editar_examen: () => {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_editar_examenes">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
 
+                                        <hr class="solid">
+                                        <div class="negrita text-secondary" id="lbStatusDatos"></div>
+
+                                        <div class="form-group">
+                                            <label>NO. DPI:</label>
+                                            <input type="text" class="form-control" id="txtnoDPIUpdate"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombrePacienteUpdate"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control negrita" id="txtFechaNacimientoUpdate" />
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Empresa:</label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                
+                                                <select class="form-control" id="cmbEmpresaPacienteE">
+                                                    
+                                                </select>
+                                                
+                                                
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnEditarPaciente">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
     }
 
@@ -130,8 +182,8 @@ function getView(){
 
 };
 
-function addListeners(){
-    pintarTablaExamen();
+function addListeners() {
+
     const tipoSelect = document.getElementById("txtSelectTipo");
     const mesSelect = document.getElementById("txtSelectMes");
     const anioSelect = document.getElementById("txtSelectAnio");
@@ -140,88 +192,95 @@ function addListeners(){
         const tipoSeleccionado = tipoSelect.value;
         const mesSeleccionado = mesSelect.value;
         const anioSeleccionado = anioSelect.value;
-        pintarTablaExamen(tipoSeleccionado, mesSeleccionado, anioSeleccionado);
+
+        obtenerExamenes(tipoSeleccionado, mesSeleccionado, anioSeleccionado)
+            .then((data) => {
+                let strTableExamenes = '';
+                data.map((examen) => {
+                    strTableExamenes += `
+                        <tr>
+                            <td>${F.formatearFechaANormal(examen.fecha)}</td>
+                            <td>${examen.nombre_paciente}</td>
+                            <td>Q.${examen.importe}</td>
+                            <td>
+                                <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${examen.id})">
+                                    <i class="fal fa-trash"></i>
+                                </button>
+                                <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${examen.id})">
+                                    <i class="fal fa-file-pdf"></i>
+                                </button>
+                                <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${examen.id})">
+                                    <i class="fal fa-edit"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                })
+                document.getElementById("tblDeExamenes").innerHTML = strTableExamenes;
+            })
+            .catch((error) => {
+                document.getElementById("tblDeExamenes").innerHTML = '<tr><td colspan="3">No hay registros de examenes...</td></tr>';
+                console.error(error);
+            })
+            .finally((f) => {
+                console.log(`Termino el proceso de obtenr los examenes ${f}`)
+            })
     };
 
     tipoSelect.addEventListener("change", filtrar);
     mesSelect.addEventListener("change", filtrar);
     anioSelect.addEventListener("change", filtrar);
 
+    // Llamar a filtrar inicialmente para cargar los datos con los valores por defecto
+    filtrar();
 }
 
-function initView(){
+function initView() {
     getView();
     addListeners();
-
-    // Obtener los valores iniciales de los selectores y pintar la tabla
-    const tipoInicial = document.getElementById("txtSelectTipo").value;
-    const mesInicial = document.getElementById("txtSelectMes").value;
-    const anioInicial = document.getElementById("txtSelectAnio").value;
-    pintarTablaExamen(tipoInicial, mesInicial, anioInicial);
-}
-
-
-async function pintarTablaExamen(tipo, mes, anio) {
-    const tbody = document.getElementById("tblDeExamenes");
-    tbody.innerHTML = GlobalLoader;
-
-    let str = '';
-
-    axios.post("/obtenerExamenesCoprologia", { tipo: tipo, mes: mes, anio: anio })
-        .then((response) => {
-            let data = response.data;
-            if(Array.isArray(data) && data.length > 0) {
-                data.map((examen) => {
-                    str += `
-                      <tr>
-                        <td>${F.formatearFechaANormal(examen.fecha)}</td>
-                        <td>${examen.nombre_paciente}</td>
-                        <td>Q.${examen.importe}</td>
-                        <td>
-                          <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${examen.id})">
-                            <i class="fal fa-trash"></i>
-                          </button>
-                          <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${examen.id})">
-                            <i class="fal fa-file"></i>
-                          </button>
-                          <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${examen.id})">
-                            <i class="fal fa-edit"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    `;
-                  });
-                tbody.innerHTML = str;
-            } else {
-                tbody.innerHTML = '<tr><td colspan="3">No hay datos de examenes...</td></tr>';
-            }
-        })
-        .catch((error) => {
-            tbody.innerHTML = '<tr><td colspan="3">No hay datos de examenes...</td></tr>';
-            console.log(error);
-        })
 }
 
 function getEliminarExamen(id) {
     F.Confirmacion("¿Estás seguro de que deseas eliminar este examen?")
-    .then((value) => {
-        if(value == true) {
+        .then((value) => {
+            if (value == true) {
 
-            axios.post("/eliminarExamen", { id: id });
-            pintarTablaExamen();
-        }
-    })
-    .catch((error) => {
-        console.error("Error al eliminar el examen:", error);
-        F.AvisoError("Error al eliminar el examen")
-    });
+                axios.post("/eliminarExamen", { id: id });
 
-  }
+            }
+        })
+        .catch((error) => {
+            console.error("Error al eliminar el examen:", error);
+            F.AvisoError("Error al eliminar el examen")
+        });
+
+}
 
 function getAbrirExamenEnPdf() {
-    
+
 }
 
 function getEditarExamen() {
 
+}
+
+function obtenerExamenes(tipo, mes, anio) {
+    return new Promise((resolve, reject) => {
+        axios.post("/obtenerExamenesCoprologia", {
+            tipo: tipo,
+            mes: mes,
+            anio: anio
+        })
+            .then((response) => {
+                const data = response.data;
+                if (Array.isArray(data) && data.length > 0) {
+                    resolve(data);
+                } else {
+                    reject("No hay datos o la respuesta no es un array");
+                }
+            })
+            .catch((error) => {
+                reject(error);
+            })
+    })
 }
