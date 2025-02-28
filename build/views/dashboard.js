@@ -44,18 +44,30 @@ function getView(){
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-primary text-white">
-                            <tr>
-                                <td>EXAMENES</td>
-                                <td>EXAMENES</td>
-                                <td>EXAMENES</td>
-                            </tr>
-                        </thead>
-                        <tbody id="tblExamenesAdmin">
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mt-3 mb-3 d-flex justify-content-between">
+                            <div class="col-12 col-md-6">
+                            </div>
+                            <div class="col-12 col-md-3">
+                            </div>
+                            <div class="col-12 col-md-3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="thead-primary text-white">
+                                <tr>
+                                    <td>EXAMENES</td>
+                                    <td>EXAMENES</td>
+                                    <td>EXAMENES</td>
+                                </tr>
+                            </thead>
+                            <tbody id="tblExamenesAdmin">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             `;
         },
