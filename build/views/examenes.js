@@ -55,7 +55,7 @@ function getView() {
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-3">
-                                        <label class="form-label mb-0 text-white">TIPO:</label>
+                                        <label class="form-label mb-0 text-white">MES:</label>
                                         <select class="form-control negrita" id="txtSelectMes">
                                             <option value='1'>Enero</option>
                                             <option value='2'>Febrero</option>
@@ -72,7 +72,7 @@ function getView() {
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-3">
-                                        <label class="form-label mb-0 text-white">TIPO:</label>
+                                        <label class="form-label mb-0 text-white">AÑO:</label>
                                         <select class="form-control negrita" id="txtSelectAnio">
                                             <option value='2025'>2025</option>
                                             <option value='2026'>2026</option>
@@ -105,7 +105,7 @@ function getView() {
                                                 <td>FECHA</td>
                                                 <td>NOMBRE</td>
                                                 <td>IMPORTE</td>
-                                                <td>ACCIONES</td>
+                                                <td></td>
                                             </tr>
                                             </thead>
                                             <tbody id="tblDeExamenes">
@@ -223,7 +223,7 @@ function addListeners() {
                 console.error(error);
             })
             .finally((f) => {
-                console.log(`Termino el proceso de obtenr los examenes ${f}`)
+                console.log(`Termino el proceso de obtener los examenes ${f}`)
             })
     };
 

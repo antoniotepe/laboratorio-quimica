@@ -524,6 +524,23 @@ app.post("/insert_examen_urologia", (req, res) => {
 
 })
 
+// Obtener examenes de administracion
+app.post("/obtenerExamenesPorFecha", (req, res) => {
+  const { tipo, fechaInicio, fechaFinal } = req.body;
+
+  let qry = `
+    SELECT Examenes.*, Pacientes.nombre AS nombre_paciente
+    FROM Examenes
+    INNER JOIN Pacientes ON Examenes.paciente_id = Pacientes.id
+    WHERE (tipo_examen LIKE '%${tipo}%') 
+    AND (FECHA BETWEEN '${fechaInicio}' AND '${fechaFinal}')
+    AND (st = 1)
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
+
+})
 
 app.use("/",router);
 

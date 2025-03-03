@@ -1020,7 +1020,7 @@ function getView(){
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-wrap">
+                                        <div class="table-responsive">
                                             <table class="table">
                                                 <thead class="thead-primary">
                                                     <tr>

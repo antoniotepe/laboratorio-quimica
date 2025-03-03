@@ -12,7 +12,7 @@ function getView(){
                             ${view.vista_tabla_usuarios() + view.vista_modal_crear_usuario() + view.vista_modal_editar_usuario()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            
+                            ${view.vista_examenes_por_fechas()}
                         </div>    
                     </div>
 
@@ -35,76 +35,40 @@ function getView(){
                
             `
         },
-        vista_inicio_dashboard: () => {
+        vista_inicio_dashboard:()=> {
             return `
                 <div class="container-fluid">
                     <div class="row justify-content-center">
-                        <div class="col-md-6 text-center mt-2">
-                            <h3 class="text-center mt-5 negrita">ADMNISTRACION</h3>
+                            <div class="col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">ADMINISTRACION</h3>
+                            </div>
+                        </div>
+                    <div class="row text-center">
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_usuarios">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">USUARIOS</h5>
+                                    <img src="../img/usuarios.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="USUARIOS" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_examenes_por_fecha">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">
+                                        EXAMENES POR FECHA
+                                    </h5>
+                                    <img src="../img/" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="row mt-3 mb-3 d-flex justify-content-between">
-                            <div class="col-12 col-md-6">
-                            </div>
-                            <div class="col-12 col-md-3">
-                            </div>
-                            <div class="col-12 col-md-3">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead class="thead-primary text-white">
-                                <tr>
-                                    <td>EXAMENES</td>
-                                    <td>EXAMENES</td>
-                                    <td>EXAMENES</td>
-                                </tr>
-                            </thead>
-                            <tbody id="tblExamenesAdmin">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
+                    <i class="fal fa-lock"></i>
+                </button>
             `;
         },
-        // vista_inicio_dashboard:()=> {
-        //     return `
-        //         <div class="container-fluid">
-        //             <div class="row justify-content-center">
-        //                     <div class="col-md-6 text-center mt-2">
-        //                         <h3 class="text-center mt-5">ADMINISTRACION</h3>
-        //                     </div>
-        //                 </div>
-        //             <div class="row text-center">
-        //                 <div class="col-12 col-md-6">
-        //                     <div class="card card-rounded m-2 p-3 hand shadow" id="card_usuarios">
-        //                         <div class="card-body">
-        //                             <h5 class="card-title text-center negrita">USUARIOS</h5>
-        //                             <img src="../img/usuarios.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="USUARIOS" />
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div class="col-12 col-md-6">
-        //                     <div class="card card-rounded m-2 p-3 hand shadow" id="card_reporte">
-        //                         <div class="card-body">
-        //                             <h5 class="card-title text-center negrita">
-        //                                 REPORTES
-        //                             </h5>
-        //                             <img src="../img/estadisticas.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ESTADISTICAS" />
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //         <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="Navegar.login()">
-        //             <i class="fal fa-lock"></i>
-        //         </button>
-        //     `;
-        // },
         vista_tabla_usuarios:()=>{
             return `
             <div class="card card-rounded shadow">
@@ -134,6 +98,59 @@ function getView(){
                 </div>
             </div>
             `
+        },
+        vista_examenes_por_fechas:()=> {
+            return `
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center mt-2">
+                            <h3 class="text-center mt-5">EXAMENES POR FECHA</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row mt-3 mb-3 d-flex justify-content-between">
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label mb-0 negrita">TIPO:</label>
+                                    <select class="form-control negrita" id="cmbSelectTipoExamen">
+                                        <option value="COPROLOGIA">COPROLOGIA</option>
+                                        <option value="UROLOGIA">UROLOGIA</option>
+                                        <option value="ENFERMEDADES_INFECCIOSAS">ENFERMEDADES INFECCIOSAS</option>
+                                        <option value="ENFERMEDADES_BACTERIOLOGICOS">ENFERMEDADES BACTERIOLOGICOS</option>
+                                        <option value="">TODOS</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label mb-0">FECHA INICIO</label>
+                                    <input type="date" class="form-control negrita" id="txtFechaInicio"/>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label mb-0">FECHA FINAL</label>
+                                    <input type="date" class="form-control negrita" id="txtFechaFinal"/>
+                                </div>
+                                <div class="table-responsive mt-2">
+                                    <table class="table">
+                                        <thead class="thead-primary text-white">
+                                            <tr>
+                                                <td>FECHA</td>
+                                                <td>TIPO</td>
+                                                <td>CLIENTE</td>
+                                                <td>IMPORTE</td>
+                                                <td></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tblExamenesPorFecha">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.dashboard()">
+                    <i class="fal fa-arrow-left"></i>
+                </button>
+            `;
         },
         vista_modal_crear_usuario:()=>{
             return `
@@ -176,9 +193,6 @@ function getView(){
 
                                     </div>
                                 </div>
-                            
-                                
-                                
                                 
                             </div>
                             <div class="modal-footer text-center">
@@ -263,6 +277,28 @@ function getView(){
 
 function addListeners(){
 
+    // Establecer valores iniciales para las fechas
+    document.getElementById("txtFechaInicio").value = F.getFecha();
+    document.getElementById("txtFechaFinal").value = F.getFecha();
+
+    // Obtener referencias a los elementos del DOM
+    let tipoExamen = document.getElementById("cmbSelectTipoExamen");
+    let fechaInicio = document.getElementById("txtFechaInicio");
+    let fechaFinal = document.getElementById("txtFechaFinal");
+
+    // Llamar a la función filtrar con los valores iniciales
+    filtrar();
+
+    // Agregar listeners para los cambios en los campos
+    tipoExamen.addEventListener("change", filtrar);
+    fechaInicio.addEventListener("change", filtrar);
+    fechaFinal.addEventListener("change", filtrar);
+
+
+
+   
+
+
     document.getElementById('btnAgregarUsuario').addEventListener('click', () => {
         $("#modal_nuevo_usuario").modal('show');
     });
@@ -270,6 +306,11 @@ function addListeners(){
     document.getElementById("card_usuarios").addEventListener('click', () => {
         F.slideAnimationTabs();
         document.getElementById("tab-dos").click();
+    })
+
+    document.getElementById("card_examenes_por_fecha").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-tres").click();
     })
 
     get_lista_usuarios();
@@ -303,10 +344,8 @@ function addListeners(){
                     btnGuardarUsuario.disabled = false;
                     btnGuardarUsuario.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 })
-
             }
         })
-
     })
 
 };
@@ -402,6 +441,44 @@ function get_datos_update_usuario(no_dpi, nombre, clave, tipo) {
     });
 }
 
+function filtrar(event) {
+    let tipoSeleccionado = document.getElementById("cmbSelectTipoExamen").value;
+    let fechaInicio = F.devuelveFecha("txtFechaInicio");
+    let fechaFinal = F.devuelveFecha("txtFechaFinal");
+
+    // console.log("Tipo seleccionado:", tipoSeleccionado);
+    // console.log("Fecha inicio:", fechaInicio);
+    // console.log("Fecha final:", fechaFinal);
+
+    obtenerExamenesPorFecha(tipoSeleccionado, fechaInicio, fechaFinal)
+        .then((data) => {
+            let strTableExamenesPorFecha = '';
+            data.map((examen) => {
+                strTableExamenesPorFecha += `
+                    <tr>
+                        <td>${F.formatearFechaANormal(examen.fecha)}</td>
+                        <td>${examen.tipo_examen}</td>
+                        <td>${examen.nombre_paciente}</td>
+                        <td>${examen.importe}</td>
+                        <td>
+                            <button class="btn btn-info btn-sm btn-rounded">
+                                <i class="fal fa-print"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblExamenesPorFecha").innerHTML = strTableExamenesPorFecha;
+        })
+        .catch((error) => {
+            document.getElementById("tblExamenesPorFecha").innerHTML = '<tr><td colspan="4">No hay registros de examenes...</td></tr>';
+            console.log(error);
+        })
+        .finally(() => {
+            console.log(`Termino el proceso de obtener los examenes`);
+        });
+}
+
 function crear_usuarios(no_dpi ,nombre, clave, tipo) {
     return new Promise((resolve, reject) => {
         axios.post("/crear_usuarios", {
@@ -443,7 +520,29 @@ function update_usuario(id, nombre, clave, tipo) {
             }
         })
         .catch((error) => {
-            reject();
+            reject(error);
         });
     });
+}
+
+function obtenerExamenesPorFecha(tipo, fechaInicio, fechaFinal) {
+    return new Promise((resolve, reject) => {
+
+        axios.post('/obtenerExamenesPorFecha', {
+            tipo: tipo,
+            fechaInicio: fechaInicio,
+            fechaFinal: fechaFinal
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0) {
+                resolve(data);
+            }else {
+                reject();
+            }
+        })
+        .catch((error) => {
+            reject(error);
+        })
+    })
 }
