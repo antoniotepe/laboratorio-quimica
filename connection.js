@@ -63,26 +63,26 @@ const mysql = require('mysql2');
 // 	}
 // }
 
-// let config = {
-//     user: 'a6478c_laborat',
-//     password: 'razors1805',
-//     host: 'mysql5050.site4now.net',
-//     database: 'db_a6478c_laborat',
-//     waitForConnections: true,
-//     connectionLimit: 100,  // Ajustar según el límite del servidor
-//     queueLimit: 0
-// };
-
 let config = {
-    user: 'antoniodb',
-    password: 'antonio',
-    host: '127.0.0.1',
-    port: 3307,
-    database: 'db_laboratorio_dev',
+    user: 'a6478c_laborat',
+    password: 'razors1805',
+    host: 'mysql5050.site4now.net',
+    database: 'db_a6478c_laborat',
     waitForConnections: true,
     connectionLimit: 100,  // Ajustar según el límite del servidor
     queueLimit: 0
 };
+
+// let config = {
+//     user: 'antoniodb',
+//     password: 'antonio',
+//     host: '127.0.0.1',
+//     port: 3307,
+//     database: 'db_laboratorio_dev',
+//     waitForConnections: true,
+//     connectionLimit: 100,  // Ajustar según el límite del servidor
+//     queueLimit: 0
+// };
 
 let configx = {
 	user: 'iEx',
