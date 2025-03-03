@@ -18,6 +18,9 @@ const loadView = (viewPath) => {
 
 let Navegar = {
     dashboard: () => loadView('./views/dashboard.js'),
+    servicios: () => loadView('./views/servicios.js'),
+    contacto: () => loadView('./views/contactos.js'),
+    about: () => loadView('./views/about.js'),
     laboratorista: () => loadView('./views/laboratorista.js'),
     registroPacientes:() => loadView('./views/registroPacientes.js'),
     examenes: () => loadView('./views/examenes.js'),

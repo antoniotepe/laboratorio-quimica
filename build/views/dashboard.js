@@ -58,7 +58,7 @@ function getView(){
                                     <h5 class="card-title text-center negrita">
                                         EXAMENES POR FECHA
                                     </h5>
-                                    <img src="../img/" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
+                                    <img src="../img/icon-examen-por-fecha.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
                                 </div>
                             </div>
                         </div>
