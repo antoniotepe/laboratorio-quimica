@@ -476,24 +476,18 @@ app.post("/obtenerExamenesCoprologia", (req, res) => {
     SELECT Examenes.*, Pacientes.nombre AS nombre_paciente
     FROM Examenes
     INNER JOIN Pacientes ON Examenes.paciente_id = Pacientes.id
-    WHERE tipo_examen = '${tipo}'
-    AND st = 1
+    WHERE (tipo_examen LIKE '%${tipo}%')
+    AND (mes = ${mes})
+    AND (anio = ${anio})
+    AND (st = 1)
   `;
-
-  if (mes) {
-    qry += ` AND MONTH(fecha) = ${mes}`;
-  }
-
-  if (anio) {
-    qry += ` AND YEAR(fecha) = ${anio}`;
-  }
 
   execute.Query(res, qry);
   console.log(qry);
 });
 
 
-app.post("/eliminarExamen", (req, res) => {
+app.post("/eliminar_examen", (req, res) => {
   const { id } = req.body;
 
   const qry = `

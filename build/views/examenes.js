@@ -1,7 +1,7 @@
 function getView() {
-    let view = {
-        body: () => {
-            return `
+  let view = {
+    body: () => {
+      return `
                 <div class="col-12 p-0 bg-white">
                     <div class="tab-content" id="myTabHomeContent">
                         <div class="tab-pane fade show active" id="uno" role="tabpanel" aria-labelledby="receta-tab">
@@ -32,10 +32,10 @@ function getView() {
                     
                 </div>
                
-            `
-        },
-        vista_listado: () => {
-            return `
+            `;
+    },
+    vista_listado: () => {
+      return `
             <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-md-6 text-center mt-2">
@@ -118,10 +118,10 @@ function getView() {
                     <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.laboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
-            `
-        },
-        vista_modal_editar_examen: () => {
-            return `
+            `;
+    },
+    vista_modal_editar_examen: () => {
+      return `
                 <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_editar_examenes">
                     <div class="modal-dialog modal-dialog-right modal-xl">
                         <div class="modal-content">
@@ -175,112 +175,118 @@ function getView() {
                     </div>
                 </div>
             `;
-        }
-    }
+    },
+  };
 
-    root.innerHTML = view.body();
-
-};
+  root.innerHTML = view.body();
+}
 
 function addListeners() {
+  const tipoSelect = document.getElementById("txtSelectTipo");
+  const mesSelect = document.getElementById("txtSelectMes");
+  const anioSelect = document.getElementById("txtSelectAnio");
 
-    const tipoSelect = document.getElementById("txtSelectTipo");
-    const mesSelect = document.getElementById("txtSelectMes");
-    const anioSelect = document.getElementById("txtSelectAnio");
+  filtrarExamenes();
 
-    const filtrar = () => {
-        const tipoSeleccionado = tipoSelect.value;
-        const mesSeleccionado = mesSelect.value;
-        const anioSeleccionado = anioSelect.value;
+  tipoSelect.addEventListener("change", filtrarExamenes);
+  mesSelect.addEventListener("change", filtrarExamenes);
+  anioSelect.addEventListener("change", filtrarExamenes);
+}
 
-        obtenerExamenes(tipoSeleccionado, mesSeleccionado, anioSeleccionado)
-            .then((data) => {
-                let strTableExamenes = '';
-                data.map((examen) => {
-                    strTableExamenes += `
+function initView() {
+  getView();
+  addListeners();
+}
+
+function filtrarExamenes() {
+  let tipoSelect = document.getElementById("txtSelectTipo").value;
+  let mesSelect = document.getElementById("txtSelectMes").value;
+  let anioSelect = document.getElementById("txtSelectAnio").value;
+
+    console.log(tipoSelect, mesSelect, anioSelect);
+
+  obtenerExamenes(tipoSelect, mesSelect, anioSelect)
+    .then((data) => {
+      let strTableExamenes = "";
+      data.map((examen) => {
+        strTableExamenes += `
                         <tr>
                             <td>${F.formatearFechaANormal(examen.fecha)}</td>
                             <td>${examen.nombre_paciente}</td>
                             <td>Q.${examen.importe}</td>
                             <td>
-                                <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${examen.id})">
+                                <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${
+                                  examen.id
+                                })">
                                     <i class="fal fa-trash"></i>
                                 </button>
-                                <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${examen.id})">
+                                <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${
+                                  examen.id
+                                })">
                                     <i class="fal fa-file-pdf"></i>
                                 </button>
-                                <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${examen.id})">
+                                <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${
+                                  examen.id
+                                })">
                                     <i class="fal fa-edit"></i>
                                 </button>
                             </td>
                         </tr>
                     `;
-                })
-                document.getElementById("tblDeExamenes").innerHTML = strTableExamenes;
-            })
-            .catch((error) => {
-                document.getElementById("tblDeExamenes").innerHTML = '<tr><td colspan="3">No hay registros de examenes...</td></tr>';
-                console.error(error);
-            })
-            .finally((f) => {
-                console.log(`Termino el proceso de obtener los examenes ${f}`)
-            })
-    };
-
-    tipoSelect.addEventListener("change", filtrar);
-    mesSelect.addEventListener("change", filtrar);
-    anioSelect.addEventListener("change", filtrar);
-
-    // Llamar a filtrar inicialmente para cargar los datos con los valores por defecto
-    filtrar();
-}
-
-function initView() {
-    getView();
-    addListeners();
+      });
+      document.getElementById("tblDeExamenes").innerHTML = strTableExamenes;
+    })
+    .catch((error) => {
+      document.getElementById("tblDeExamenes").innerHTML =
+        '<tr><td colspan="3">No hay registros de examenes...</td></tr>';
+      console.error(error);
+    })
+    .finally((f) => {
+      console.log(`Termino el proceso de obtener los examenes ${f}`);
+    });
 }
 
 function getEliminarExamen(id) {
-    F.Confirmacion("¿Estás seguro de que deseas eliminar este examen?")
-        .then((value) => {
-            if (value == true) {
-
-                axios.post("/eliminarExamen", { id: id });
-
-            }
-        })
-        .catch((error) => {
+  F.Confirmacion("¿Estás seguro de que deseas eliminar este examen?").then(
+    (value) => {
+      if (value == true) {
+        axios
+          .post("/eliminar_examen", { id: id })
+          .then(() => {
+            F.Aviso("Examen eliminado exitosamente!!!");
+            filtrarExamenes()
+          })
+          .catch((error) => {
             console.error("Error al eliminar el examen:", error);
-            F.AvisoError("Error al eliminar el examen")
-        });
-
+            F.AvisoError("Error al eliminar el examen");
+          });
+      }
+    }
+  );
 }
 
-function getAbrirExamenEnPdf() {
+function getAbrirExamenEnPdf() {}
 
-}
-
-function getEditarExamen() {
-
-}
+function getEditarExamen() {}
 
 function obtenerExamenes(tipo, mes, anio) {
-    return new Promise((resolve, reject) => {
-        axios.post("/obtenerExamenesCoprologia", {
-            tipo: tipo,
-            mes: mes,
-            anio: anio
-        })
-            .then((response) => {
-                const data = response.data;
-                if (Array.isArray(data) && data.length > 0) {
-                    resolve(data);
-                } else {
-                    reject("No hay datos o la respuesta no es un array");
-                }
-            })
-            .catch((error) => {
-                reject(error);
-            })
-    })
+  return new Promise((resolve, reject) => {
+    axios
+      .post("/obtenerExamenesCoprologia", {
+        tipo: tipo,
+        mes: mes,
+        anio: anio,
+      })
+      .then((response) => {
+        const data = response.data;
+        if (Array.isArray(data) && data.length > 0) {
+          resolve(data);
+        } else {
+          reject("No hay datos o la respuesta no es un array");
+        }
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
 }
