@@ -304,11 +304,11 @@ function addListeners(){
                     F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                     console.log(e);
                     btnGuardarPaciente.disabled = false;
-                    btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
                 .finally(() => {
                     btnGuardarPaciente.disabled = false;
-                    btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
             }
         })
@@ -340,11 +340,11 @@ function addListeners(){
                     F.AvisoError("No se puede guardar la empresa" + e);
                     console.log(e);
                     btnGuardarEmpresaPaciente.disabled = false;
-                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
                 .finally(()=> {
                     btnGuardarEmpresaPaciente.disabled = false;
-                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
 
             }
@@ -379,6 +379,10 @@ function addListeners(){
                 .catch((e) => {
                     F.AvisoError('No se pudo actualizar el paciente');
                     console.log(e);
+                    btnEditarPaciente.disabled = false;
+                    btnEditarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .finally(() => {
                     btnEditarPaciente.disabled = false;
                     btnEditarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
@@ -520,6 +524,10 @@ function insert_paciente(noDPI, nombre, fecha_nacimiento, empresa) {
                 reject();
             }
         })
+        .catch((error) => {
+            console.error("Error al insertar paciente: ", error);
+            reject();
+        });
     })
 }
 
@@ -583,6 +591,9 @@ function insert_empresas(nombreEmpresa) {
                 reject();
             }
         })
+        .catch((error) => {
+            reject(error);
+        })
     })
 }
 
@@ -601,6 +612,9 @@ function get_data_datos_paciente(id_paciente) {
         }, (error) => {
             reject();
         })
+        .catch((error) => {
+            reject(error);
+        });
     })
 }
 
@@ -630,5 +644,8 @@ function updatePacientes() {
                 reject();
             }
         })
+        .catch((error) => {
+            reject(error);
+        });
     })
 }
