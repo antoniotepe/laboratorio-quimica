@@ -368,8 +368,8 @@ app.post("/lista_pacientes", function (req, res) {
           p.fecha_nacimiento,  
           p.empresa_id,
           e.nombre AS nombre_empresa
-      FROM Pacientes p
-      LEFT JOIN Empresas e ON p.empresa_id = e.id;
+      FROM PACIENTES p
+      LEFT JOIN EMPRESAS e ON p.empresa_id = e.id;
   `;
 
   execute.Query(res, qry);
@@ -473,9 +473,9 @@ app.post("/obtenerExamenesCoprologia", (req, res) => {
   const { tipo, mes, anio } = req.body;
 
   let qry = `
-    SELECT Examenes.*, Pacientes.nombre AS nombre_paciente
-    FROM Examenes
-    INNER JOIN Pacientes ON Examenes.paciente_id = Pacientes.id
+    SELECT EXAMENES.*, PACIENTES.nombre AS nombre_paciente
+    FROM EXAMENES
+    INNER JOIN PACIENTES ON EXAMENES.paciente_id = PACIENTES.id
     WHERE (tipo_examen LIKE '%${tipo}%')
     AND (mes = ${mes})
     AND (anio = ${anio})
@@ -491,7 +491,7 @@ app.post("/eliminar_examen", (req, res) => {
   const { id } = req.body;
 
   const qry = `
-    UPDATE Examenes
+    UPDATE EXAMENES
     SET st = 0
     WHERE id = ${id};
   `;
@@ -523,9 +523,9 @@ app.post("/obtenerExamenesPorFecha", (req, res) => {
   const { tipo, fechaInicio, fechaFinal } = req.body;
 
   let qry = `
-    SELECT Examenes.*, Pacientes.nombre AS nombre_paciente
-    FROM Examenes
-    INNER JOIN Pacientes ON Examenes.paciente_id = Pacientes.id
+    SELECT EXAMENES.*, PACIENTES.nombre AS nombre_paciente
+    FROM EXAMENES
+    INNER JOIN PACIENTES ON EXAMENES.paciente_id = PACIENTES.id
     WHERE (tipo_examen LIKE '%${tipo}%') 
     AND (FECHA BETWEEN '${fechaInicio}' AND '${fechaFinal}')
     AND (st = 1)

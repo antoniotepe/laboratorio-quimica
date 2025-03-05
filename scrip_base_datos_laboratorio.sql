@@ -1,5 +1,6 @@
 USE db_a6478c_laborat;
 
+
 CREATE TABLE IF NOT EXISTS LAB_USUARIOS (
     id INT PRIMARY KEY AUTO_INCREMENT,
     no_dpi VARCHAR(255) UNIQUE NOT NULL,
@@ -11,23 +12,23 @@ CREATE TABLE IF NOT EXISTS LAB_USUARIOS (
 );
 
 
-CREATE TABLE Empresas (
+CREATE TABLE EMPRESAS (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL UNIQUE,
     st BOOLEAN DEFAULT TRUE
 );
 
 
-CREATE TABLE Pacientes (
+CREATE TABLE PACIENTES (
     id INT AUTO_INCREMENT PRIMARY KEY,
     no_dpi VARCHAR(255) NOT NULL UNIQUE,
     nombre VARCHAR(255),
     fecha_nacimiento DATE,
     empresa_id INT, 
-    FOREIGN KEY (empresa_id) REFERENCES Empresas(id)
+    FOREIGN KEY (empresa_id) REFERENCES EMPRESAS(id)
 );
 
-CREATE TABLE Examenes (
+CREATE TABLE EXAMENES (
     id INT AUTO_INCREMENT PRIMARY KEY,
     tipo_examen VARCHAR(255) NOT NULL,
     paciente_id INT NOT NULL,
@@ -82,5 +83,5 @@ CREATE TABLE Examenes (
     uro_micro_otros VARCHAR(200),
     
     
-    FOREIGN KEY (paciente_id) REFERENCES Pacientes(id)  
+    FOREIGN KEY (paciente_id) REFERENCES PACIENTES(id)  
 );
