@@ -5,6 +5,8 @@ var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
 
+const PDFDocument = require('pdfkit-table');
+const fs = require('fs');
 
 const execute = require('./connection');
 
@@ -535,6 +537,188 @@ app.post("/obtenerExamenesPorFecha", (req, res) => {
   console.log(qry);
 
 })
+
+// Obtener datos del examen para dibujar pdf
+app.post("/datos_examenes_para_pdf", (req, res) => {
+  const { id } = req.body;
+  
+  let qry = `
+      SELECT EXAMENES.*, PACIENTES.nombre AS nombre_paciente FROM EXAMENES
+      INNER JOIN PACIENTES ON EXAMENES.paciente_id = PACIENTES.id
+      WHERE EXAMENES.id = ${id}
+  `;
+
+  function formatearFechaANormal (fechaISO){
+    // Crear un objeto Date a partir de la fecha ISO
+     const fecha = new Date(fechaISO);
+
+     // Obtener día, mes y año
+     const dia = String(fecha.getDate()).padStart(2, '0'); // Asegura 2 dígitos
+     const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
+     const anio = fecha.getFullYear();
+
+     // Devolver la fecha en formato dd-mm-yyyy
+     return `${dia}/${mes}/${anio}`;
+ }
+
+  execute.QueryData(qry)
+    .then(data => {
+      if (Array.isArray(data) && data.length > 0) {
+        const examen = data[0];
+        let doc = new PDFDocument({ margin: 30, size: 'A4' });
+
+          const fileName = `examen_${examen.tipo_examen}.pdf`;
+          const stream = fs.createWriteStream(fileName);
+          doc.pipe(stream);
+          doc.image('./build/img/logo_laboratorio.jpg', 430, 15, {fit: [80, 80], align: 'center', valign: 'bottom'})
+          doc.moveDown(6);   
+          doc.fontSize(11).text(`Nombre: ${examen.nombre_paciente}`, { align: "left"});   
+          doc.fontSize(11).text(`Fecha: ${formatearFechaANormal(examen.fecha)}`, { align: "left" });   
+          doc.fontSize(11).text(`Tratante: ${examen.medico_tratante}`, { align: "left" });   
+          doc.moveDown(2);
+          doc.fontSize(18).font("Helvetica-Bold").text(`EXAMEN ${examen.tipo_examen}`, { align: "center" });
+          doc.moveDown();
+          doc.fontSize(11).text(`EXAMEN MACROSCÓPICO:`, { align: "center" });
+          doc.moveDown();
+        
+        
+         // table
+         const tableMacroscopicoCopro = {
+          //   title: {label: 'Titulo de prueba'},
+          //   subtitle: "Sub titulo de la tabla",
+            headers: [
+              { label: "Color", property: 'color_heces', width: 60, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Restos Alimenticios", property: 'restos_alimenticios', width: 150, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
+              { label: "Sangre", property: 'sangre', width: 100, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
+              { label: "Consistencia", property: 'consitencia', width: 100, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
+              { label: "Moco", property: 'moco', width: 80, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
+              { label: "PH", property: 'ph', width: 43, headerColor: "#de0606", headerOpacity: 0.15 },
+            ],
+            // complex data
+            datas: [
+              { 
+                color_heces: `${examen.copro_macroscopio_color}`, 
+                restos_alimenticios: `${examen.copro_macroscopio_restos_alimenticios}`, 
+                sangre: `${examen.copro_macroscopio_sangre}`, 
+                consitencia: `${examen.copro_macroscopio_consistencia}`, 
+                moco: `${examen.copro_macroscopio_Moco}`, 
+                ph: `${examen.copro_macroscopio_PH}`, 
+              },
+              { 
+           
+              },
+              
+            ],
+            
+          };
+          // the magic
+          doc.table(tableMacroscopicoCopro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+  
+          doc.moveDown(2);
+          doc.fontSize(11).text(`EXAMEN QUIMICO:`, { align: "center" });
+          doc.moveDown();
+  
+          const tableQuimicoCopro = {
+              //   title: {label: 'Titulo de prueba'},
+              //   subtitle: "Sub titulo de la tabla",
+                headers: [
+                  { label: "Leucocitos", property: 'leucocitos', width: 60, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 },
+                  { label: "Celulas Vegetales", property: 'celulas_vegetales', width: 150, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
+                  { label: "Almidones", property: 'almidones', width: 100, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
+                  { label: "Levaduras", property: 'levaduras', width: 100, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
+                  { label: "Huevo", property: 'huevo', width: 80, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
+                  { label: "Quistes", property: 'quistes', width: 43, headerColor: "#64fd00", headerOpacity: 0.15 },
+                ],
+                // complex data
+                datas: [
+                  { 
+                    leucocitos: `${examen.copro_quimico_leucocitos}`, 
+                    celulas_vegetales: `${examen.copro_quimico_celulas_vegetales}`, 
+                    almidones: `${examen.copro_quimico_almidones}`, 
+                    levaduras: `${examen.copro_quimico_levaduras}`, 
+                    huevo: `${examen.copro_quimico_huevo}`, 
+                    quistes: `${examen.copro_quimico_quistes}`, 
+                  },
+                  { 
+                 
+                  },
+                  
+                ],
+                // simeple data
+  
+              };
+              // the magic
+              doc.table(tableQuimicoCopro, {
+                prepareHeader: () => doc.font("Helvetica").fontSize(8),
+                prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+                  doc.font("Helvetica-Bold").fontSize(8);
+                  indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+                },
+              });
+  
+              doc.moveDown(2);
+              doc.fontSize(11).text(`EXAMEN MICROSCOPICO:`, { align: "center" });
+              doc.moveDown();
+  
+  
+              const tableMicroscopicoCopro = {
+                  //   title: {label: 'Titulo de prueba'},
+                  //   subtitle: "Sub titulo de la tabla",
+                    headers: [
+                      { label: "Eritrocitos", property: 'eritrocitos', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 },
+                      { label: "Grasas", property: 'grasas', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
+                      { label: "Jabón", property: 'jabon', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
+                      { label: "Bacterias", property: 'bacterias', width: 80, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
+                    ],
+                    // complex data
+                    datas: [
+                      { 
+                        eritrocitos: `${examen.copro_microscopio_eritrocitos}`, 
+                        grasas: `${examen.copro_microscopio_grasas}`, 
+                        jabon: `${examen.copro_microscopio_jabon}`, 
+                        bacterias: `${examen.copro_microscopio_bacterias}`, 
+                      },
+                      { 
+                      
+                      },
+                      // {...},
+                    ],
+                    // simeple data
+     
+                  };
+                  // the magic
+                  doc.table(tableMicroscopicoCopro, {
+                    prepareHeader: () => doc.font("Helvetica").fontSize(8),
+                    prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+                      doc.font("Helvetica-Bold").fontSize(8);
+                      indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+                    },
+                  });
+  
+          // done!
+          doc.end();
+          stream.on('finish', () => {
+                  res.download(fileName, () => {
+                      fs.unlinkSync(fileName); 
+                  });
+              });
+        
+      } else {
+        res.status(404).json({ error: "No se encontraron datos" });
+      }
+    })
+    .catch(error => {
+      console.error("Error al obtener los datos:", error);
+      res.status(500).json({ error: "Error en la consulta" });
+    });
+});
+
 
 app.use("/",router);
 

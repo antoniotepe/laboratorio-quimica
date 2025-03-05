@@ -265,7 +265,22 @@ function getEliminarExamen(id) {
   );
 }
 
-function getAbrirExamenEnPdf() {}
+function getAbrirExamenEnPdf(id) {
+  axios({
+    url: "/datos_examenes_para_pdf",
+    method: "POST",
+    responseType: "blob", // Importante: Especifica que esperas un archivo
+    data: { id: id }
+  }).then((response) => {
+    const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+    window.open(url, "_blank");
+  }).catch((error) => {
+    console.error("Error al abrir el PDF:", error);
+    alert("Hubo un problema al abrir el PDF.");
+  });
+}
+
+
 
 function getEditarExamen() {}
 

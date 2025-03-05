@@ -73,27 +73,27 @@ const mysql = require('mysql2');
 //     queueLimit: 0
 // };
 
-// let config = {
-//     user: 'antoniodb',
-//     password: 'antonio',
-//     host: '127.0.0.1',
-//     port: 3307,
-//     database: 'db_laboratorio_dev',
-//     waitForConnections: true,
-//     connectionLimit: 100,  // Ajustar según el límite del servidor
-//     queueLimit: 0
-// };
-
 let config = {
-    user: 'avnadmin',
-    password: 'AVNS_k4Wsoe8I9GkVeSEe3et',
-    port: 26005,
-    host: 'mysql-2304929b-tepe1600-975d.g.aivencloud.com',
-    database: 'defaultdb',
+    user: 'antoniodb',
+    password: 'antonio',
+    host: '127.0.0.1',
+    port: 3307,
+    database: 'db_laboratorio_dev',
     waitForConnections: true,
     connectionLimit: 100,  // Ajustar según el límite del servidor
     queueLimit: 0
 };
+
+// let config = {
+//     user: 'avnadmin',
+//     password: 'AVNS_k4Wsoe8I9GkVeSEe3et',
+//     port: 26005,
+//     host: 'mysql-2304929b-tepe1600-975d.g.aivencloud.com',
+//     database: 'defaultdb',
+//     waitForConnections: true,
+//     connectionLimit: 100,  // Ajustar según el límite del servidor
+//     queueLimit: 0
+// };
 
 let configx = {
 	user: 'iEx',
@@ -133,6 +133,34 @@ let execute = {
                 }
             });
         });
+    },
+    QueryData: (sqlqry) => {
+        return new Promise((resolve,reject)=>{
+
+             // Obtener una conexión del pool
+                pool.getConnection((err, connection) => {
+                    if (err) {
+                        console.error('Error al obtener la conexión:', err.message);
+                       
+                    }
+
+                    // Ejecutar la consulta
+                    connection.query(sqlqry, (err, results) => {
+                        // Liberar la conexión de vuelta al pool
+                        connection.release();
+
+                        if (err) {
+                            console.error('Error en la consulta:', err.message);
+                            reject(err);
+                        } else {
+                            resolve(results);
+                        }
+                    });
+                });
+
+        })
+
+       
     }
 };
 
