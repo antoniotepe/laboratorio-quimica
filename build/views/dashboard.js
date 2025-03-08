@@ -461,7 +461,9 @@ function filtrar(event) {
                         <td>${examen.nombre_paciente}</td>
                         <td>${examen.importe}</td>
                         <td>
-                            <button class="btn btn-info btn-sm btn-rounded">
+                            <button class="btn btn-info btn-sm btn-rounded" onclick="getAbrirExamenEnPdf(${
+                                  examen.id
+                                })">
                                 <i class="fal fa-print"></i>
                             </button>
                         </td>
@@ -478,6 +480,22 @@ function filtrar(event) {
             console.log(`Termino el proceso de obtener los examenes`);
         });
 }
+
+function getAbrirExamenEnPdf(id) {
+    axios({
+      url: "/datos_examenes_para_pdf",
+      method: "POST",
+      responseType: "blob", // Importante: Especifica que esperas un archivo
+      data: { id: id }
+    }).then((response) => {
+      const url = window.URL.createObjectURL(new Blob([response.data], { type: "application/pdf" }));
+      window.open(url, "_blank");
+    }).catch((error) => {
+      console.error("Error al abrir el PDF:", error);
+      alert("Hubo un problema al abrir el PDF.");
+    });
+  }
+
 
 function crear_usuarios(no_dpi ,nombre, clave, tipo) {
     return new Promise((resolve, reject) => {
