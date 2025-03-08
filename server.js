@@ -541,25 +541,21 @@ app.post("/obtenerExamenesPorFecha", (req, res) => {
 // Obtener datos del examen para dibujar pdf
 app.post("/datos_examenes_para_pdf", (req, res) => {
   const { id } = req.body;
-  
+
   let qry = `
-      SELECT EXAMENES.*, PACIENTES.nombre AS nombre_paciente FROM EXAMENES
-      INNER JOIN PACIENTES ON EXAMENES.paciente_id = PACIENTES.id
-      WHERE EXAMENES.id = ${id}
+    SELECT EXAMENES.*, PACIENTES.nombre AS nombre_paciente 
+    FROM EXAMENES
+    INNER JOIN PACIENTES ON EXAMENES.paciente_id = PACIENTES.id
+    WHERE EXAMENES.id = ${id}
   `;
 
-  function formatearFechaANormal (fechaISO){
-    // Crear un objeto Date a partir de la fecha ISO
-     const fecha = new Date(fechaISO);
-
-     // Obtener día, mes y año
-     const dia = String(fecha.getDate()).padStart(2, '0'); // Asegura 2 dígitos
-     const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Los meses van de 0 a 11
-     const anio = fecha.getFullYear();
-
-     // Devolver la fecha en formato dd-mm-yyyy
-     return `${dia}/${mes}/${anio}`;
- }
+  function formatearFechaANormal(fechaISO) {
+    const fecha = new Date(fechaISO);
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    const anio = fecha.getFullYear();
+    return `${dia}/${mes}/${anio}`;
+  }
 
   execute.QueryData(qry)
     .then(data => {
@@ -567,51 +563,45 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
         const examen = data[0];
         let doc = new PDFDocument({ margin: 30, size: 'A4' });
 
-          const fileName = `examen_${examen.tipo_examen}.pdf`;
-          const stream = fs.createWriteStream(fileName);
-          doc.pipe(stream);
-          doc.image('./build/img/logo_laboratorio.jpg', 430, 15, {fit: [80, 80], align: 'center', valign: 'bottom'})
-          doc.moveDown(6);   
-          doc.fontSize(11).text(`Nombre: ${examen.nombre_paciente}`, { align: "left"});   
-          doc.fontSize(11).text(`Fecha: ${formatearFechaANormal(examen.fecha)}`, { align: "left" });   
-          doc.fontSize(11).text(`Tratante: ${examen.medico_tratante}`, { align: "left" });   
-          doc.moveDown(2);
-          doc.fontSize(18).font("Helvetica-Bold").text(`EXAMEN ${examen.tipo_examen}`, { align: "center" });
+        const fileName = `examen_${examen.tipo_examen}.pdf`;
+        const stream = fs.createWriteStream(fileName);
+        doc.pipe(stream);
+
+        doc.image('./build/img/logo_laboratorio.jpg', 430, 15, { fit: [80, 80], align: 'center', valign: 'bottom' });
+        doc.moveDown(6);
+        doc.fontSize(11).text(`Nombre: ${examen.nombre_paciente}`, { align: "left" });
+        doc.fontSize(11).text(`Fecha: ${formatearFechaANormal(examen.fecha)}`, { align: "left" });
+        doc.fontSize(11).text(`Tratante: ${examen.medico_tratante}`, { align: "left" });
+        doc.moveDown(2);
+        doc.fontSize(18).font("Helvetica-Bold").text(`EXAMEN ${examen.tipo_examen}`, { align: "center" });
+        doc.moveDown();
+
+        if (examen.tipo_examen === 'COPROLOGÍA') {
+          // Tabla Macroscópico Copro
+          doc.fontSize(11).text("EXAMEN MACROSCÓPICO:", { align: "center" });
           doc.moveDown();
-          doc.fontSize(11).text(`EXAMEN MACROSCÓPICO:`, { align: "center" });
-          doc.moveDown();
-        
-        
-         // table
-         const tableMacroscopicoCopro = {
-          //   title: {label: 'Titulo de prueba'},
-          //   subtitle: "Sub titulo de la tabla",
+
+          const tableMacroscopicoCopro = {
             headers: [
-              { label: "Color", property: 'color_heces', width: 60, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 },
-              { label: "Restos Alimenticios", property: 'restos_alimenticios', width: 150, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
-              { label: "Sangre", property: 'sangre', width: 100, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
-              { label: "Consistencia", property: 'consitencia', width: 100, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
-              { label: "Moco", property: 'moco', width: 80, renderer: null, headerColor: "#de0606", headerOpacity: 0.15 }, 
+              { label: "Color", property: 'color_heces', width: 60, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Restos Alimenticios", property: 'restos_alimenticios', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Sangre", property: 'sangre', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Consistencia", property: 'consitencia', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Moco", property: 'moco', width: 80, headerColor: "#de0606", headerOpacity: 0.15 },
               { label: "PH", property: 'ph', width: 43, headerColor: "#de0606", headerOpacity: 0.15 },
             ],
-            // complex data
             datas: [
-              { 
-                color_heces: `${examen.copro_macroscopio_color}`, 
-                restos_alimenticios: `${examen.copro_macroscopio_restos_alimenticios}`, 
-                sangre: `${examen.copro_macroscopio_sangre}`, 
-                consitencia: `${examen.copro_macroscopio_consistencia}`, 
-                moco: `${examen.copro_macroscopio_Moco}`, 
-                ph: `${examen.copro_macroscopio_PH}`, 
+              {
+                color_heces: examen.copro_macroscopio_color,
+                restos_alimenticios: examen.copro_macroscopio_restos_alimenticios,
+                sangre: examen.copro_macroscopio_sangre,
+                consitencia: examen.copro_macroscopio_consistencia,
+                moco: examen.copro_macroscopio_Moco,
+                ph: examen.copro_macroscopio_PH,
               },
-              { 
-           
-              },
-              
             ],
-            
           };
-          // the magic
+
           doc.table(tableMacroscopicoCopro, {
             prepareHeader: () => doc.font("Helvetica").fontSize(8),
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
@@ -619,96 +609,186 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
               indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
             },
           });
-  
+
+          // Tabla Químico Copro
           doc.moveDown(2);
-          doc.fontSize(11).text(`EXAMEN QUIMICO:`, { align: "center" });
+          doc.fontSize(11).text("EXAMEN QUIMICO:", { align: "center" });
           doc.moveDown();
-  
+
           const tableQuimicoCopro = {
-              //   title: {label: 'Titulo de prueba'},
-              //   subtitle: "Sub titulo de la tabla",
-                headers: [
-                  { label: "Leucocitos", property: 'leucocitos', width: 60, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 },
-                  { label: "Celulas Vegetales", property: 'celulas_vegetales', width: 150, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
-                  { label: "Almidones", property: 'almidones', width: 100, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
-                  { label: "Levaduras", property: 'levaduras', width: 100, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
-                  { label: "Huevo", property: 'huevo', width: 80, renderer: null, headerColor: "#64fd00", headerOpacity: 0.15 }, 
-                  { label: "Quistes", property: 'quistes', width: 43, headerColor: "#64fd00", headerOpacity: 0.15 },
-                ],
-                // complex data
-                datas: [
-                  { 
-                    leucocitos: `${examen.copro_quimico_leucocitos}`, 
-                    celulas_vegetales: `${examen.copro_quimico_celulas_vegetales}`, 
-                    almidones: `${examen.copro_quimico_almidones}`, 
-                    levaduras: `${examen.copro_quimico_levaduras}`, 
-                    huevo: `${examen.copro_quimico_huevo}`, 
-                    quistes: `${examen.copro_quimico_quistes}`, 
-                  },
-                  { 
-                 
-                  },
-                  
-                ],
-                // simeple data
-  
-              };
-              // the magic
-              doc.table(tableQuimicoCopro, {
-                prepareHeader: () => doc.font("Helvetica").fontSize(8),
-                prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
-                  doc.font("Helvetica-Bold").fontSize(8);
-                  indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
-                },
-              });
-  
-              doc.moveDown(2);
-              doc.fontSize(11).text(`EXAMEN MICROSCOPICO:`, { align: "center" });
-              doc.moveDown();
-  
-  
-              const tableMicroscopicoCopro = {
-                  //   title: {label: 'Titulo de prueba'},
-                  //   subtitle: "Sub titulo de la tabla",
-                    headers: [
-                      { label: "Eritrocitos", property: 'eritrocitos', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 },
-                      { label: "Grasas", property: 'grasas', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
-                      { label: "Jabón", property: 'jabon', width: 150, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
-                      { label: "Bacterias", property: 'bacterias', width: 80, renderer: null, headerColor: "#053a91", headerOpacity: 0.15 }, 
-                    ],
-                    // complex data
-                    datas: [
-                      { 
-                        eritrocitos: `${examen.copro_microscopio_eritrocitos}`, 
-                        grasas: `${examen.copro_microscopio_grasas}`, 
-                        jabon: `${examen.copro_microscopio_jabon}`, 
-                        bacterias: `${examen.copro_microscopio_bacterias}`, 
-                      },
-                      { 
-                      
-                      },
-                      // {...},
-                    ],
-                    // simeple data
-     
-                  };
-                  // the magic
-                  doc.table(tableMicroscopicoCopro, {
-                    prepareHeader: () => doc.font("Helvetica").fontSize(8),
-                    prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
-                      doc.font("Helvetica-Bold").fontSize(8);
-                      indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
-                    },
-                  });
-  
-          // done!
-          doc.end();
-          stream.on('finish', () => {
-                  res.download(fileName, () => {
-                      fs.unlinkSync(fileName); 
-                  });
-              });
-        
+            headers: [
+              { label: "Leucocitos", property: 'leucocitos', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Celulas Vegetales", property: 'celulas_vegetales', width: 150, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Almidones", property: 'almidones', width: 100, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Levaduras", property: 'levaduras', width: 100, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Huevo", property: 'huevo', width: 80, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Quistes", property: 'quistes', width: 43, headerColor: "#64fd00", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                leucocitos: examen.copro_quimico_leucocitos,
+                celulas_vegetales: examen.copro_quimico_celulas_vegetales,
+                almidones: examen.copro_quimico_almidones,
+                levaduras: examen.copro_quimico_levaduras,
+                huevo: examen.copro_quimico_huevo,
+                quistes: examen.copro_quimico_quistes,
+              },
+            ],
+          };
+
+          doc.table(tableQuimicoCopro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+
+          // Tabla Microscópico Copro
+          doc.moveDown(2);
+          doc.fontSize(11).text("EXAMEN MICROSCOPICO:", { align: "center" });
+          doc.moveDown();
+
+          const tableMicroscopicoCopro = {
+            headers: [
+              { label: "Eritrocitos", property: 'eritrocitos', width: 150, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Grasas", property: 'grasas', width: 150, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Jabón", property: 'jabon', width: 150, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Bacterias", property: 'bacterias', width: 80, headerColor: "#053a91", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                eritrocitos: examen.copro_microscopio_eritrocitos,
+                grasas: examen.copro_microscopio_grasas,
+                jabon: examen.copro_microscopio_jabon,
+                bacterias: examen.copro_microscopio_bacterias,
+              },
+            ],
+          };
+
+          doc.table(tableMicroscopicoCopro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+
+        } else if (examen.tipo_examen === 'UROLOGIA') {
+          // Tabla Macroscópico Uro
+          doc.fontSize(11).text("EXAMEN MACROSCÓPICO:", { align: "center" });
+          doc.moveDown();
+
+          const tableMacroscopicoUro = {
+            headers: [
+              { label: "Color", property: 'color', width: 60, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Aspecto", property: 'aspecto', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Densidad", property: 'densidad', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "PH", property: 'ph', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                color: examen.uro_macro_color,
+                aspecto: examen.uro_macro_aspecto,
+                densidad: examen.uro_macro_densidad,
+                ph: examen.uro_macro_ph,
+              },
+            ],
+          };
+
+          doc.table(tableMacroscopicoUro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+
+          // Tabla Químico Uro
+          doc.moveDown(2);
+          doc.fontSize(11).text("EXAMEN QUIMICO:", { align: "center" });
+          doc.moveDown();
+
+          const tableQuimicoUro = {
+            headers: [
+              { label: "Leucocitos", property: 'leucocitos', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Glucosa", property: 'glucosa', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Proteinas", property: 'proteinas', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Cetonas", property: 'cetonas', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Hemoglobina", property: 'hemoglobina', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Urobilinogeno", property: 'urobilinogeno', width: 45, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Nitritos", property: 'nitritos', width: 45, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Acido Ascórbico", property: 'acido_ascorbico', width: 45, headerColor: "#64fd00", headerOpacity: 0.15 },
+              { label: "Bilirrubina", property: 'bilirrubina', width: 45, headerColor: "#64fd00", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                leucocitos: examen.uro_quimico_leucocitos,
+                glucosa: examen.uro_quimico_glucosa,
+                proteinas: examen.uro_quimico_proteinas,
+                cetonas: examen.uro_quimico_cetonas,
+                hemoglobina: examen.uro_quimico_hemoglobina,
+                urobilinogeno: examen.uro_quimico_urobilinogeno,
+                nitritos: examen.uro_quimico_nitritos,
+                acido_ascorbico: examen.uro_quimico_acido_ascorbico,
+                bilirrubina: examen.uro_quimico_bilirrubina,
+              },
+            ],
+          };
+
+          doc.table(tableQuimicoUro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+
+          // Tabla Microscópico Uro
+          doc.moveDown(2);
+          doc.fontSize(11).text("EXAMEN MICROSCOPICO:", { align: "center" });
+          doc.moveDown();
+
+          const tableMicroscopicoUro = {
+            headers: [
+              { label: "Leucocitos", property: 'leucocitos', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Eritrocitos", property: 'eritrocitos', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Células Epiteliales", property: 'c_epiteliales', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Bacterias", property: 'bacterias', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Cristales", property: 'cristales', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Cilindros", property: 'cilindros', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+              { label: "Otros", property: 'otros', width: 60, headerColor: "#053a91", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                leucocitos: examen.uro_micro_leucocitos,
+                eritrocitos: examen.uro_micro_eritocitos,
+                c_epiteliales: examen.uro_micro_c_epiteliales,
+                bacterias: examen.uro_micro_bacterias,
+                cristales: examen.uro_micro_cristales,
+                cilindros: examen.uro_micro_cilindros,
+                otros: examen.uro_micro_otros,
+              },
+            ],
+          };
+
+          doc.table(tableMicroscopicoUro, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+        }
+
+        // Finalizar el PDF
+        doc.end();
+        stream.on('finish', () => {
+          res.download(fileName, () => {
+            fs.unlinkSync(fileName);
+          });
+        });
+
       } else {
         res.status(404).json({ error: "No se encontraron datos" });
       }
