@@ -223,7 +223,7 @@ function filtrarExamenes() {
                                 <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${
                                   examen.id
                                 })">
-                                    <i class="fal fa-file-pdf"></i>
+                                    <i class="fal fa-print"></i>
                                 </button>
                                 <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${
                                   examen.id
