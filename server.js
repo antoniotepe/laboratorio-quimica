@@ -357,7 +357,6 @@ app.post("/insert_paciente", function(req, res) {
       ('${noDPI}','${nombre}','${fecha_nacimiento}',${empresa})
   `;
   execute.Query(res, qry);
-  console.log(` Los datos de insert paciente ${noDPI} ${nombre} ${fecha_nacimiento} ${empresa} ${qry}`);
 
 })
 
@@ -390,7 +389,6 @@ app.post("/datos_pacientes", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 
 })
 
@@ -409,7 +407,6 @@ app.post("/update_paciente", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 })
 
 // obtener empresas
@@ -448,7 +445,6 @@ app.post("/eliminar_empresa", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 
 })
 
@@ -466,7 +462,6 @@ app.post("/insert_examen_ciprologia", function(req, res) {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 
 })
 
@@ -485,7 +480,6 @@ app.post("/obtenerExamenesCoprologia", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 });
 
 
@@ -500,7 +494,6 @@ app.post("/eliminar_examen", (req, res) => {
 
   // Ejecutar la consulta
   execute.Query(res, qry,);
-  console.log(qry, [id]);
 });
 
 
@@ -516,7 +509,7 @@ app.post("/insert_examen_urologia", (req, res) => {
   `;
 
     execute.Query(res, qry);
-    console.log(qry);
+
 
 })
 
@@ -534,7 +527,6 @@ app.post("/obtenerExamenesPorFecha", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
 
 })
 

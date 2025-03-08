@@ -1062,7 +1062,6 @@ function addListeners(){
 
     catalogoPacientes()
     .then((data) => {
-        console.log(data)
         let strTableCopro = '';
         data.forEach(pacienteCopro => {
             strTableCopro += `
@@ -1097,9 +1096,6 @@ function addListeners(){
                 // Cerrar el modal (si estás usando Bootstrap)
                 $("#modal_catalogo_pacientes_coprologia").modal('hide');
 
-
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
             });
         });
     })
@@ -1112,7 +1108,6 @@ function addListeners(){
     // Pacientes en urologia
     catalogoPacientes()
     .then((data) => {
-        console.log(data)
         let strTableUro = '';
         data.forEach(pacienteUro => {
             strTableUro += `
@@ -1147,9 +1142,6 @@ function addListeners(){
                 // Cerrar el modal (si estás usando Bootstrap)
                 $("#modal_catalogo_pacientes_urologia").modal('hide');
 
-
-                // Opcional: Mostrar el ID en consola para verificar
-                console.log("ID del paciente seleccionado:", GlobalIdPaciente);
         });
     });
     })
@@ -1430,7 +1422,7 @@ function catalogoPacientes() {
             reject();
         })
         .finally(() => {
-            console.log("Catalogo pacientes finalizado");
+            console.info("Catalogo pacientes finalizado");
         })
     })
 }
@@ -1505,7 +1497,7 @@ function insertDatosExamenCipro() {
             reject();
         })
         .finally(() => {
-            console.log("Datos de examen copro Finalizados");
+            console.info("Datos de examen copro Finalizados");
         })
     })
 }
@@ -1585,11 +1577,11 @@ function insertDatosExamenUro() {
             }
         })
         .catch((error) => {
-            console.log(error)
+            console.error(error)
             reject(error);
         })
         .finally(() => {
-            console.log("Datos de examen uro Finalizados");
+            console.info("Datos de examen uro Finalizados");
         })
     })
 

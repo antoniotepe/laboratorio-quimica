@@ -203,7 +203,6 @@ function filtrarExamenes() {
   let mesSelect = document.getElementById("txtSelectMes").value;
   let anioSelect = document.getElementById("txtSelectAnio").value;
 
-    console.log(tipoSelect, mesSelect, anioSelect);
 
   obtenerExamenes(tipoSelect, mesSelect, anioSelect)
     .then((data) => {

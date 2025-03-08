@@ -286,8 +286,6 @@ function addListeners(){
                 
                 btnGuardarPaciente.disabled = true;
                 btnGuardarPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                console.log(fecha_nacimiento);
                 
 
                 insert_paciente(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
@@ -302,7 +300,7 @@ function addListeners(){
                 })
                 .catch((e) => {
                     F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
-                    console.log(e);
+                    console.error(`Error actualizar paciente: ${e}`);
                     btnGuardarPaciente.disabled = false;
                     btnGuardarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
@@ -338,7 +336,7 @@ function addListeners(){
                 })
                 .catch((e) => {
                     F.AvisoError("No se puede guardar la empresa" + e);
-                    console.log(e);
+                    console.error(`Error guardar empresa: ${e}`);
                     btnGuardarEmpresaPaciente.disabled = false;
                     btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
@@ -378,7 +376,7 @@ function addListeners(){
                 })
                 .catch((e) => {
                     F.AvisoError('No se pudo actualizar el paciente');
-                    console.log(e);
+                    console.error(`Error actualizar paciente: ${e}`)
                     btnEditarPaciente.disabled = false;
                     btnEditarPaciente.innerHTML = `<i class="fal fa-save"></i>`;
                 })
@@ -541,7 +539,6 @@ function get_datos_paciente(id_paciente, fecha_nacimiento) {
     GlobalFechaAActualizar = fecha_nacimiento;
     get_data_datos_paciente(id_paciente)
     .then((data) => {
-        console.log(data);
         data.forEach((r) => {
             document.getElementById("cmbEmpresaPacienteE").value=r.EMPRESA_ID;
             document.getElementById("txtnoDPIUpdate").value=r.NO_DPI;
@@ -624,8 +621,6 @@ function updatePacientes() {
     let nombrePacienteUpdate = document.getElementById("txtNombrePacienteUpdate").value;
     let fechaNacimientoUpdate = document.getElementById('txtFechaNacimientoUpdate').value;
     let codEmpresa = document.getElementById("cmbEmpresaPacienteE").value;
-
-    console.log(noDpi, nombrePacienteUpdate, fechaNacimientoUpdate, codEmpresa, F.convertirFecha(GlobalFechaAActualizar));
 
     return new Promise((resolve, reject) => {
 

@@ -58,7 +58,7 @@ function getView(){
                                     <h5 class="card-title text-center negrita">
                                         EXAMENES POR FECHA
                                     </h5>
-                                    <img src="../img/icon-examen-por-fecha.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
+                                    <img src="../img/examen-nuevo.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
                                 </div>
                             </div>
                         </div>
@@ -446,10 +446,6 @@ function filtrar(event) {
     let fechaInicio = F.devuelveFecha("txtFechaInicio");
     let fechaFinal = F.devuelveFecha("txtFechaFinal");
 
-    // console.log("Tipo seleccionado:", tipoSeleccionado);
-    // console.log("Fecha inicio:", fechaInicio);
-    // console.log("Fecha final:", fechaFinal);
-
     obtenerExamenesPorFecha(tipoSeleccionado, fechaInicio, fechaFinal)
         .then((data) => {
             let strTableExamenesPorFecha = '';
@@ -474,7 +470,7 @@ function filtrar(event) {
         })
         .catch((error) => {
             document.getElementById("tblExamenesPorFecha").innerHTML = '<tr><td colspan="4">No hay registros de examenes...</td></tr>';
-            console.log(error);
+            console.error(error);
         })
         .finally(() => {
             console.log(`Termino el proceso de obtener los examenes`);
