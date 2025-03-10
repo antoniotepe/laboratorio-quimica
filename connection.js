@@ -63,15 +63,15 @@ const mysql = require('mysql2');
 // 	}
 // }
 
-let config = {
-    user: 'a6478c_laborat',
-    password: 'razors1805',
-    host: 'mysql5050.site4now.net',
-    database: 'db_a6478c_laborat',
-    waitForConnections: true,
-    connectionLimit: 100,  // Ajustar según el límite del servidor
-    queueLimit: 0
-};
+// let config = {
+//     user: 'a6478c_laborat',
+//     password: 'razors1805',
+//     host: 'mysql5050.site4now.net',
+//     database: 'db_a6478c_laborat',
+//     waitForConnections: true,
+//     connectionLimit: 100,  // Ajustar según el límite del servidor
+//     queueLimit: 0
+// };
 
 // let config = {
 //     user: 'antoniodb',
@@ -84,16 +84,16 @@ let config = {
 //     queueLimit: 0
 // };
 
-// let config = {
-//     user: 'avnadmin',
-//     password: 'AVNS_k4Wsoe8I9GkVeSEe3et',
-//     port: 26005,
-//     host: 'mysql-2304929b-tepe1600-975d.g.aivencloud.com',
-//     database: 'defaultdb',
-//     waitForConnections: true,
-//     connectionLimit: 100,  // Ajustar según el límite del servidor
-//     queueLimit: 0
-// };
+let config = {
+    user: 'avnadmin',
+    password: 'AVNS_k4Wsoe8I9GkVeSEe3et',
+    port: 26005,
+    host: 'mysql-2304929b-tepe1600-975d.g.aivencloud.com',
+    database: 'defaultdb',
+    waitForConnections: true,
+    connectionLimit: 100,  // Ajustar según el límite del servidor
+    queueLimit: 0
+};
 
 let configx = {
 	user: 'iEx',

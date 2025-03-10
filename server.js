@@ -530,6 +530,30 @@ app.post("/obtenerExamenesPorFecha", (req, res) => {
 
 })
 
+// Obtener total de examenes
+app.post("/obtenerTotalDeExamenes", (req, res) => {
+  const { fechaInicial, fechaFinal } = req.body;
+
+  // let qry = `
+  //   SELECT EXAMENES.*, COUNT(*) AS total_examen
+  //   FROM EXAMENES
+  //   WHERE (tipo_examen LIKE '%${tipo}%')
+  //   AND (st = 1)
+  //   GROUP BY EXAMENES.id
+  // `;
+
+  let qry = `
+    SELECT tipo_examen, importe, COUNT(*) AS total_examenes, SUM(importe) AS importe FROM examenes WHERE (FECHA BETWEEN '${fechaInicial}' AND '${fechaFinal}')
+    AND (st = 1)
+    GROUP BY tipo_examen, importe
+  `;
+
+  execute.Query(res, qry);
+
+  console.log(qry);
+
+})
+
 // Obtener datos del examen para dibujar pdf
 app.post("/datos_examenes_para_pdf", (req, res) => {
   const { id } = req.body;

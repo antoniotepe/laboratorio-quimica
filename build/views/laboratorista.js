@@ -21,7 +21,25 @@ function getView(){
                             ${view.vista_hematologia()}
                         </div>
                         <div class="tab-pane fade" id="seis" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes()}
+                            ${view.vista_hemoglobina_glicosilada()}
+                        </div>
+                        <div class="tab-pane fade" id="siete" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_pruebas_especiales()}
+                        </div>
+                        <div class="tab-pane fade" id="ocho" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_examenes_hcg_cuantitativa()}
+                        </div>
+                        <div class="tab-pane fade" id="nueve" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_examenes_quimica_sanguinea()}
+                        </div>
+                        <div class="tab-pane fade" id="diez" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_examenes_resultados_varios()}
+                        </div>
+                        <div class="tab-pane fade" id="once" role="tabpanel" aria-labelledby="home-tab">
+                            
+                        </div>
+                        <div class="tab-pane fade" id="doce" role="tabpanel" aria-labelledby="home-tab">
+
                         </div>
                         
                     </div>
@@ -50,7 +68,31 @@ function getView(){
                         <li class="nav-item">
                             <a class="nav-link negrita text-danger" id="tab-seis" data-toggle="tab" href="#seis" role="tab" aria-controls="home" aria-selected="true">
                                 <i class="fal fa-comments"></i></a>
-                        </li>           
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-siete" data-toggle="tab" href="#siete" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-ocho" data-toggle="tab" href="#ocho" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-nueve" data-toggle="tab" href="#nueve" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-diez" data-toggle="tab" href="#diez" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-once" data-toggle="tab" href="#once" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-doce" data-toggle="tab" href="#doce" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+
                     </ul>
                     
                 </div>
@@ -65,7 +107,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_coproanalisis">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">COPROLOGÍA</h5>
-                                    <img src="../img/ciproanalisi.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Coproanálisis" />
+                                    <img src="../img/ciproanalisi.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="COPROANALIS" />
                                 </div>
                             </div>
                         </div>
@@ -73,7 +115,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_uroanalisis">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">UROLOGÍA</h5>
-                                    <img src="../img/uroanalisis.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Uroanálisis" />
+                                    <img src="../img/uroanalisis.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="UROLOGIA" />
                                 </div>
                             </div>
                         </div>
@@ -81,7 +123,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="enfermedades_infecciosas">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">ENFERMEDADES INFECCIOSAS</h5>
-                                    <img src="../img/QUIMICA_SANGUINEA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Química Sanguínea" />
+                                    <img src="../img/QUIMICA_SANGUINEA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ENFERMEDADES INFECCIOSAS" />
                                 </div>
                             </div>
                         </div>
@@ -89,7 +131,47 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_hematologia">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">HEMATOLOGÍA COMPLETA</h5>
-                                    <img src="../img/hematology.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Hematología" />
+                                    <img src="../img/hematology.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="HEMATOLOGIA COMPLETA" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_hemoglobina_glicosilada">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">HEMOGLOBINA GLICOSILADA</h5>
+                                    <img src="../img/HEMOGLOBINA_GLICOSILADA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="HEMOGLOBINA GLICOSILADA" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_pruebas_especiales">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">PRUEBAS ESPECIALES</h5>
+                                    <img src="../img/pruebas_especiales.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="PRUEBAS ESPECIALES" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_examenes_hcg_cuantitativa">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">EXAMENES HCG CUANTITATIVA</h5>
+                                    <img src="../img/HGC_CAUNTITATIVA.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="HCG CUANTITATIVA" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_examenes_quimica_sanguinea">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">EXAMENES QUIMICA SANGUINEA</h5>
+                                    <img src="../img/QUIMICA_SANGUINEA_LAB.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="QUIMICA SANGUINEA" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_examenes_resultados_varios">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">EXAMENES RESULTADOS VARIOS</h5>
+                                    <img src="../img/RESULTADOS_VARIOS.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="RESULTADOS VARIOS" />
                                 </div>
                             </div>
                         </div>
@@ -97,7 +179,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_tbla_examenes">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">ARCHIVOS</h5>
-                                    <img src="../img/carpeta_icon.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Hematología" />
+                                    <img src="../img/carpeta_icon.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="ARCHIVOS" />
                                 </div>
                             </div>
                         </div>
@@ -105,7 +187,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_tbla_pacientes">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">REGISTRO DE PACIENTES</h5>
-                                    <img src="../img/icon_user.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="Usuarios" />
+                                    <img src="../img/icon_user.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="TABLA USUARIOS" />
                                 </div>
                             </div>
                         </div>
@@ -610,7 +692,7 @@ function getView(){
                 </div>
 
               
-                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenUrologia">
@@ -650,7 +732,7 @@ function getView(){
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
                             <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
                             id="txtFiltrarPacienteEnfermedadesInfecciosas" disabled/>
-                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesEnfInfecciosass">
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesEnfInfecciosas()">
                                 <i class="fal fa-search"></i>
                             </button>
                         </div>
@@ -953,26 +1035,515 @@ function getView(){
                 </div>
 
                
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <label class="form-label text-info">Otros:</label>
-                        <textarea class="form-control" rows="3"></textarea>
-                    </div>
-                </div>
-
-               
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <button class="btn btn-info btn-lg">
-                            <i class="fal fa-save"></i> Guardar
-                        </button>
-                    </div>
-                </div>
+                <button
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
+                        onclick="retrocederVistaLaboratorista()"
+                    >
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button
+                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
+                        id="btnGuardarHematologia"
+                    >
+                        <i class="fal fa-save"></i>
+                    </button>
             </div>
             `;
         },
-        vista_examenes:()=> {
-            return ``;
+        vista_hemoglobina_glicosilada:()=> {
+            return `
+                <div class="container-fluid mt-4">
+                    <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
+                       <div class="col-12 col-md-6 mt-3">
+                            <div class="h3" id="txtTipoHemoglobinaGlicosilada">
+                                <strong>HEMOGLOBINA GLICOSILADA</strong>
+                            </div>    
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control" value="FEB25-001" readonly id="txtRefHemoglobinaGlicosilada" />
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control" id="fechaHemoglobinaGlicosilada">
+                            </div>
+                       </div>
+                    </div>
+                    
+                    <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesHemoglobinaGlicosilada" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalHemoglobinaGlicosilada()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoHemoglobinaGlicosilada" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="FloatImporteHemoglobinaGlicosilada">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">Inmunologia</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">EXAMEN:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtExamenHemoglobinaGlicosilada" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtResultadoHemoglobinaGlicosilada" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALOR NORMAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtvalorNormalHemoglobinaGlicosilada"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card">
+                                <div class="card-header bg-info text-center text-white"></div>
+                                <div class="card-body">
+                                    <label class="form-label text-info">PRUEBA DE HBA1C EN %:</label>
+                                    <input type="search" class="form-control bg-amarillo" id="" list="listPruebaHba1c" placeholder="Ingrese valor..." />
+                                    <datalist id="listPruebaHba1c">
+                                        <option value="5-6"/>
+                                        <option value="7-8"/>
+                                        <option value="8-9"/>
+                                        <option value="9-10"/>
+                                        <option value="10-11"/>
+                                        <option value="11-12"/>
+                                    </datalist>
+
+                                    <label class="form-label text-info">PROMEDIO DE GLICEMIA EN MG/DL:</label>
+                                    <input type="search" class="form-control bg-amarillo" id="" list="listPromedioDeGlicemia" placeholder="Ingrese valor...">
+                                    <datalist id="listPromedioDeGlicemia">
+                                        <option value="80-120" />
+                                        <option value="120-150" />
+                                        <option value="150-180" />
+                                        <option value="180-210" />
+                                        <option value="210-240" />
+                                        <option value="240-270" />
+                                        <option value="270-300" />
+                                    </datalist>
+
+                                    <label class="form-label text-info">CALIFICACION:</label>
+                                    <input type="search" class="form-control bg-amarillo" list="listaCalificacion" placeholder="Ingrese valor..." />
+                                    <datalist id="listaCalificacion">
+                                        <option value="EXCELENTE" />
+                                        <option value="MUY BUENO" />
+                                        <option value="BUENO" />
+                                        <option value="REGULAR" />
+                                        <option value="PROBLEMATICO" />
+                                        <option value="MALO" />
+                                        <option value="MUY MALO" />
+                                    </datalist>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
+                        onclick="retrocederVistaLaboratorista()"
+                    >
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button
+                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
+                        id="btnGuardarExamenHemoglobinaGlicosilada"
+                    >
+                        <i class="fal fa-save"></i>
+                    </button>
+
+                </div>
+            `;
+        },
+        vista_pruebas_especiales:() => {
+            return `
+                <div class="container-fluid mt-4">
+
+                    <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
+                    
+                        <div class="col-12 col-md-6 mt-3">
+                            <div class="h3" id="txtTipoPruebasEspeciales">
+                                <strong>PRUEBAS ESPECIALES</strong>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control" id="txtRefPruebasEspeciales" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control" id="fechaPruebasEspeciales" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                                id="txtFiltrarPruebasEspeciales" disabled/>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPruebasEspeciales()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPruebasEspeciales" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                            <input class="form-control bg-amarillo rounded" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="floatImportePruebasEspeciales">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-center">
+                        <h5 class="card-title mb-0 text-white">Química Sanguínea</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-info">EXAMEN RESULTADO:</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-amarillo" id="txtExamenResultadoPruebasEspeciales"/>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-info">RESULTADO:</label>
+                                <input type="text" class="form-control bg-amarillo" id="txtResultadoPruebasEspeciales"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-info">VALOR REFERENCIA:</label>
+                                <input type="text" class="form-control me-2 bg-amarillo" id="txtvalorReferenciaPruebasEspeciales">
+                                    
+                            </div>
+                        </div>
+                      
+                        
+                    </div>
+                </div>
+
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                    <i class="fal fa-arrow-left"></i>
+                </button>
+                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenPruebasEspeciales">
+                        <i class="fal fa-save"></i>
+                </button>
+
+                </div>
+            `;
+        },
+        vista_examenes_hcg_cuantitativa:() => {
+            return `
+                <div class="container-fluid">
+
+                    <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
+                       <div class="col-12 col-md-6 mt-3">
+                            <div class="h3" id="txtTipoHcgCuantitativa">
+                                <strong>EXAMEN HCG CUANTITATIVA</strong>
+                            </div>    
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control" value="FEB25-001" readonly id="txtRefHcgCuantitativa" />
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control" id="fechaHcgCuantitativa">
+                            </div>
+                       </div>
+                    </div>
+
+                    <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesHcgCuantitativa" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalHcgCuantitativa()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoHcgCuantitativa" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="FloatImporteHcgCuantitativa">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">EXAMENES HCG CUANTITATIVA</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">ANALISIS:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtAnalisisHcgCuantitativa" list="listAnalisisHcgCuantitativa" />
+                                    <datalist id="listAnalisisHcgCuantitativa">
+                                        <option value="B-HCG Cuantificada" />
+                                    </datalist>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtResultadoHcgCuantitativa" list="listResultadoHcgCuantitativa" />
+                                    <datalist id="listResultadoHcgCuantitativa">
+                                        <option value="< 4 .00 mlU/mL" />
+                                    </datalist>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALORES DE REFERENCIA:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtvalorDeReferenciaHcgCuantitativa" list="listValorRefHcgCuantitativa"/>
+                                    <datalist id="listValorRefHcgCuantitativa">
+                                        <option value="3 Semanas: 5 – 50" />
+                                        <option value="4 Semanas: 5 – 426" />
+                                        <option value="5 Semanas: 18 – 7340" />
+                                        <option value="6 Semanas: 1080 – 56500" />
+                                        <option value="7-8 Semanas: 7650 – 229000" />
+                                        <option value="9-12 Semanas: 25700 – 288000" />
+                                        <option value="13-16 Semanas: 13300 – 254000" />
+                                        <option value="17-24 Semanas: 4060 – 165400" />
+                                        <option value="25-40 Semanas: 3640 – 117000" />
+                                        <option value="Sin embarazo: < menor de 10 mlU/mL" />
+                                    </datalist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
+                        onclick="retrocederVistaLaboratorista()"
+                    >
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button
+                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
+                        id="btnGuardarHcgCuantitativa"
+                    >
+                        <i class="fal fa-save"></i>
+                    </button>
+
+                </div>
+            `;
+        },
+        vista_examenes_quimica_sanguinea:() => {
+            return `
+                <div class="container-fluid">
+
+                    <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
+                    
+                        <div class="col-12 col-md-6 mt-3">
+                            <div class="h3" id="txtTipoQuimicaSanguinea">
+                                <strong>QUIMICA SANGUINEA</strong>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control" id="txtRefQuimicaSanguinea" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control" id="fechaQuimicaSanguinea" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesQuimicaSanguinea" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalQuimicaSanguinea()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoQuimicaSanguinea" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="FloatImporteQuimicaSanguinea">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">Quimica Sanguinea</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">EXAMEN:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtExamenQuimicaSanguinea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtResultadoQuimicaSanguinea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALOR NORMAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtvalorNormalQuimicaSanguinea"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
+                        onclick="retrocederVistaLaboratorista()"
+                    >
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button
+                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
+                        id="btnGuardarQuimicaSanguinea"
+                    >
+                        <i class="fal fa-save"></i>
+                    </button>
+
+                </div>
+            `;
+        },
+        vista_examenes_resultados_varios:() => {
+            return `
+                <div class="container-fluid">
+
+                    <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
+                    
+                        <div class="col-12 col-md-6 mt-3">
+                            <div class="h3" id="txtTipoResultadosVarios">
+                                <strong>RESULTADOS VARIOS</strong>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control" id="txtRefResultadosVarios" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control" id="fechaResultadosVarios" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesResultadosVarios" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalResultadosVarios()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoResultadosVarios" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="FloatImporteResultadoVarios">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">Resultados Varios</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">EXAMEN:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtExamenResultadoVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtResultadoResultadoVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALOR NORMAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtvalorNormalResultadoVarios"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
+                        onclick="retrocederVistaLaboratorista()"
+                    >
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button
+                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
+                        id="btnGuardarResultadoVarios"
+                    >
+                        <i class="fal fa-save"></i>
+                    </button>
+
+                </div>
+            `;  
         },
         vista_modal_pacientes_copro() {
             return `
@@ -1181,6 +1752,32 @@ function navegacionPage() {
         F.slideAnimationTabs();
         document.getElementById("tab-cinco").click();
     });
+
+    document.getElementById("card_hemoglobina_glicosilada").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-seis").click();
+    })
+
+    document.getElementById("card_pruebas_especiales").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-siete").click();
+    })
+
+    document.getElementById("card_examenes_hcg_cuantitativa").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-ocho").click();
+    })
+
+    document.getElementById("card_examenes_quimica_sanguinea").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-nueve").click();
+    })
+
+    document.getElementById("card_examenes_resultados_varios").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-diez").click();
+    })
+
 
     document.getElementById("card_tbla_pacientes").addEventListener('click', () => {
         Navegar.registroPacientes(); 

@@ -13,7 +13,10 @@ function getView(){
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_examenes_por_fechas()}
-                        </div>    
+                        </div> 
+                        <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledy="home-tab">
+                           ${view.view_tabla_total_examenes()}
+                        </div>   
                     </div>
 
                     <ul class="nav nav-tabs hidden" id="myTabHome" role="tablist">
@@ -28,7 +31,12 @@ function getView(){
                         <li class="nav-item">
                             <a class="nav-link negrita text-danger" id="tab-tres" data-toggle="tab" href="#tres" role="tab" aria-controls="home" aria-selected="true">
                                 <i class="fal fa-comments"></i></a>
-                        </li>         
+                        </li>   
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-cuatro" data-toggle="tab" href="#cuatro" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i>
+                            </a>
+                        </li>      
                     </ul>
                     
                 </div>
@@ -59,6 +67,16 @@ function getView(){
                                         EXAMENES POR FECHA
                                     </h5>
                                     <img src="../img/examen-nuevo.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="EXAMENES FECHA" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_total_examenes">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center negrita">
+                                        TOTAL DE EXAMENES
+                                    </h5>
+                                    <img src="../img/icon-examen-por-fecha.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="TOTAL DE EXAMENES"/>
                                 </div>
                             </div>
                         </div>
@@ -266,7 +284,50 @@ function getView(){
                         </div>
                     </div>
                 </div>
-
+            `;
+        },
+        view_tabla_total_examenes:() => {
+            return `
+                <div class="container-fluid">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 text-center mt-2">
+                            <h3 class="text-center mt-5">TOTAL DE EXAMENES</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row mt-3 mb-3 d-flex justify-content-between">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label mb-0 negrita">Filtrar por Fecha Inicio:
+                                </label>
+                                <input type="date" class="form-control negrita" id="txtFechaInicioTotalDeExamenes" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label mb-0 negrita">
+                                    Filtrar por Fecha Final:
+                                </label>
+                                <input type="date" class="form-control negrita" id="txtFechaFinalTotalDeExamenes" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive mt-2">
+                    <table class="table">
+                        <thead class="thead-primary text-white">
+                            <tr>
+                                <td>TIPO</td>
+                                <td>TOTAL EXAMENES</td>
+                                <td>IMPORTE</td>
+                            </tr>
+                        </thead>
+                        <tbody id="idTablaTotalExamenes">
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.dashboard()">
+                    <i class="fal fa-arrow-left"></i>
+                </button>
             `;
         }
     }
@@ -281,18 +342,29 @@ function addListeners(){
     document.getElementById("txtFechaInicio").value = F.getFecha();
     document.getElementById("txtFechaFinal").value = F.getFecha();
 
+    document.getElementById("txtFechaInicioTotalDeExamenes").value = F.getFecha();
+    document.getElementById("txtFechaFinalTotalDeExamenes").value = F.getFecha();
+
     // Obtener referencias a los elementos del DOM
     let tipoExamen = document.getElementById("cmbSelectTipoExamen");
     let fechaInicio = document.getElementById("txtFechaInicio");
     let fechaFinal = document.getElementById("txtFechaFinal");
 
+    // variables de referencias del dom en total de examenes
+    let fechaInicioTotalDeExamenes = document.getElementById("txtFechaInicioTotalDeExamenes");
+    let fechaFinalTotalDeExamenes = document.getElementById("txtFechaFinalTotalDeExamenes");
+
     // Llamar a la función filtrar con los valores iniciales
     filtrar();
+    filtrarTotalDeExamenes();
 
     // Agregar listeners para los cambios en los campos
     tipoExamen.addEventListener("change", filtrar);
     fechaInicio.addEventListener("change", filtrar);
     fechaFinal.addEventListener("change", filtrar);
+
+    fechaInicioTotalDeExamenes.addEventListener("change", filtrarTotalDeExamenes)
+    fechaFinalTotalDeExamenes.addEventListener("change", filtrarTotalDeExamenes)
 
 
 
@@ -311,6 +383,11 @@ function addListeners(){
     document.getElementById("card_examenes_por_fecha").addEventListener('click', () => {
         F.slideAnimationTabs();
         document.getElementById("tab-tres").click();
+    })
+
+    document.getElementById("card_total_examenes").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-cuatro").click();
     })
 
     get_lista_usuarios();
@@ -477,6 +554,34 @@ function filtrar(event) {
         });
 }
 
+function filtrarTotalDeExamenes(event) {
+    let fechaInicialTotal  = F.devuelveFecha("txtFechaInicioTotalDeExamenes");
+    let fechaFinalTotal = F.devuelveFecha("txtFechaFinalTotalDeExamenes");
+
+    obtenerTotalDeExamenes(fechaInicialTotal, fechaFinalTotal)
+    .then((data) => {
+        let strTablaTotalDeExamenes = '';
+        data.map((examen) => {
+            strTablaTotalDeExamenes += `
+                <tr>
+                    <td>${examen.tipo_examen}</td>
+                    <td>${examen.total_examenes}</td>
+                    <td>${examen.importe}</td>
+                </tr>
+            `;
+        })
+        document.getElementById("idTablaTotalExamenes").innerHTML = strTablaTotalDeExamenes;
+    })
+    .catch((err) => {
+        document.getElementById("idTablaTotalExamenes").innerHTML = '<tr><td colspsan="4">No hay registros</td></tr>';
+        console.error(err)
+    })
+    .finally(() => {
+        console.info(`Termino el proceso de obtener los examenes`);
+    })
+
+}
+
 function getAbrirExamenEnPdf(id) {
     axios({
       url: "/datos_examenes_para_pdf",
@@ -558,5 +663,27 @@ function obtenerExamenesPorFecha(tipo, fechaInicio, fechaFinal) {
         .catch((error) => {
             reject(error);
         })
+    })
+}
+
+function obtenerTotalDeExamenes(fechaInicial, fechaFinal) {
+    return new Promise((resolve, reject) => {
+
+        axios.post("/obtenerTotalDeExamenes", {
+            fechaInicial:fechaInicial,
+            fechaFinal:fechaFinal
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            reject(err);
+        })
+
     })
 }
