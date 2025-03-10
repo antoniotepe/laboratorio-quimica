@@ -1630,6 +1630,11 @@ function addListeners(){
     document.getElementById("fechaCoprologia").value = F.getFecha();
     document.getElementById("fechaUrologia").value = F.getFecha();
     document.getElementById("fechaEnfermedadesInfecciosas").value = F.getFecha();
+    document.getElementById("fechaHemoglobinaGlicosilada").value = F.getFecha();
+    document.getElementById("fechaPruebasEspeciales").value = F.getFecha();
+    document.getElementById("fechaHcgCuantitativa").value = F.getFecha();
+    document.getElementById("fechaQuimicaSanguinea").value = F.getFecha();
+    document.getElementById("fechaResultadosVarios").value = F.getFecha();
 
     catalogoPacientes()
     .then((data) => {
