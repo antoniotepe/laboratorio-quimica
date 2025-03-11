@@ -509,7 +509,34 @@ app.post("/insert_examen_urologia", (req, res) => {
   `;
 
     execute.Query(res, qry);
+})
 
+// Insertar datos de examen enfermedades infecciosas
+app.post("/insert_enfermedades_infecciosas", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, enfermedades_infecciosas_analisis, enfermedades_infecciosas_resultados, enfermedades_infecciosas_valor_referencia } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, ENFERMEDADES_INFECCIOSAS_ANALISIS, ENFERMEDADES_INFECCIOSAS_RESULTADOS, ENFERMEDADES_INFECCIOSAS_VALOR_REFERENCIA)
+      VALUES
+      ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${enfermedades_infecciosas_analisis}', '${enfermedades_infecciosas_resultados}', '${enfermedades_infecciosas_valor_referencia}')
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
+})
+
+app.post("/insert_examenes_bacteriologicos", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, examenes_bacteriologicos_analisis, examenes_bacteriologicos_resultado, examenes_bacteriologicos_valor_de_referencia } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, EXAMENES_BACTERIOLOGICOS_ANALISIS, EXAMENES_BACTERIOLOGICOS_RESULTADO, EXAMENES_BACTERIOLOGICOS_VALOR_DE_REFERENCIA)
+      VALUES
+      ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${examenes_bacteriologicos_analisis}', '${examenes_bacteriologicos_resultado}', '${examenes_bacteriologicos_valor_de_referencia}')
+  `;
+
+  execute.Query(res, qry);
 
 })
 

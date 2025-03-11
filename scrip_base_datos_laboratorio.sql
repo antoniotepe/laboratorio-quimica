@@ -82,6 +82,47 @@ CREATE TABLE EXAMENES (
     uro_micro_cilindros VARCHAR(200),
     uro_micro_otros VARCHAR(200),
     
+    enfermedades_infecciosas_analisis VARCHAR(200),
+    enfermedades_infecciosas_resultados VARCHAR(200),
+    enfermedades_infecciosas_valor_referencia VARCHAR(200),
+    
+    examenes_bacteriologicos_analisis VARCHAR(200),
+    examenes_bacteriologicos_resultado VARCHAR(200),
+    examenes_bacteriologicos_valor_de_referencia VARCHAR(200),
+    
+    hemoglobina_inmunologia_examen VARCHAR(200),
+    hemoglobina_inmunologia_resultado VARCHAR(200),
+    hemoglobina_inmunologia_valor_normal VARCHAR(200),
+    hemoglobina_inmunologia_prueba_de_hba1c VARCHAR(200),
+    hemoglobina_inmunologia_promedio_de_glicemia VARCHAR(200),
+    hemoglobina_inmunologia_calificacion VARCHAR(200),
+    
+    pruebas_especiales_examen_resultado VARCHAR(200),
+    pruebas_especiales_resultado VARCHAR(200),
+    pruebas_especiales_valor_de_referencia VARCHAR(200),
+    
+    hcg_cuantitativa_analisis VARCHAR(200),
+    hcg_cuantitativa_resultado VARCHAR(200),
+    hcg_cuantitativa_valores_de_referencia VARCHAR(200),
+    
+    quimica_sanguinea_examen VARCHAR(200),
+    quimica_sanguinea_resultado VARCHAR(200),
+    quimica_sanguinea_valor_normal VARCHAR(200),
+    
+    resultados_varios_examen VARCHAR(200),
+    resutlados_varios_resultado VARCHAR(200),
+    resultados_varios_valor_normal VARCHAR(200),
+    resultados_varios_grupo_sanguineo_analisis VARCHAR(200),
+    resultados_varios_grupo_sanguineo_rh VARCHAR(200),
+    resultados_varios_inmunoserologia_examen_widal VARCHAR(200),
+    resultados_varios_inmunoserologia_resultado VARCHAR(200),
+    resultados_varios_inmunoserologia_valor_normal VARCHAR(200),
+    resultados_varios_dengue_analisis VARCHAR(200),
+    resultados_varios_dengue_resultado VARCHAR(200),
+    resultados_varios_dengue_valor_normal VARCHAR(200),
+    
+    
+    
     
     FOREIGN KEY (paciente_id) REFERENCES PACIENTES(id)  
 );

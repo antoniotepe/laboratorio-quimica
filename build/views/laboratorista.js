@@ -15,25 +15,25 @@ function getView(){
                             ${view.vista_uroanalisis() + view.vista_modal_pacientes_urologia()}
                         </div>    
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_enfermedades_infecciosas()}
+                            ${view.vista_enfermedades_infecciosas() + view.vista_modal_enfermedades_infecciosas_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="cinco" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_hematologia()}
+                            ${view.vista_enfermedades_bacteriologicos() + view.vista_modal_enfermedades_bacteriologicos_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="seis" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_hemoglobina_glicosilada()}
+                            ${view.vista_hemoglobina_glicosilada() + view.vista_modal_pacientes_hemoglobina_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="siete" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_pruebas_especiales()}
+                            ${view.vista_pruebas_especiales() + view.vista_modal_pruebas_especiales_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="ocho" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_hcg_cuantitativa()}
+                            ${view.vista_examenes_hcg_cuantitativa() + view.vista_modal_hcg_cuantitativa_pacientes()}
                         </div>
                         <div class="tab-pane fade" id="nueve" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_quimica_sanguinea()}
+                            ${view.vista_examenes_quimica_sanguinea() + view.vista_modal_quimica_sanguinea()}
                         </div>
                         <div class="tab-pane fade" id="diez" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_resultados_varios()}
+                            ${view.vista_examenes_resultados_varios() + view.vista_modal_resultados_varios()}
                         </div>
                         <div class="tab-pane fade" id="once" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -128,9 +128,9 @@ function getView(){
                             </div>
                         </div>
                         <div class="col-12 col-md-6">
-                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_hematologia">
+                            <div class="card card-rounded m-2 p-3 hand shadow" id="card_enfermedades_bacteriologicos">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">HEMATOLOGÍA COMPLETA</h5>
+                                    <h5 class="card-title text-center negrita">ENFERMEDADES BACTERIOLOGICOS</h5>
                                     <img src="../img/hematology.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="HEMATOLOGIA COMPLETA" />
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ function getView(){
                         <div class="col-12 col-md-6">
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_pruebas_especiales">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center negrita">PRUEBAS ESPECIALES</h5>
+                                    <h5 class="card-title text-center negrita">HCG CUALITATIVA</h5>
                                     <img src="../img/pruebas_especiales.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="PRUEBAS ESPECIALES" />
                                 </div>
                             </div>
@@ -753,54 +753,24 @@ function getView(){
                 
                 <div class="card mb-4">
                     <div class="card-header bg-info text-center">
-                        <h5 class="card-title mb-0 text-white">Química Sanguínea</h5>
+                        <h5 class="card-title mb-0 text-white">ENFERMEDADES INFECCIOSAS</h5>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label text-info">Exámen realizado:</label>
+                            <div class="col-md-4">
+                                <label class="form-label text-info">ANALISIS</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control">
-                                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"></button>
+                                    <input type="text" class="form-control bg-amarillo" id="txtAnalisisEnfermedadesInfecciosas" />
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label text-info">Valores normales:</label>
-                                <input type="text" class="form-control" readonly>
+                                <label class="form-label text-info">RESULTADO:</label>
+                                <input type="text" class="form-control bg-amarillo" id="txtResultadosEnfermedadesInfecciosas" />
                             </div>
-                            <div class="col-md-2">
-                                <label class="form-label text-info">Obtenidos:</label>
-                                <div class="d-flex">
-                                    <input type="text" class="form-control me-2">
-                                    <button class="btn btn-info">
-                                        <i class="bi bi-plus-lg"></i> Agregar
-                                    </button>
-                                </div>
+                            <div class="col-md-4">
+                                <label class="form-label text-info">VALOR REFERENCIA:</label>
+                                <input type="text" class="form-control bg-amarillo" id="txtValorReferenciaEnfermedadesInfecciosas" />
                             </div>
-                        </div>
-
-                       
-                        <div class="table-responsive mb-3">
-                            <table class="table table-bordered">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Examen</th>
-                                        <th>Valores normales</th>
-                                        <th>Valores Obtenidos</th>
-                                        <th>Medida</th>
-                                        <th>PosNeg</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                </tbody>
-                            </table>
-                        </div>
-
-                      
-                        <div class="mb-3">
-                            <label class="form-label text-info">Otros:</label>
-                            <textarea class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
@@ -814,239 +784,86 @@ function getView(){
             </div>
             `;
         },
-        vista_hematologia:()=> {
+        vista_enfermedades_bacteriologicos:()=> {
             return `
-                <div class="container-fluid py-3">
-                
-                <div class="row bg-info text-white p-3 align-items-center mb-4">
-                    <div class="col-1">
-                        <button class="btn btn-outline-light" onclick="Navegar.laboratorista()">&lt;&lt;</button>
-                    </div>
-                    <div class="col-1">
-                        <span class="fs-1">i</span>
-                    </div>
-                    <div class="col">
-                        <h1 class="mb-0 text-white">Hematología Completa</h1>
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 text-white">Tipo:</label>
-                            </div>
-                            <div class="col-5">
-                                <select class="form-control">
-                                    <option>Hematología</option>
-                                </select>
-                            </div>
+                <div class="container-fluid mt-4">
+               
+                <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
+                   
+                    <div class="col-12 col-md-6 mt-3">
+                        <div class="h3" id="txtTipoExamenBacteriologicos">
+                            <strong>EXAMENES BACTERIOLOGICOS</strong>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 text-white">REF:</label>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" class="form-control" value="FEB25-001" readonly>
-                            </div>
-                        </div>
-                        <div class="row align-items-center mt-2">
-                            <div class="col-auto">
-                                <label class="form-label mb-0 text-white">Fecha:</label>
-                            </div>
-                            <div class="col-6">
-                                <input type="text" class="form-control" value="6/02/2025" readonly>
-                            </div>
+                    <div class="col-12 col-md-3">
+                        <div class="mb-2">
+                            <label class="form-label mb-0 text-white">REF:</label>
+                            <input type="text" class="form-control" id="txtRefEnfermedadesBacteriologicos" value="FEB25-001" readonly />
                         </div>
                     </div>
-                    
+                    <div class="col-12 col-md-3">
+                        <div>
+                            <label class="form-label mb-0 text-white">Fecha:</label>
+                            <input type="date" class="form-control" id="fechaExamenesBacteriologicos" />
+                        </div>
+                    </div>
                 </div>
 
+                <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                            id="txtFiltrarPacienteExamenesBacteriologicos" disabled/>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesExamenesBacteriologicos()">
+                                <i class="fal fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoExamenesBacteriologicos" />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
+                            <input class="form-control bg-amarillo rounded" type="text" placeholder="Q. Ingrese el valor del importe" autocomplete="off" id="floatImporteExamenesBacteriologicos">
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="row mb-4">
-                    <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header bg-info text-center">
+                        <h5 class="card-title mb-0 text-white">EXAMENES BACTERIOLOGICAS</h5>
+                    </div>
+                    <div class="card-body">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Paciente:</label>
-                            <div class="col-sm-9">
+                            <div class="col-md-4">
+                                <label class="form-label text-info">ANALISIS</label>
                                 <div class="input-group">
-                                    <select class="form-control"></select>
-                                    <button class="btn btn-outline-secondary">
-                                        <i class="fal fa-search"></i>
-                                    </button>
+                                    <input type="text" class="form-control bg-amarillo" id="txtExamenesExamenesBacteriologicos" />
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Edad:</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control">
+                            <div class="col-md-4">
+                                <label class="form-label text-info">RESULTADO:</label>
+                                <input type="text" class="form-control bg-amarillo" id="txtResultadosExamenesBacteriologicos" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label text-info">Médico:</label>
-                            <div class="col-sm-9">
-                                <select class="form-control"></select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-sm-3 col-form-label text-info">Laboratorista:</label>
-                            <div class="col-sm-9">
-                                <select class="form-control"></select>
+                            <div class="col-md-4">
+                                <label class="form-label text-info">VALOR DE REFERENCIA:</label>
+                                <input type="text" class="form-control bg-amarillo" id="txtValorReferenciaExamenesBacteriologicos" />
                             </div>
                         </div>
                     </div>
                 </div>
 
-               
-                <div class="row">
-                    
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-info text-center">
-                                <h5 class="card-title mb-0 text-white">Hematología</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Hematocrito:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Hemoglobina:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">g/dl</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Eritrosedimentación:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">mm/hora</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Glóbulos Rojos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">Eri/mm³</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Glóbulos Blancos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">Leuc/mm³</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Plaquetas:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">mm³</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    <div class="col-md-6 mb-4">
-                        <div class="card">
-                            <div class="card-header bg-info text-center">
-                                <h5 class="card-title mb-0 text-white">Fórmula Diferencial</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Segmentados:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Basófilos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Linfocitos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Monocitos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Eosinófilos:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label class="col-sm-5 col-form-label text-info">Cayados:</label>
-                                    <div class="col-sm-5">
-                                        <input type="number" class="form-control text-end" value="0.00">
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="form-control-plaintext">%</span>
-                                    </div>
-                                </div>
-                                <div class="mt-4">
-                                    <div class="alert alert-danger mb-0">
-                                        <strong>Diferencial:</strong> Falso
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-               
-                <button
-                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
-                        onclick="retrocederVistaLaboratorista()"
-                    >
-                        <i class="fal fa-arrow-left"></i>
-                    </button>
-                    <button
-                        class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow"
-                        id="btnGuardarHematologia"
-                    >
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                    <i class="fal fa-arrow-left"></i>
+                </button>
+                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenBacteriologicos">
                         <i class="fal fa-save"></i>
-                    </button>
+                </button>
             </div>
             `;
         },
@@ -1115,15 +932,7 @@ function getView(){
                                     <label class="form-label text-info">VALOR NORMAL:</label>
                                     <input type="text" class="form-control bg-amarillo" id="txtvalorNormalHemoglobinaGlicosilada"/>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 mb-4">
-                            <div class="card">
-                                <div class="card-header bg-info text-center text-white"></div>
-                                <div class="card-body">
+                                <div class="col-md-4">
                                     <label class="form-label text-info">PRUEBA DE HBA1C EN %:</label>
                                     <input type="search" class="form-control bg-amarillo" id="" list="listPruebaHba1c" placeholder="Ingrese valor..." />
                                     <datalist id="listPruebaHba1c">
@@ -1134,7 +943,8 @@ function getView(){
                                         <option value="10-11"/>
                                         <option value="11-12"/>
                                     </datalist>
-
+                                </div>
+                                <div class="col-md-4">
                                     <label class="form-label text-info">PROMEDIO DE GLICEMIA EN MG/DL:</label>
                                     <input type="search" class="form-control bg-amarillo" id="" list="listPromedioDeGlicemia" placeholder="Ingrese valor...">
                                     <datalist id="listPromedioDeGlicemia">
@@ -1147,6 +957,8 @@ function getView(){
                                         <option value="270-300" />
                                     </datalist>
 
+                                </div>
+                                <div class="col-md-4">
                                     <label class="form-label text-info">CALIFICACION:</label>
                                     <input type="search" class="form-control bg-amarillo" list="listaCalificacion" placeholder="Ingrese valor..." />
                                     <datalist id="listaCalificacion">
@@ -1158,7 +970,6 @@ function getView(){
                                         <option value="MALO" />
                                         <option value="MUY MALO" />
                                     </datalist>
-
                                 </div>
                             </div>
                         </div>
@@ -1187,8 +998,8 @@ function getView(){
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                     
                         <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoPruebasEspeciales">
-                                <strong>PRUEBAS ESPECIALES</strong>
+                            <div class="h3" id="txtTipoHcgCualitativa">
+                                <strong>HCG CUALITATIVA</strong>
                             </div>
                         </div>
                         <div class="col-12 col-md-3">
@@ -1232,7 +1043,7 @@ function getView(){
 
                 <div class="card mb-4">
                     <div class="card-header bg-info text-center">
-                        <h5 class="card-title mb-0 text-white">Química Sanguínea</h5>
+                        <h5 class="card-title mb-0 text-white">PRUEBAS ESPECIALES</h5>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
@@ -1529,6 +1340,68 @@ function getView(){
                         </div>
                     </div>
 
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">GRUPO SANGUINEO</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">ANALISIS GRUPO SANGUINEO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtAnalisisResultadoVariosGrupoSanguineo" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RH:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtRhResultadoVariosGrupoSanguineo" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">INMUNOSEROLOGIA</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">EXAMEN WIDAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtInmunoserologiaExamenWidalResultadosVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtInmunoserologiaResultadoResultadosVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALOR NORMAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtInmunoserologiaVarlorNormalResultadosVarios" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header bg-info text-center">
+                            <h5 class="card-title mb-0 text-white">DENGUE</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">ANALISIS:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtAnalisisDengueResultadosVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">RESULTADO:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtResultadoDengueResultadosVarios" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label text-info">VALOR NORMAL:</label>
+                                    <input type="text" class="form-control bg-amarillo" id="txtValorNormalDengueResultadosVarios" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button
                         class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
                         onclick="retrocederVistaLaboratorista()"
@@ -1619,10 +1492,270 @@ function getView(){
             </div>
             `;
         },
+        vista_modal_enfermedades_infecciosas_pacientes() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_enfermedades_infecciosas">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesEnfermedadesInfecciosas">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_enfermedades_bacteriologicos_pacientes() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_examenes_bacteriologicos">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesExamenesBacteriologicos">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_pacientes_hemoglobina_pacientes() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_hemoglobina">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesHemoglobina">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_pruebas_especiales_pacientes() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_pruebas_especiales">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesPruebasEspeciales">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_hcg_cuantitativa_pacientes() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_hcg_cuantitativa">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesHgcCuantitativa">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_quimica_sanguinea() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_quimica_sanguinea">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesQuimicaSanguinea">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_resultados_varios() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_resultados_varios">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesResultadosVarios">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        
     }
 
     root.innerHTML = view.body();
-
+    
 };
 
 function addListeners(){
@@ -1630,11 +1763,13 @@ function addListeners(){
     document.getElementById("fechaCoprologia").value = F.getFecha();
     document.getElementById("fechaUrologia").value = F.getFecha();
     document.getElementById("fechaEnfermedadesInfecciosas").value = F.getFecha();
+    document.getElementById("fechaExamenesBacteriologicos").value = F.getFecha();
     document.getElementById("fechaHemoglobinaGlicosilada").value = F.getFecha();
     document.getElementById("fechaPruebasEspeciales").value = F.getFecha();
     document.getElementById("fechaHcgCuantitativa").value = F.getFecha();
     document.getElementById("fechaQuimicaSanguinea").value = F.getFecha();
     document.getElementById("fechaResultadosVarios").value = F.getFecha();
+
 
     catalogoPacientes()
     .then((data) => {
@@ -1726,6 +1861,322 @@ function addListeners(){
         document.getElementById("tblCatalogoPacientesUrologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
+    // Pacientes enfermedades infecciosas
+    catalogoPacientes()
+    .then((data) => {
+        let strTableEnfeInfecciosas = '';
+        data.forEach(pacienteEnfeInfecciosas => {
+            strTableEnfeInfecciosas += `
+                <tr>
+                    <td>${pacienteEnfeInfecciosas.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteEnfeInfecciosas.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteEnfeInfecciosas.nombre_paciente}"
+                            data-id="${pacienteEnfeInfecciosas.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesEnfermedadesInfecciosas").innerHTML = strTableEnfeInfecciosas;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesEnfermedadesInfecciosas .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacienteEnfermedadesInfecciosas").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_enfermedades_infecciosas").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesEnfermedadesInfecciosas").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes examenes bacteriologicos
+    catalogoPacientes()
+    .then((data) => {
+        let strTableExamBacteriologicos = '';
+        data.forEach(pacienteExamBacteriologicos => {
+            strTableExamBacteriologicos += `
+                <tr>
+                    <td>${pacienteExamBacteriologicos.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteExamBacteriologicos.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteExamBacteriologicos.nombre_paciente}"
+                            data-id="${pacienteExamBacteriologicos.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesExamenesBacteriologicos").innerHTML = strTableExamBacteriologicos;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesExamenesBacteriologicos .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacienteExamenesBacteriologicos").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_examenes_bacteriologicos").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesExamenesBacteriologicos").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Hemoglobina Glicosilada
+    catalogoPacientes()
+    .then((data) => {
+        let strTableHemoglobina = '';
+        data.forEach(pacienteHemoglobina => {
+            strTableHemoglobina += `
+                <tr>
+                    <td>${pacienteHemoglobina.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteHemoglobina.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteHemoglobina.nombre_paciente}"
+                            data-id="${pacienteHemoglobina.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesHemoglobina").innerHTML = strTableHemoglobina;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesHemoglobina .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesHemoglobinaGlicosilada").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_hemoglobina").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesHemoglobina").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes pruebas especiales
+    catalogoPacientes()
+    .then((data) => {
+        let strTablePruebasEspeciales = '';
+        data.forEach(pacientePruebasEspeciales => {
+            strTablePruebasEspeciales += `
+                <tr>
+                    <td>${pacientePruebasEspeciales.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacientePruebasEspeciales.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacientePruebasEspeciales.nombre_paciente}"
+                            data-id="${pacientePruebasEspeciales.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesPruebasEspeciales").innerHTML = strTablePruebasEspeciales;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesPruebasEspeciales .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPruebasEspeciales").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_pruebas_especiales").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesPruebasEspeciales").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes hcg cuantitativa
+    catalogoPacientes()
+    .then((data) => {
+        let strTableHgcCuantitativa = '';
+        data.forEach(pacienteHgcCuantitativa => {
+            strTableHgcCuantitativa += `
+                <tr>
+                    <td>${pacienteHgcCuantitativa.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteHgcCuantitativa.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteHgcCuantitativa.nombre_paciente}"
+                            data-id="${pacienteHgcCuantitativa.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesHgcCuantitativa").innerHTML = strTableHgcCuantitativa;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesHgcCuantitativa .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesHcgCuantitativa").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_hcg_cuantitativa").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesHgcCuantitativa").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Quimica Sanguinea
+    catalogoPacientes()
+    .then((data) => {
+        let strTableQuimicaSanguinea = '';
+        data.forEach(pacienteQuimicaSanguinea => {
+            strTableQuimicaSanguinea += `
+                <tr>
+                    <td>${pacienteQuimicaSanguinea.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteQuimicaSanguinea.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteQuimicaSanguinea.nombre_paciente}"
+                            data-id="${pacienteQuimicaSanguinea.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesQuimicaSanguinea").innerHTML = strTableQuimicaSanguinea;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesQuimicaSanguinea .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesQuimicaSanguinea").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_quimica_sanguinea").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesQuimicaSanguinea").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Resultados varios
+    catalogoPacientes()
+    .then((data) => {
+        let strTableResultadosVarios = '';
+        data.forEach(pacienteResultadosVarios => {
+            strTableResultadosVarios += `
+                <tr>
+                    <td>${pacienteResultadosVarios.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteResultadosVarios.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-info btn-rounded"
+                            data-nombre="${pacienteResultadosVarios.nombre_paciente}"
+                            data-id="${pacienteResultadosVarios.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesResultadosVarios").innerHTML = strTableResultadosVarios;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesResultadosVarios .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesResultadosVarios").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_resultados_varios").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesResultadosVarios").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    
     retrocederVistaLaboratorista();
 
 };
@@ -1753,7 +2204,7 @@ function navegacionPage() {
         document.getElementById("tab-cuatro").click();
     })
 
-    document.getElementById("card_hematologia").addEventListener('click', ()=> {
+    document.getElementById("card_enfermedades_bacteriologicos").addEventListener('click', ()=> {
         F.slideAnimationTabs();
         document.getElementById("tab-cinco").click();
     });
@@ -1873,7 +2324,7 @@ function getAbrirModalCoprologia() {
 
                 insertDatosExamenCipro()
                 .then(() => {
-                    F.Aviso("Examen guardado con exitosamente!!!");
+                    F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenCopro.disabled = false;
                     btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                     Navegar.laboratorista();
@@ -2004,6 +2455,125 @@ function getAbrirModalPacientesUrologia() {
         })        
     })
 
+}
+
+function getAbrirModalPacientesEnfInfecciosas() {
+    $("#modal_catalogo_pacientes_enfermedades_infecciosas").modal("show");
+
+    let btnGuardarExamenEnfermedadesInfecc = document.getElementById("btnGuardarExamenEnfermedadesInfecc");
+    btnGuardarExamenEnfermedadesInfecc.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("floatImporteEnfInfecciosas").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
+
+                let AnalisisEnfermedadesInfecciosas = document.getElementById("txtAnalisisEnfermedadesInfecciosas").value || '';
+                if(AnalisisEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
+
+                let resultadosEnfermedadesInfecciosas = document.getElementById("txtResultadosEnfermedadesInfecciosas").value || '';
+                if(resultadosEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
+
+                let valorReferenciaEnfermedadesInfecciosas = document.getElementById("txtValorReferenciaEnfermedadesInfecciosas").value || '';
+                if(valorReferenciaEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
+
+                btnGuardarExamenEnfermedadesInfecc.disabled = true;
+                btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosEnfermedadesInfecciosas()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
+                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
+                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+}
+
+function getAbrirModalPacientesExamenesBacteriologicos() {
+    $("#modal_catalogo_pacientes_examenes_bacteriologicos").modal("show");
+
+    let btnGuardarExamenBacteriologicos = document.getElementById("btnGuardarExamenBacteriologicos");
+    btnGuardarExamenBacteriologicos.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+                
+                let importe = document.getElementById("floatImporteExamenesBacteriologicos").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
+
+                let examenesBacteriologicosAnalisis = document.getElementById("txtExamenesExamenesBacteriologicos").value || '';
+                if(examenesBacteriologicosAnalisis==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
+
+                let resultadosExamenesBacteriologicos = document.getElementById("txtResultadosExamenesBacteriologicos").value || '';
+                if(resultadosExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
+
+                let valorReferenciaExamenesBacteriologicos = document.getElementById("txtValorReferenciaExamenesBacteriologicos").value || '';
+                if(valorReferenciaExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
+
+                btnGuardarExamenBacteriologicos.disabled = true;
+                btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenesBacteriologicos()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!")
+                    btnGuardarExamenBacteriologicos.disabled = false;
+                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((errr) => {
+                    if (errr instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + errr.message);
+                    }
+                    console.error("Error detallado:", errr);
+                })
+                .finally(() => {
+                    btnGuardarExamenBacteriologicos.disabled = false;
+                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })    
+
+}
+
+function getAbrirModalHemoglobinaGlicosilada() {
+    $("#modal_catalogo_pacientes_hemoglobina").modal("show");
+}
+
+function getAbrirModalPruebasEspeciales() {
+    $("#modal_catalogo_pacientes_pruebas_especiales").modal("show");
+}
+
+function getAbrirModalHcgCuantitativa() {
+    $("#modal_catalogo_pacientes_hcg_cuantitativa").modal("show");
+}
+
+function getAbrirModalQuimicaSanguinea() {
+    $("#modal_catalogo_pacientes_quimica_sanguinea").modal("show");
+}
+
+function getAbrirModalResultadosVarios() {
+    $("#modal_catalogo_pacientes_resultados_varios").modal("show");
 }
 
 function catalogoPacientes() {
@@ -2184,6 +2754,100 @@ function insertDatosExamenUro() {
         })
         .finally(() => {
             console.info("Datos de examen uro Finalizados");
+        })
+    })
+
+}
+
+function insertDatosEnfermedadesInfecciosas() {
+
+    let fechaEnfeInfecciosasTomarMesYAnio = new Date(document.getElementById("fechaEnfermedadesInfecciosas").value);
+
+    let tipoExamenEnfermedadesInfecciosas = document.getElementById("txtTipoExamenEmfeInfecciosas").querySelector('strong').textContent;
+    let nombreMedicoEnfeInfecciosas = document.getElementById("txtMedicoEnferInfeccio").value;
+    let importeEnfInfecciosas = document.getElementById("floatImporteEnfInfecciosas").value;
+    let fechaEnfeInfecciosas = F.devuelveFecha("fechaEnfermedadesInfecciosas");
+    let anioEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getFullYear();
+    let mesEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getUTCMonth()+1;
+
+    let analisisEnfermedadesInfecciosas = document.getElementById("txtAnalisisEnfermedadesInfecciosas").value;
+    let resultadosEnfermedadesInfecciosas = document.getElementById("txtResultadosEnfermedadesInfecciosas").value;
+    let valorReferenciaEnfermedadesInfecciosas = document.getElementById("txtValorReferenciaEnfermedadesInfecciosas").value;
+
+        
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_enfermedades_infecciosas", {
+            tipo_examen: tipoExamenEnfermedadesInfecciosas,
+            paciente_id: GlobalIdPaciente,
+            importe: importeEnfInfecciosas,
+            medico_tratante: nombreMedicoEnfeInfecciosas || 'Sin medico referido',
+            fecha: fechaEnfeInfecciosas,
+            anio: anioEnfeInfecciosas,
+            mes: mesEnfeInfecciosas,
+            enfermedades_infecciosas_analisis: analisisEnfermedadesInfecciosas,
+            enfermedades_infecciosas_resultados: resultadosEnfermedadesInfecciosas,
+            enfermedades_infecciosas_valor_referencia: valorReferenciaEnfermedadesInfecciosas
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((error) => {
+            console.error(error)
+            reject(error);
+        })
+        .finally(() => {
+            console.info("Datos de enfermedades infecciosas Finalizados");
+        })
+    })
+}
+
+function insertDatosExamenesBacteriologicos() {
+
+    let fechaExamenBacteriologicoTomarMesyAnio =  new Date(document.getElementById("fechaExamenesBacteriologicos").value);
+
+    let tipoExamenBacteriologico = document.getElementById("txtTipoExamenBacteriologicos").querySelector('strong').textContent;
+    let nombreMedicoExamenBacteriologico = document.getElementById("txtMedicoExamenesBacteriologicos").value;
+    let importeExamenBacteriologicos = document.getElementById("floatImporteExamenesBacteriologicos").value;
+    let fechaExamenBacteriologico = F.devuelveFecha("fechaExamenesBacteriologicos");
+    let anioExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getFullYear();
+    let mesExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getUTCMonth()+1;
+    let analisisExamenBacteriologico = document.getElementById("txtExamenesExamenesBacteriologicos").value;
+    let resultadosExamenBacteriologico = document.getElementById("txtResultadosExamenesBacteriologicos").value;
+    let valorReferenciaExamenBacteriologico = document.getElementById("txtValorReferenciaExamenesBacteriologicos").value;
+
+    
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examenes_bacteriologicos", {
+            tipo_examen: tipoExamenBacteriologico,
+            paciente_id: GlobalIdPaciente,
+            importe: importeExamenBacteriologicos,
+            medico_tratante: nombreMedicoExamenBacteriologico || 'Sin medico referido',
+            fecha: fechaExamenBacteriologico,
+            anio: anioExamenBacteriologico,
+            mes: mesExamenBacteriologico,
+            examenes_bacteriologicos_analisis: analisisExamenBacteriologico,
+            examenes_bacteriologicos_resultado: resultadosExamenBacteriologico,
+            examenes_bacteriologicos_valor_de_referencia: valorReferenciaExamenBacteriologico
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((error) => {
+            console.error(error)
+            reject(error);
+        })
+        .finally(() => {
+            console.info("Datos de examenes bacteriologicos Finalizados");
         })
     })
 

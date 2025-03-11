@@ -50,8 +50,8 @@ function getView() {
                                         <select class="form-control negrita" id="txtSelectTipo">
                                             <option value="COPROLOGIA">COPROLOGIA</option>
                                             <option value="UROLOGIA">UROLOGIA</option>
-                                            <option value="ENFERMEDADES_INFECCIOSAS">ENFERMEDADES INFECCIOSAS</option>
-                                            <option value="ENFERMEDADES_BACTERIOLOGICOS">ENFERMEDADES BACTERIOLOGICOS</option>
+                                            <option value="ENFERMEDADES INFECCIOSAS">EXAMENES INFECCIOSOS</option>
+                                            <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-3">

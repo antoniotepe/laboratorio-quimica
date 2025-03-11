@@ -133,8 +133,8 @@ function getView(){
                                     <select class="form-control negrita" id="cmbSelectTipoExamen">
                                         <option value="COPROLOGIA">COPROLOGIA</option>
                                         <option value="UROLOGIA">UROLOGIA</option>
-                                        <option value="ENFERMEDADES_INFECCIOSAS">ENFERMEDADES INFECCIOSAS</option>
-                                        <option value="ENFERMEDADES_BACTERIOLOGICOS">ENFERMEDADES BACTERIOLOGICOS</option>
+                                        <option value="ENFERMEDADES INFECCIOSAS">EXAMENES INFECCIOSOS</option>
+                                            <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
                                         <option value="">TODOS</option>
                                     </select>
                                 </div>
