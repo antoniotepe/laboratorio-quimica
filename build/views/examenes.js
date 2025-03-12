@@ -52,6 +52,11 @@ function getView() {
                                             <option value="UROLOGIA">UROLOGIA</option>
                                             <option value="ENFERMEDADES INFECCIOSAS">EXAMENES INFECCIOSOS</option>
                                             <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
+                                            <option value="HEMOGLOBINA GLICOSILADA">HEMOGLOBINA GLICOSILADA</option>
+                                            <option value="HGC CUALITATIVA">HGC CUALITATIVA</option>
+                                            <option value="HGC CUANTITATIVA">HGC CUANTITATIVA</option>
+                                            <option value="QUIMICA SANGUINEA">QUIMICA SANGUINEA</option>
+                                            <option value="RESULTADOS VARIOS">RESULTADOS VARIOS</option>
                                         </select>
                                     </div>
                                     <div class="col-12 col-md-3">
@@ -182,6 +187,7 @@ function getView() {
 }
 
 function addListeners() {
+  
   const tipoSelect = document.getElementById("txtSelectTipo");
   const mesSelect = document.getElementById("txtSelectMes");
   const anioSelect = document.getElementById("txtSelectAnio");
@@ -199,8 +205,12 @@ function initView() {
 }
 
 function filtrarExamenes() {
+
+  let sacarMesDeFechaActual = new Date(document.getElementById("txtSelectMes").value = F.getFecha());
+  let mesActual = sacarMesDeFechaActual.getUTCMonth()+1;
+
   let tipoSelect = document.getElementById("txtSelectTipo").value;
-  let mesSelect = document.getElementById("txtSelectMes").value;
+  let mesSelect = document.getElementById("txtSelectMes").value = mesActual;
   let anioSelect = document.getElementById("txtSelectAnio").value;
 
 

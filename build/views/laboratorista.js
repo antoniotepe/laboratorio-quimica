@@ -934,7 +934,7 @@ function getView(){
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label text-info">PRUEBA DE HBA1C EN %:</label>
-                                    <input type="search" class="form-control bg-amarillo" id="" list="listPruebaHba1c" placeholder="Ingrese valor..." />
+                                    <input type="search" class="form-control bg-amarillo" id="txtPruebaDeHba1c" list="listPruebaHba1c" placeholder="Ingrese valor..." />
                                     <datalist id="listPruebaHba1c">
                                         <option value="5-6"/>
                                         <option value="7-8"/>
@@ -946,7 +946,7 @@ function getView(){
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label text-info">PROMEDIO DE GLICEMIA EN MG/DL:</label>
-                                    <input type="search" class="form-control bg-amarillo" id="" list="listPromedioDeGlicemia" placeholder="Ingrese valor...">
+                                    <input type="search" class="form-control bg-amarillo" id="txtPromedioDeGlicemia" list="listPromedioDeGlicemia" placeholder="Ingrese valor...">
                                     <datalist id="listPromedioDeGlicemia">
                                         <option value="80-120" />
                                         <option value="120-150" />
@@ -960,7 +960,7 @@ function getView(){
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label text-info">CALIFICACION:</label>
-                                    <input type="search" class="form-control bg-amarillo" list="listaCalificacion" placeholder="Ingrese valor..." />
+                                    <input type="search" class="form-control bg-amarillo" id="txtCalificacionGlicemia" list="listaCalificacion" placeholder="Ingrese valor..." />
                                     <datalist id="listaCalificacion">
                                         <option value="EXCELENTE" />
                                         <option value="MUY BUENO" />
@@ -1426,7 +1426,7 @@ function getView(){
                         <div class="modal-body p-2">
                             <div class="container-fluid">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-12">
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead class="thead-primary">
@@ -1778,7 +1778,8 @@ function addListeners(){
             strTableCopro += `
                 <tr>
                     <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteCopro.nombre_paciente}</td>
+                    <td>${pacienteCopro.nombre_paciente}
+                    </td>
                     <td>
                         <button class="btn btn-sm btn-info btn-rounded"
                             data-nombre="${pacienteCopro.nombre_paciente}"
@@ -1786,6 +1787,7 @@ function addListeners(){
                             <i class="fal fa-plus"></i>
                         </button>
                     </td>
+                    
                 </tr>
             `;
         });
@@ -2485,7 +2487,7 @@ function getAbrirModalPacientesEnfInfecciosas() {
                 .then(() => {
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenEnfermedadesInfecc.disabled = false;
-                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
                     Navegar.laboratorista();
                 })
                 .catch((e) => {
@@ -2558,6 +2560,62 @@ function getAbrirModalPacientesExamenesBacteriologicos() {
 
 function getAbrirModalHemoglobinaGlicosilada() {
     $("#modal_catalogo_pacientes_hemoglobina").modal("show");
+
+    let btnGuardarExamenHemoglobinaGlicosilada = document.getElementById("btnGuardarExamenHemoglobinaGlicosilada");
+    btnGuardarExamenHemoglobinaGlicosilada.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true){
+                
+                let importe = document.getElementById("FloatImporteHemoglobinaGlicosilada").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
+
+                let examenHemoglobinaGlicosilada = document.getElementById("txtExamenHemoglobinaGlicosilada").value || '';
+                if(examenHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de EXAMEN!!!"); return};
+
+                let resultadoHemoglobinaGlicosilada = document.getElementById("txtResultadoHemoglobinaGlicosilada").value || '';
+                if(resultadoHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+
+                let valorNormalHemoglobinaGlicosilada = document.getElementById("txtvalorNormalHemoglobinaGlicosilada").value || '';
+                if(valorNormalHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de VALOR NORMAL!!!"); return}
+;
+                let pruebaDeHba1c = document.getElementById("txtPruebaDeHba1c").value || '';
+                if(pruebaDeHba1c==''){F.AvisoError("Ingrese el valor de PRUEBA DE HBA1C!!!"); return};
+
+                let promedioDeGlicemia = document.getElementById("txtPromedioDeGlicemia").value || '';
+                if(promedioDeGlicemia==''){F.AvisoError("Ingrese el valor de PROMEDIO DE GLICEMIA"); return};
+
+                let calificacionGlicemia = document.getElementById("txtCalificacionGlicemia").value || '';
+                if(calificacionGlicemia==''){F.AvisoError("Ingrese el valor de CALIFICACION"); return};
+
+                btnGuardarExamenHemoglobinaGlicosilada.disabled = true;
+                btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenHemoglobinaGlicosilada()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
+                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
+                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+
+            }
+        })
+    })
+
 }
 
 function getAbrirModalPruebasEspeciales() {
@@ -2848,6 +2906,58 @@ function insertDatosExamenesBacteriologicos() {
         })
         .finally(() => {
             console.info("Datos de examenes bacteriologicos Finalizados");
+        })
+    })
+}
+
+function insertDatosExamenHemoglobinaGlicosilada() {
+
+    let fechaExamenHemoglobinaGlicosiladaTomarMesyAnio =  new Date(document.getElementById("fechaHemoglobinaGlicosilada").value);
+
+    let tipoExamenHemoglobinaGlicosilada = document.getElementById("txtTipoHemoglobinaGlicosilada").querySelector('strong').textContent;
+    let nombreMedicoExamenHemoglobinaGlicosilada = document.getElementById("txtMedicoHemoglobinaGlicosilada").value;
+    let importeExamenHemoglobinaGlicosilada = document.getElementById("FloatImporteHemoglobinaGlicosilada").value;
+    let fechaExamenHemoglobinaGlicosilada = F.devuelveFecha("fechaHemoglobinaGlicosilada");
+    let anioExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getFullYear();
+    let mesExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getUTCMonth()+1;
+
+    let examenHemoglobinaGlicosilada = document.getElementById("txtExamenHemoglobinaGlicosilada").value;
+    let resultadoHemoglobinaGlicosilada = document.getElementById("txtResultadoHemoglobinaGlicosilada").value;
+    let valorNormalHemoglobinaGlicosilada = document.getElementById("txtvalorNormalHemoglobinaGlicosilada").value;
+    let pruebaDeHba1c = document.getElementById("txtPruebaDeHba1c").value;
+    let promedioDeGlicemia = document.getElementById("txtPromedioDeGlicemia").value;
+    let calificacionGlicemia = document.getElementById("txtCalificacionGlicemia").value;
+
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examenes_hemoglobina_glicosilada", {
+            tipo_examen:tipoExamenHemoglobinaGlicosilada,
+            paciente_id:GlobalIdPaciente,
+            importe:importeExamenHemoglobinaGlicosilada,
+            medico_tratante:nombreMedicoExamenHemoglobinaGlicosilada || 'Sin medico referido',
+            fecha:fechaExamenHemoglobinaGlicosilada,
+            anio:anioExamenHemoglobinaGlicosilada,
+            mes:mesExamenHemoglobinaGlicosilada,
+            hemoglobina_inmunologia_examen:examenHemoglobinaGlicosilada,
+            hemoglobina_inmunologia_resultado:resultadoHemoglobinaGlicosilada,
+            hemoglobina_inmunologia_valor_normal:valorNormalHemoglobinaGlicosilada,
+            hemoglobina_inmunologia_prueba_de_hba1c:pruebaDeHba1c,
+            hemoglobina_inmunologia_promedio_de_glicemia:promedioDeGlicemia,
+            hemoglobina_inmunologia_calificacion:calificacionGlicemia
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+        .finally(() => {
+            console.info("Datos de examenes hemoglobina glicosilada Finalizados");
         })
     })
 

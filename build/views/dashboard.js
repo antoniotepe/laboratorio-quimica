@@ -134,7 +134,12 @@ function getView(){
                                         <option value="COPROLOGIA">COPROLOGIA</option>
                                         <option value="UROLOGIA">UROLOGIA</option>
                                         <option value="ENFERMEDADES INFECCIOSAS">EXAMENES INFECCIOSOS</option>
-                                            <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
+                                        <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
+                                        <option value="HEMOGLOBINA GLICOSILADA">HEMOGLOBINA GLICOSILADA</option>
+                                        <option value="HGC CUALITATIVA">HGC CUALITATIVA</option>
+                                        <option value="HGC CUANTITATIVA">HGC CUANTITATIVA</option>
+                                        <option value="QUIMICA SANGUINEA">QUIMICA SANGUINEA</option>
+                                        <option value="RESULTADOS VARIOS">RESULTADOS VARIOS</option>
                                         <option value="">TODOS</option>
                                     </select>
                                 </div>

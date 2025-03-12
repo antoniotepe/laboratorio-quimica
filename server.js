@@ -540,6 +540,22 @@ app.post("/insert_examenes_bacteriologicos", (req, res) => {
 
 })
 
+// Insertar datos de examenes hemoglobina glicosilada
+app.post("/insert_examenes_hemoglobina_glicosilada", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, hemoglobina_inmunologia_examen, hemoglobina_inmunologia_resultado, hemoglobina_inmunologia_valor_normal, hemoglobina_inmunologia_prueba_de_hba1c, hemoglobina_inmunologia_promedio_de_glicemia, hemoglobina_inmunologia_calificacion } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, HEMOGLOBINA_INMUNOLOGIA_EXAMEN, HEMOGLOBINA_INMUNOLOGIA_RESULTADO, HEMOGLOBINA_INMUNOLOGIA_VALOR_NORMAL, HEMOGLOBINA_INMUNOLOGIA_PRUEBA_DE_HBA1C, HEMOGLOBINA_INMUNOLOGIA_PROMEDIO_DE_GLICEMIA, HEMOGLOBINA_INMUNOLOGIA_CALIFICACION)
+      VALUES
+    ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${hemoglobina_inmunologia_examen}', '${hemoglobina_inmunologia_resultado}', '${hemoglobina_inmunologia_valor_normal}', '${hemoglobina_inmunologia_prueba_de_hba1c}', '${hemoglobina_inmunologia_promedio_de_glicemia}', '${hemoglobina_inmunologia_calificacion}')
+  `;
+
+  execute.Query(res, qry);
+  console.log(qry);
+
+})
+
 // Obtener examenes de administracion
 app.post("/obtenerExamenesPorFecha", (req, res) => {
   const { tipo, fechaInicio, fechaFinal } = req.body;
