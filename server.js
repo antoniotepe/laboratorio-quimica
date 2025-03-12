@@ -535,8 +535,21 @@ app.post("/insert_examenes_bacteriologicos", (req, res) => {
       VALUES
       ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${examenes_bacteriologicos_analisis}', '${examenes_bacteriologicos_resultado}', '${examenes_bacteriologicos_valor_de_referencia}')
   `;
+  execute.Query(res, qry);
+})
+
+app.post("/insert_examen_pruebas_especiales", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, pruebas_especiales_examen_resultado, pruebas_especiales_resultado, pruebas_especiales_valor_de_referencia } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, PRUEBAS_ESPECIALES_EXAMEN_RESULTADO, PRUEBAS_ESPECIALES_RESULTADO, PRUEBAS_ESPECIALES_VALOR_DE_REFERENCIA)
+      VALUES
+    ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${pruebas_especiales_examen_resultado}', '${pruebas_especiales_resultado}', '${pruebas_especiales_valor_de_referencia}')
+  `;
 
   execute.Query(res, qry);
+  console.log(qry);
 
 })
 

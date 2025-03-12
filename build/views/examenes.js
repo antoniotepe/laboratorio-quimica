@@ -53,8 +53,8 @@ function getView() {
                                             <option value="ENFERMEDADES INFECCIOSAS">EXAMENES INFECCIOSOS</option>
                                             <option value="EXAMENES BACTERIOLOGICOS">EXAMENES BACTERIOLOGICOS</option>
                                             <option value="HEMOGLOBINA GLICOSILADA">HEMOGLOBINA GLICOSILADA</option>
-                                            <option value="HGC CUALITATIVA">HGC CUALITATIVA</option>
-                                            <option value="HGC CUANTITATIVA">HGC CUANTITATIVA</option>
+                                            <option value="HCG CUALITATIVA">HGC CUALITATIVA</option>
+                                            <option value="HCG CUANTITATIVA">HGC CUANTITATIVA</option>
                                             <option value="QUIMICA SANGUINEA">QUIMICA SANGUINEA</option>
                                             <option value="RESULTADOS VARIOS">RESULTADOS VARIOS</option>
                                         </select>

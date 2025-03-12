@@ -2620,6 +2620,49 @@ function getAbrirModalHemoglobinaGlicosilada() {
 
 function getAbrirModalPruebasEspeciales() {
     $("#modal_catalogo_pacientes_pruebas_especiales").modal("show");
+
+    let btnGuardarExamenPruebasEspeciales = document.getElementById("btnGuardarExamenPruebasEspeciales");
+    btnGuardarExamenPruebasEspeciales.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("floatImportePruebasEspeciales").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!"); return};
+
+                let examenResultadoPruebasEspeciales = document.getElementById("txtExamenResultadoPruebasEspeciales").value || '';
+                if(examenResultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valor de EXAMEN");return};
+                let resultadoPruebasEspeciales = document.getElementById("txtResultadoPruebasEspeciales").value || '';
+                if(resultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valro de RESULTADO!!!");return};
+                let valorReferenciaPruebasEspeciales = document.getElementById("txtvalorReferenciaPruebasEspeciales").value || '';
+                if(valorReferenciaPruebasEspeciales==''){F.AvisoError("Ingrese el valro de VALOR REFERENCIA!!!");return};
+
+                btnGuardarExamenPruebasEspeciales.disabled = true;
+                btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertarDatosPruebasEspeciales()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenPruebasEspeciales.disabled = false;
+                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenPruebasEspeciales.disabled = false;
+                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    })
+
 }
 
 function getAbrirModalHcgCuantitativa() {
@@ -2959,6 +3002,54 @@ function insertDatosExamenHemoglobinaGlicosilada() {
         .finally(() => {
             console.info("Datos de examenes hemoglobina glicosilada Finalizados");
         })
+    })
+}
+
+function insertarDatosPruebasEspeciales() {
+
+    let fechaExamenPruebasEspecialesTomarMesyAnio =  new Date(document.getElementById("fechaPruebasEspeciales").value);
+
+    let tipoExamenPruebasEspeciales = document.getElementById("txtTipoHcgCualitativa").querySelector('strong').textContent;
+    let nombreMedicoPruebasEspeciales = document.getElementById("txtMedicoPruebasEspeciales").value;
+    let importePruebasEspeciales = document.getElementById("floatImportePruebasEspeciales").value;
+    let fechaPruebasEspeciales = F.devuelveFecha("fechaPruebasEspeciales");
+    let anioPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getFullYear();
+    let mesPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getUTCMonth()+1;
+
+    let examenResultadoPruebasEspeciales = document.getElementById("txtExamenResultadoPruebasEspeciales").value;
+    let resultadoPruebasEspeciales  = document.getElementById("txtResultadoPruebasEspeciales").value;
+    let valorReferenciaPruebasEspeciales = document.getElementById("txtvalorReferenciaPruebasEspeciales").value;
+
+    return new Promise((resolve, reject) => {
+        
+        axios.post("/insert_examen_pruebas_especiales", {
+            tipo_examen:tipoExamenPruebasEspeciales,
+            paciente_id: GlobalIdPaciente,
+            importe:importePruebasEspeciales,
+            medico_tratante:nombreMedicoPruebasEspeciales || 'Sin medico referido',
+            fecha:fechaPruebasEspeciales,
+            anio:anioPruebasEspeciales,
+            mes:mesPruebasEspeciales,
+            pruebas_especiales_examen_resultado:examenResultadoPruebasEspeciales,
+            pruebas_especiales_resultado:resultadoPruebasEspeciales,
+            pruebas_especiales_valor_de_referencia:valorReferenciaPruebasEspeciales
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            }else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+        .finally(() => {
+            console.info("Datos de examenes pruebas especiales Finalizados");
+        })
+
     })
 
 }
