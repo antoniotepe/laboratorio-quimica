@@ -565,8 +565,36 @@ app.post("/insert_examenes_hemoglobina_glicosilada", (req, res) => {
   `;
 
   execute.Query(res, qry);
-  console.log(qry);
+})
 
+// Insertar datos examenes hcg cauntitativa
+app.post("/insert_examenes_hcg_cuantitativa", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, hcg_cuantitativa_analisis, hcg_cuantitativa_resultado, hcg_cuantitativa_valores_de_referencia } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, 
+    HCG_CUANTITATIVA_ANALISIS, HCG_CUANTITATIVA_RESULTADO, HCG_CUANTITATIVA_VALORES_DE_REFERENCIA)
+      VALUES
+    ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}','${anio}','${mes}','${hcg_cuantitativa_analisis}','${hcg_cuantitativa_resultado}','${hcg_cuantitativa_valores_de_referencia}')
+  `;
+  execute.Query(res, qry);
+  console.log(qry);
+})
+
+// Insertar datos examenes quimica sanguinea
+app.post("/insert_examen_quimica_sanguinea", (req, res) => {
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, quimica_sanguinea_examen, quimica_sanguinea_resultado, quimica_sanguinea_valor_normal } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+    (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES, 
+    QUIMICA_SANGUINEA_EXAMEN, QUIMICA_SANGUINEA_RESULTADO, QUIMICA_SANGUINEA_VALOR_NORMAL)
+      VALUES
+    ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}','${anio}','${mes}','${quimica_sanguinea_examen}','${quimica_sanguinea_resultado}','${quimica_sanguinea_valor_normal}')
+  `;
+  execute.Query(res, qry);
+  console.log(qry);
 })
 
 // Obtener examenes de administracion

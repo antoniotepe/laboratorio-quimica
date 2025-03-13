@@ -2481,7 +2481,7 @@ function getAbrirModalPacientesEnfInfecciosas() {
                 if(valorReferenciaEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
 
                 btnGuardarExamenEnfermedadesInfecc.disabled = true;
-                btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-spin"></i>`;
 
                 insertDatosEnfermedadesInfecciosas()
                 .then(() => {
@@ -2667,10 +2667,99 @@ function getAbrirModalPruebasEspeciales() {
 
 function getAbrirModalHcgCuantitativa() {
     $("#modal_catalogo_pacientes_hcg_cuantitativa").modal("show");
+
+    let btnGuardarHcgCuantitativa = document.getElementById("btnGuardarHcgCuantitativa");
+    btnGuardarHcgCuantitativa.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("FloatImporteHcgCuantitativa").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
+
+                let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value || '';
+                if(analisisHcgCuantitativa==''){F.AvisoError("Ingrese el valor de ANALISIS!!!"); return};
+
+                let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value || '';
+                if(resultadoHcgCuantitativa==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+
+                let valorDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value || '';
+                if(valorDeReferenciaHcgCuantitativa==''){F.AvisoError("Ingrese el valor de VALOR DE REFERENCIA!!!"); return};
+
+                btnGuardarHcgCuantitativa.disabled = true;
+                btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosHcgCuantitativa()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarHcgCuantitativa.disabled = false;
+                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarHcgCuantitativa.disabled = false;
+                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    })
 }
 
 function getAbrirModalQuimicaSanguinea() {
     $("#modal_catalogo_pacientes_quimica_sanguinea").modal("show");
+
+    let btnGuardarQuimicaSanguinea = document.getElementById("btnGuardarQuimicaSanguinea");
+
+    btnGuardarQuimicaSanguinea.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("FloatImporteQuimicaSanguinea").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
+
+                let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value || '';
+                if(examenQuimicaSanguinea==''){F.AvisoError("Ingrese el valor del EXAMEN!!!"); return};
+                let resultadoQuimicaSanguinea = document.getElementById("txtResultadoQuimicaSanguinea").value || '';
+                if(resultadoQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+                let valorNormalQuimicaSanguinea = document.getElementById("txtvalorNormalQuimicaSanguinea").value || '';
+                if(valorNormalQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de VALOR NORMAL")};
+
+                btnGuardarQuimicaSanguinea.disabled = true;
+                btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosQuimicaSanguinea()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarQuimicaSanguinea.disabled = false;
+                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarQuimicaSanguinea.disabled = false;
+                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+
 }
 
 function getAbrirModalResultadosVarios() {
@@ -3049,7 +3138,96 @@ function insertarDatosPruebasEspeciales() {
         .finally(() => {
             console.info("Datos de examenes pruebas especiales Finalizados");
         })
-
     })
+}
 
+function insertDatosHcgCuantitativa() {
+
+    let fechaExamenHcgCuantitativaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let tipoExamenHcgCuantitativa = document.getElementById("txtTipoHcgCuantitativa").querySelector('strong').textContent;
+    let medicoTratanteHcgCuantitativa = document.getElementById("txtMedicoHcgCuantitativa").value;
+    let importeHcgCuantitativa = document.getElementById("FloatImporteHcgCuantitativa").value;
+    let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value;
+    let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value;
+    let valoresDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value;
+    let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
+    let anioExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getFullYear();
+    let mesExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getUTCMonth()+1;
+
+    
+
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examenes_hcg_cuantitativa", {
+            tipo_examen:tipoExamenHcgCuantitativa,
+            paciente_id: GlobalIdPaciente,
+            importe:importeHcgCuantitativa,
+            medico_tratante: medicoTratanteHcgCuantitativa || 'Sin medico referido',
+            fecha:fechaHcgCuantitativa,
+            anio: anioExamenHcgCuantitativa,
+            mes: mesExamenHcgCuantitativa,
+            hcg_cuantitativa_analisis: analisisHcgCuantitativa,
+            hcg_cuantitativa_resultado: resultadoHcgCuantitativa,
+            hcg_cuantitativa_valores_de_referencia: valoresDeReferenciaHcgCuantitativa
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+        .finally(() => {
+            console.info("Datos de examenes hcg cuantitativa Finalizados");
+        })
+    })
+}
+
+function insertDatosQuimicaSanguinea() {
+
+    let fechaQuimicaSanguineaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let tipoExamenQuimicaSanguinea = document.getElementById("txtTipoQuimicaSanguinea").querySelector('strong').textContent;
+    let medicoTratanteQuimicaSanguinea = document.getElementById("txtMedicoQuimicaSanguinea").value;
+    let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
+    let anioQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getFullYear();
+    let mesQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getUTCMonth()+1;
+
+    let importe = document.getElementById("FloatImporteQuimicaSanguinea").value;
+    let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value;
+    let resultadoQuimicaSanguinea = document.getElementById("txtResultadoQuimicaSanguinea").value;
+    let valorNormalQuimicaSanguinea = document.getElementById("txtvalorNormalQuimicaSanguinea").value;
+
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examen_quimica_sanguinea", {
+            tipo_examen: tipoExamenQuimicaSanguinea,
+            paciente_id: GlobalIdPaciente,
+            importe: importe,
+            medico_tratante:medicoTratanteQuimicaSanguinea || 'Sin medico referido',
+            fecha: fechaHcgCuantitativa,
+            anio: anioQuimicaSanguinea,
+            mes: mesQuimicaSanguinea,
+            quimica_sanguinea_examen: examenQuimicaSanguinea,
+            quimica_sanguinea_resultado: resultadoQuimicaSanguinea,
+            quimica_sanguinea_valor_normal: valorNormalQuimicaSanguinea
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0){
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+        .finally(() => {
+            console.info("Datos de examenes hcg cuantitativa Finalizados");
+        })
+    })
 }
