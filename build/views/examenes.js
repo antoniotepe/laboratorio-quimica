@@ -187,16 +187,29 @@ function getView() {
 }
 
 function addListeners() {
-  
   const tipoSelect = document.getElementById("txtSelectTipo");
   const mesSelect = document.getElementById("txtSelectMes");
   const anioSelect = document.getElementById("txtSelectAnio");
 
+  // Establecer mes actual al cargar
+  setMesActual();
+
+  // Filtrar exámenes al cambiar los valores
   filtrarExamenes();
 
   tipoSelect.addEventListener("change", filtrarExamenes);
   mesSelect.addEventListener("change", filtrarExamenes);
   anioSelect.addEventListener("change", filtrarExamenes);
+}
+
+function setMesActual() {
+  const mesSelect = document.getElementById("txtSelectMes");
+
+  // Obtener el mes actual
+  const mesActual = new Date().getMonth(); // Devuelve un valor entre 0 y 11
+
+  // Establecer el valor del select al mes actual (sumamos 1 porque getMonth() devuelve un índice 0-11)
+  mesSelect.value = mesActual + 1; // Ajustamos para que sea un valor entre 1-12
 }
 
 function initView() {
@@ -205,43 +218,32 @@ function initView() {
 }
 
 function filtrarExamenes() {
-
-  let sacarMesDeFechaActual = new Date(document.getElementById("txtSelectMes").value = F.getFecha());
-  let mesActual = sacarMesDeFechaActual.getUTCMonth()+1;
-
   let tipoSelect = document.getElementById("txtSelectTipo").value;
-  let mesSelect = document.getElementById("txtSelectMes").value = mesActual;
+  let mesSelect = document.getElementById("txtSelectMes").value;
   let anioSelect = document.getElementById("txtSelectAnio").value;
-
 
   obtenerExamenes(tipoSelect, mesSelect, anioSelect)
     .then((data) => {
       let strTableExamenes = "";
       data.map((examen) => {
         strTableExamenes += `
-                        <tr>
-                            <td>${F.formatearFechaANormal(examen.fecha)}</td>
-                            <td>${examen.nombre_paciente}</td>
-                            <td>Q.${examen.importe}</td>
-                            <td>
-                                <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${
-                                  examen.id
-                                })">
-                                    <i class="fal fa-trash"></i>
-                                </button>
-                                <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${
-                                  examen.id
-                                })">
-                                    <i class="fal fa-print"></i>
-                                </button>
-                                <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${
-                                  examen.id
-                                })">
-                                    <i class="fal fa-edit"></i>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
+          <tr>
+              <td>${F.formatearFechaANormal(examen.fecha)}</td>
+              <td>${examen.nombre_paciente}</td>
+              <td>Q.${examen.importe}</td>
+              <td>
+                  <button class="btn btn-danger rounded-circle btn-sm" onclick="getEliminarExamen(${examen.id})">
+                      <i class="fal fa-trash"></i>
+                  </button>
+                  <button class="btn btn-info rounded-circle btn-sm" onclick="getAbrirExamenEnPdf(${examen.id})">
+                      <i class="fal fa-print"></i>
+                  </button>
+                  <button class="btn btn-secondary rounded-circle btn-sm" onclick="getEditarExamen(${examen.id})">
+                      <i class="fal fa-edit"></i>
+                  </button>
+              </td>
+          </tr>
+      `;
       });
       document.getElementById("tblDeExamenes").innerHTML = strTableExamenes;
     })
@@ -254,6 +256,7 @@ function filtrarExamenes() {
       console.log(`Termino el proceso de obtener los examenes ${f}`);
     });
 }
+
 
 function getEliminarExamen(id) {
   F.Confirmacion("¿Estás seguro de que deseas eliminar este examen?").then(
