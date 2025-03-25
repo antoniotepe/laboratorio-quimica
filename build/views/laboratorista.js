@@ -24,7 +24,7 @@ function getView(){
                             ${view.vista_hemoglobina_glicosilada() + view.vista_modal_pacientes_hemoglobina_pacientes() + view.vista_modal_agregar_paciente_hemoglobina() + view.vista_modal_agregar_empresas_hemoglobina()}
                         </div>
                         <div class="tab-pane fade" id="siete" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_pruebas_especiales() + view.vista_modal_pruebas_especiales_pacientes() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
+                            ${view.vista_pruebas_especiales() + view.vista_modal_pruebas_especiales_pacientes() + view.vista_modal_agregar_paciente_pruebas_especiales() + view.vista_modal_agregar_empresas_pruebas_especiales()}
                         </div>
                         <div class="tab-pane fade" id="ocho" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_examenes_hcg_cuantitativa() + view.vista_modal_hcg_cuantitativa_pacientes() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
@@ -2279,6 +2279,110 @@ function getView(){
                 </div>
             `;
         },
+        vista_modal_agregar_paciente_pruebas_especiales:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente_pruebas_especiales">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label>NO. DPI:</label>
+                                            <input type="text" class="form-control" id="txtnoDPIPruebasEspeciales"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombrePacientePruebasEspeciales"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control" id="txtFechaNacimientoPruebasEspeciales"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Empresa:</label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                
+                                                <select class="form-control" id="cmbEmpresaPacientePruebasEspeciales">
+                                                    
+                                                </select>
+                                                
+                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaPruebasEspeciales()">
+                                                    <i class="fal fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacientePruebasEspeciales">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            `;
+        },
+        vista_modal_agregar_empresas_pruebas_especiales:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa_pruebas_especiales">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Nombre Empresa:</label>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaPruebasEspeciales"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioPruebasEspeciales">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
     }
 
     root.innerHTML = view.body();
@@ -2568,7 +2672,7 @@ function addListeners(){
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioPruebasEspeciales()">
                             <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
@@ -3819,6 +3923,122 @@ function getAbrirModalPruebasEspeciales() {
         })
     })
 
+}
+
+function modalAgregarNuevoUsuarioPruebasEspeciales(){
+    $("#modal_agregar_paciente_pruebas_especiales").modal('show'); 
+
+    let btnGuardarPacientePruebasEspeciales = document.getElementById('btnGuardarPacientePruebasEspeciales');
+    btnGuardarPacientePruebasEspeciales.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then((value) => {
+                if(value==true) {
+                    let noDPI = document.getElementById("txtnoDPIPruebasEspeciales").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacientePruebasEspeciales").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoPruebasEspeciales").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacientePruebasEspeciales").value;
+    
+                    
+                    btnGuardarPacientePruebasEspeciales.disabled = true;
+                    btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        catalogoPacientes();
+                        $("#modal_agregar_paciente_enfer_infecciosas").modal('hide');
+                        // limpiar_datos_pacientes();
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                }
+            })
+        
+    })
+}
+
+function btnAbrirModalEmpresaPruebasEspeciales(){
+    $("#modal_agregar_empresa_pruebas_especiales").modal('show');
+
+    let btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales = document.getElementById("btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales");
+    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
+        .then((value) => {
+            if(value == true) {
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaPruebasEspeciales").value;
+                
+                btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insert_empresas(F.limpiarTexto(nombreEmpresa))
+                .then(() => {
+                    F.Aviso("Empresa guardado exitosamente!!!");
+                    $("#modal_agregar_empresa_hemoglobina").modal('hide'); 
+                    cargarEmpresasLaboratorio();
+                    // limpiar_input_empresa();
+                   
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se puede guardar la empresa" + e);
+                    console.error(`Error guardar empresa: ${e}`);
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+}
+
+function cargarEmpresasLaboratorio() {
+    get_data_empresas_pacientes_laboratorio()
+        .then((data) => {
+            // Cargar empresas en la tabla
+            let strTable = '';
+            data.forEach((r) => {
+                strTable += `
+                    <tr>
+                        <td>${r.ID}</td>
+                        <td>${r.NOMBRE}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarEmpresaPaciente('${r.ID}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblDeEmpresasPacientesLaboratorioPruebasEspeciales").innerHTML = strTable;
+
+            // Cargar empresas en el selector
+            let strCombo = '<option value="">Seleccione una empresa</option>';
+            data.forEach((r) => {
+                strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
+            });
+            document.getElementById('cmbEmpresaPacientePruebasEspeciales').innerHTML = strCombo;
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
+        })
+        .catch((error) => {
+            console.error("Error al cargar las empresas: ", error);
+            document.getElementById("cmbEmpresaPacientePruebasEspeciales").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPacientePruebasEspeciales').innerHTML = '<option value="">No hay datos</option>';
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
+        });
 }
 
 function getAbrirModalHcgCuantitativa() {
