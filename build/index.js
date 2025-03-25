@@ -30,10 +30,10 @@ function requestPermission() {
 InicializarServiceWorkerNotif();
 
 
-// Navegar.inicio();
+Navegar.inicio();
 
 // Navegar.login();
-Navegar.laboratorista();
+// Navegar.laboratorista();
 // Navegar.registroPacientes();
 // Navegar.jornada();
 // Navegar.examenes();
