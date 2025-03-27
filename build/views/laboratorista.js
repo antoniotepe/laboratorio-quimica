@@ -27,13 +27,13 @@ function getView(){
                             ${view.vista_pruebas_especiales() + view.vista_modal_pruebas_especiales_pacientes() + view.vista_modal_agregar_paciente_pruebas_especiales() + view.vista_modal_agregar_empresas_pruebas_especiales()}
                         </div>
                         <div class="tab-pane fade" id="ocho" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_hcg_cuantitativa() + view.vista_modal_hcg_cuantitativa_pacientes() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
+                            ${view.vista_examenes_hcg_cuantitativa() + view.vista_modal_hcg_cuantitativa_pacientes() + view.vista_modal_agregar_paciente_hcg_cuantitativa() + view.vista_modal_agregar_empresas_hcg_cuantitativa()}
                         </div>
                         <div class="tab-pane fade" id="nueve" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_quimica_sanguinea() + view.vista_modal_quimica_sanguinea() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
+                            ${view.vista_examenes_quimica_sanguinea() + view.vista_modal_quimica_sanguinea() + view.vista_modal_agregar_quimica_sanguinea() + view.vista_modal_agregar_empresas_quimica_sanguinea()}
                         </div>
                         <div class="tab-pane fade" id="diez" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_examenes_resultados_varios() + view.vista_modal_resultados_varios() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
+                            ${view.vista_examenes_resultados_varios() + view.vista_modal_resultados_varios() + view.vista_modal_agregar_resultados_varios() + view.vista_modal_agregar_empresas_resultados_varios()}
                         </div>
                         <div class="tab-pane fade" id="once" role="tabpanel" aria-labelledby="home-tab">
                             
@@ -2383,7 +2383,322 @@ function getView(){
                 </div>
             `;
         },
+        vista_modal_agregar_paciente_hcg_cuantitativa:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente_hcg_cuantitativa">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label>NO. DPI:</label>
+                                            <input type="text" class="form-control" id="txtnoDPIHcgCuantitativa"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombrePacienteHcgCuantitativa"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control" id="txtFechaNacimientoHcgCuantitativa"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Empresa:</label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                
+                                                <select class="form-control" id="cmbEmpresaPacienteHcgCuantitativa">
+                                                    
+                                                </select>
+                                                
+                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaHcgCuantitativa()">
+                                                    <i class="fal fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacienteHcgCuantitativa">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            `;
+        },
+        vista_modal_agregar_empresas_hcg_cuantitativa:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa_hcg_cuantitativa">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Nombre Empresa:</label>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaHcgCuantitativa"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioHcgCuantitativa">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
+        vista_modal_agregar_quimica_sanguinea:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente_quimica_sanguinea">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label>NO. DPI:</label>
+                                            <input type="text" class="form-control" id="txtnoDPIQuimicaSanguinea"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombrePacienteQuimicaSanguinea"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control" id="txtFechaNacimientoQuimicaSanguinea"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Empresa:</label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                
+                                                <select class="form-control" id="cmbEmpresaPacienteQuimicaSanguinea">
+                                                    
+                                                </select>
+                                                
+                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaQuimicaSanguinea()">
+                                                    <i class="fal fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacienteQuimicaSanguinea">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            `;
+        },
+        vista_modal_agregar_empresas_quimica_sanguinea:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa_quimica_sanguinea">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Nombre Empresa:</label>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaQuimicaSanguinea"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioQuimicaSanguinea">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
+        vista_modal_agregar_resultados_varios:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente_resultados_varios">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-2">
+                                    <div class="card-body">
+
+                                        <div class="form-group">
+                                            <label>NO. DPI:</label>
+                                            <input type="text" class="form-control" id="txtnoDPIResultadosVarios"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Nombre:</label>
+                                            <input type="text" class="form-control" id="txtNombrePacienteResultadosVarios"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Fecha de nacimiento:</label>
+                                            <input type="date" class="form-control" id="txtFechaNacimientoResultadosVarios"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Empresa:</label>
+                                            <div style="display: flex; align-items: center; gap: 10px;">
+                                                
+                                                <select class="form-control" id="cmbEmpresaPacienteResultadosVarios">
+                                                    
+                                                </select>
+                                                
+                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaResultadosVarios()">
+                                                    <i class="fal fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>                               
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacienteResultadosVarios">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+
+            `;
+        },
+        vista_modal_agregar_empresas_resultados_varios:()=> {
+            return `
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa_resultados_varios">
+                    <div class="modal-dialog modal-dialog-right modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body p-2">
+                                <div class="card card-rounded shadow p-4">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Nombre Empresa:</label>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaResultadosVarios"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                            
+                                                <table class="table">
+                                                    <thead class="thead-primary">
+                                                        <tr>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioResultadosVarios">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                    <i class="fal fa-arrow-left"></i>
+                                </button>
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioResultadosVarios">
+                                    <i class="fal fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        },
+    
     }
+    
+
 
     root.innerHTML = view.body();
     
@@ -2722,7 +3037,7 @@ function addListeners(){
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioHcgCuantitativa()">
                             <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
@@ -2772,7 +3087,7 @@ function addListeners(){
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioQuimicaSanguinea()">
                             <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
@@ -2822,7 +3137,7 @@ function addListeners(){
                         </button>
                     </td>
                     <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioResultadosVarios()">
                             <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
@@ -3984,7 +4299,7 @@ function btnAbrirModalEmpresaPruebasEspeciales(){
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
-                    $("#modal_agregar_empresa_hemoglobina").modal('hide'); 
+                    $("#modal_agregar_empresa_pruebas_especiales").modal('hide'); 
                     cargarEmpresasLaboratorio();
                     // limpiar_input_empresa();
                    
@@ -4089,6 +4404,122 @@ function getAbrirModalHcgCuantitativa() {
     })
 }
 
+function modalAgregarNuevoUsuarioHcgCuantitativa(){
+    $("#modal_agregar_paciente_hcg_cuantitativa").modal('show'); 
+
+    let btnGuardarPacienteHcgCuantitativa = document.getElementById('btnGuardarPacienteHcgCuantitativa');
+    btnGuardarPacienteHcgCuantitativa.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then((value) => {
+                if(value==true) {
+                    let noDPI = document.getElementById("txtnoDPIHcgCuantitativa").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacienteHcgCuantitativa").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoHcgCuantitativa").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacienteHcgCuantitativa").value;
+    
+                    
+                    btnGuardarPacienteHcgCuantitativa.disabled = true;
+                    btnGuardarPacienteHcgCuantitativa.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        catalogoPacientes();
+                        $("#modal_agregar_paciente_hcg_cuantitativa").modal('hide');
+                        // limpiar_datos_pacientes();
+                        btnGuardarPacienteHcgCuantitativa.disabled = false;
+                        btnGuardarPacienteHcgCuantitativa.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacienteHcgCuantitativa.disabled = false;
+                        btnGuardarPacienteHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacienteHcgCuantitativa.disabled = false;
+                        btnGuardarPacienteHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                }
+            })
+        
+    })
+}
+
+function btnAbrirModalEmpresaHcgCuantitativa(){
+    $("#modal_agregar_empresa_hcg_cuantitativa").modal('show');
+
+    let btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa = document.getElementById("btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa");
+    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
+        .then((value) => {
+            if(value == true) {
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaHcgCuantitativa").value;
+                
+                btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insert_empresas(F.limpiarTexto(nombreEmpresa))
+                .then(() => {
+                    F.Aviso("Empresa guardado exitosamente!!!");
+                    $("#modal_agregar_empresa_hcg_cuantitativa").modal('hide'); 
+                    cargarEmpresasLaboratorio();
+                    // limpiar_input_empresa();
+                   
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se puede guardar la empresa" + e);
+                    console.error(`Error guardar empresa: ${e}`);
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+}
+
+function cargarEmpresasLaboratorio() {
+    get_data_empresas_pacientes_laboratorio()
+        .then((data) => {
+            // Cargar empresas en la tabla
+            let strTable = '';
+            data.forEach((r) => {
+                strTable += `
+                    <tr>
+                        <td>${r.ID}</td>
+                        <td>${r.NOMBRE}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarEmpresaPaciente('${r.ID}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblDeEmpresasPacientesLaboratorioHcgCuantitativa").innerHTML = strTable;
+
+            // Cargar empresas en el selector
+            let strCombo = '<option value="">Seleccione una empresa</option>';
+            data.forEach((r) => {
+                strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
+            });
+            document.getElementById('cmbEmpresaPacienteHcgCuantitativa').innerHTML = strCombo;
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
+        })
+        .catch((error) => {
+            console.error("Error al cargar las empresas: ", error);
+            document.getElementById("cmbEmpresaPacienteHcgCuantitativa").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPacienteHcgCuantitativa').innerHTML = '<option value="">No hay datos</option>';
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
+        });
+}
+
 function getAbrirModalQuimicaSanguinea() {
     $("#modal_catalogo_pacientes_quimica_sanguinea").modal("show");
 
@@ -4138,8 +4569,240 @@ function getAbrirModalQuimicaSanguinea() {
 
 }
 
+function modalAgregarNuevoUsuarioQuimicaSanguinea(){
+    $("#modal_agregar_paciente_quimica_sanguinea").modal('show'); 
+
+    let btnGuardarPacienteQuimicaSanguinea = document.getElementById('btnGuardarPacienteQuimicaSanguinea');
+    btnGuardarPacienteQuimicaSanguinea.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then((value) => {
+                if(value==true) {
+                    let noDPI = document.getElementById("txtnoDPIQuimicaSanguinea").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacienteQuimicaSanguinea").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoQuimicaSanguinea").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacienteQuimicaSanguinea").value;
+    
+                    
+                    btnGuardarPacienteQuimicaSanguinea.disabled = true;
+                    btnGuardarPacienteQuimicaSanguinea.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        catalogoPacientes();
+                        $("#modal_agregar_paciente_quimica_sanguinea").modal('hide');
+                        // limpiar_datos_pacientes();
+                        btnGuardarPacienteQuimicaSanguinea.disabled = false;
+                        btnGuardarPacienteQuimicaSanguinea.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacienteQuimicaSanguinea.disabled = false;
+                        btnGuardarPacienteQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacienteQuimicaSanguinea.disabled = false;
+                        btnGuardarPacienteQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                }
+            })
+        
+    })
+}
+
+function btnAbrirModalEmpresaQuimicaSanguinea(){
+    $("#modal_agregar_empresa_quimica_sanguinea").modal('show');
+
+    let btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea = document.getElementById("btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea");
+    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
+        .then((value) => {
+            if(value == true) {
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaQuimicaSanguinea").value;
+                
+                btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insert_empresas(F.limpiarTexto(nombreEmpresa))
+                .then(() => {
+                    F.Aviso("Empresa guardado exitosamente!!!");
+                    $("#modal_agregar_empresa_quimica_sanguinea").modal('hide'); 
+                    cargarEmpresasLaboratorio();
+                    // limpiar_input_empresa();
+                   
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se puede guardar la empresa" + e);
+                    console.error(`Error guardar empresa: ${e}`);
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+}
+
+function cargarEmpresasLaboratorio() {
+    get_data_empresas_pacientes_laboratorio()
+        .then((data) => {
+            // Cargar empresas en la tabla
+            let strTable = '';
+            data.forEach((r) => {
+                strTable += `
+                    <tr>
+                        <td>${r.ID}</td>
+                        <td>${r.NOMBRE}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarEmpresaPaciente('${r.ID}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblDeEmpresasPacientesLaboratorioQuimicaSanguinea").innerHTML = strTable;
+
+            // Cargar empresas en el selector
+            let strCombo = '<option value="">Seleccione una empresa</option>';
+            data.forEach((r) => {
+                strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
+            });
+            document.getElementById('cmbEmpresaPacienteQuimicaSanguinea').innerHTML = strCombo;
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
+        })
+        .catch((error) => {
+            console.error("Error al cargar las empresas: ", error);
+            document.getElementById("cmbEmpresaPacienteQuimicaSanguinea").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPacienteQuimicaSanguinea').innerHTML = '<option value="">No hay datos</option>';
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
+        });
+}
+
 function getAbrirModalResultadosVarios() {
     $("#modal_catalogo_pacientes_resultados_varios").modal("show");
+}
+
+function modalAgregarNuevoUsuarioResultadosVarios(){
+    $("#modal_agregar_paciente_resultados_varios").modal('show'); 
+
+    let btnGuardarPacienteResultadosVarios = document.getElementById('btnGuardarPacienteResultadosVarios');
+    btnGuardarPacienteResultadosVarios.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then((value) => {
+                if(value==true) {
+                    let noDPI = document.getElementById("txtnoDPIResultadosVarios").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacienteResultadosVarios").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoResultadosVarios").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacienteResultadosVarios").value;
+    
+                    
+                    btnGuardarPacienteResultadosVarios.disabled = true;
+                    btnGuardarPacienteResultadosVarios.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        catalogoPacientes();
+                        $("#modal_agregar_paciente_resultados_varios").modal('hide');
+                        // limpiar_datos_pacientes();
+                        btnGuardarPacienteResultadosVarios.disabled = false;
+                        btnGuardarPacienteResultadosVarios.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacienteResultadosVarios.disabled = false;
+                        btnGuardarPacienteResultadosVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacienteResultadosVarios.disabled = false;
+                        btnGuardarPacienteResultadosVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                }
+            })
+        
+    })
+}
+
+function btnAbrirModalEmpresaResultadosVarios(){
+    $("#modal_agregar_empresa_resultados_varios").modal('show');
+
+    let btnGuardarEmpresaPacienteLaboratorioResultadosVarios = document.getElementById("btnGuardarEmpresaPacienteLaboratorioResultadosVarios");
+    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
+        .then((value) => {
+            if(value == true) {
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaResultadosVarios").value;
+                
+                btnGuardarEmpresaPacienteLaboratorioResultadosVarios.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioResultadosVarios.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insert_empresas(F.limpiarTexto(nombreEmpresa))
+                .then(() => {
+                    F.Aviso("Empresa guardado exitosamente!!!");
+                    $("#modal_agregar_empresa_resultados_varios").modal('hide'); 
+                    cargarEmpresasLaboratorio();
+                    // limpiar_input_empresa();
+                   
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                })
+                .catch((e) => {
+                    F.AvisoError("No se puede guardar la empresa" + e);
+                    console.error(`Error guardar empresa: ${e}`);
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+                .finally(()=> {
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioResultadosVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+}
+
+function cargarEmpresasLaboratorio() {
+    get_data_empresas_pacientes_laboratorio()
+        .then((data) => {
+            // Cargar empresas en la tabla
+            let strTable = '';
+            data.forEach((r) => {
+                strTable += `
+                    <tr>
+                        <td>${r.ID}</td>
+                        <td>${r.NOMBRE}</td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" onclick="eliminarEmpresaPaciente('${r.ID}')">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById("tblDeEmpresasPacientesLaboratorioResultadosVarios").innerHTML = strTable;
+
+            // Cargar empresas en el selector
+            let strCombo = '<option value="">Seleccione una empresa</option>';
+            data.forEach((r) => {
+                strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
+            });
+            document.getElementById('cmbEmpresaPacienteResultadosVarios').innerHTML = strCombo;
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
+        })
+        .catch((error) => {
+            console.error("Error al cargar las empresas: ", error);
+            document.getElementById("cmbEmpresaPacienteResultadosVarios").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPacienteResultadosVarios').innerHTML = '<option value="">No hay datos</option>';
+            // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
+        });
 }
 
 function catalogoPacientes() {
@@ -4668,4 +5331,23 @@ function get_data_empresas_pacientes_laboratorio() {
             reject(error);
         });
     });
+}
+
+function insert_empresas(nombreEmpresa) {
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_empresa_paciente", {
+            nombreEmpresa: nombreEmpresa
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0) {
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((error) => {
+            reject(error);
+        })
+    })
 }
