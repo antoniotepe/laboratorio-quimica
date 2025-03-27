@@ -1434,7 +1434,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesCoprologia">
@@ -1449,6 +1448,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1487,6 +1489,9 @@ function getView(){
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
                             </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioUrologia()">
+                                <i class="fal fa-user-plus"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1509,7 +1514,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesEnfermedadesInfecciosas">
@@ -1524,6 +1528,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioEnferInfecciosas()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1547,7 +1554,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesExamenesBacteriologicos">
@@ -1562,6 +1568,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioEnferBacteriologico()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1585,7 +1594,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesHemoglobina">
@@ -1600,6 +1608,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info" onclick="modalAgregarNuevoUsuarioHemoglobina()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1623,7 +1634,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesPruebasEspeciales">
@@ -1639,6 +1649,9 @@ function getView(){
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
                             </button>
+                            <button class="btn btn-circle btn-xl btn-info btn-bottom-r btn-rounded" onclick="modalAgregarNuevoUsuarioPruebasEspeciales()">
+                            <i class="fal fa-user-plus"></i>
+                        </button>
                         </div>
                     </div>
                 </div>
@@ -1661,7 +1674,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesHgcCuantitativa">
@@ -1676,6 +1688,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioHcgCuantitativa()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1699,7 +1714,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesQuimicaSanguinea">
@@ -1714,6 +1728,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioQuimicaSanguinea()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1737,7 +1754,6 @@ function getView(){
                                                         <td class="text-white">ID PACIENTE</td>
                                                         <td class="text-white">NOMBRE</td>
                                                         <td></td>
-                                                        <td></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tblCatalogoPacientesResultadosVarios">
@@ -1752,6 +1768,9 @@ function getView(){
                         <div class="modal-footer text-center">
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioResultadosVarios()">
+                                <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
                     </div>
@@ -1825,7 +1844,7 @@ function getView(){
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Nombre Empresa:</label>
-                                            <input type="text" class="form-control" id="txtNombreEmpresa"/>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaCopro"/>
                                         </div>
                                     </div>
                                 </div>
@@ -1837,12 +1856,12 @@ function getView(){
                                                 <table class="table">
                                                     <thead class="thead-primary">
                                                         <tr>
-                                                            <td>ID EMPRESA</td>
-                                                            <td>NOMBRE</td>
-                                                            <td>ACCIONES</td>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
                                                         </tr>
                                                         </thead>
-                                                        <tbody id="tblDeEmpresasPacientesLaboratorio">
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioCopro">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1854,7 +1873,7 @@ function getView(){
                                 <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
-                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorio">
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioCopro">
                                     <i class="fal fa-save"></i>
                                 </button>
                             </div>
@@ -1941,9 +1960,9 @@ function getView(){
                                                 <table class="table">
                                                     <thead class="thead-primary">
                                                         <tr>
-                                                            <td>ID EMPRESA</td>
-                                                            <td>NOMBRE</td>
-                                                            <td>ACCIONES</td>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="tblDeEmpresasPacientesLaboratorioUro">
@@ -2045,9 +2064,9 @@ function getView(){
                                                 <table class="table">
                                                     <thead class="thead-primary">
                                                         <tr>
-                                                            <td>ID EMPRESA</td>
-                                                            <td>NOMBRE</td>
-                                                            <td>ACCIONES</td>
+                                                            <td class="text-white">ID EMPRESA</td>
+                                                            <td class="text-white">NOMBRE</td>
+                                                            <td></td>
                                                         </tr>
                                                         </thead>
                                                         <tbody id="tblDeEmpresasPacientesLaboratorioEnferInfecciosas">
@@ -2706,7 +2725,15 @@ function getView(){
 
 function addListeners(){
     navegacionPage();
-    cargarEmpresasLaboratorio();
+    cargarEmpresasLaboratorioCopro();
+    cargarEmpresasLaboratorioUro();
+    cargarEmpresasLaboratorioEnferBacteriologico();
+    cargarEmpresasLaboratorioEnferInfecciosas();
+    cargarEmpresasLaboratorioHemoglobina();
+    cargarEmpresasLaboratorioHcgCuantitativa();
+    cargarEmpresasLaboratorioQuimicaSanguinea();
+    cargarEmpresasLaboratoriResultadosVarios();
+    cargarEmpresasLaboratorioPruebasEspeciales()
     document.getElementById("fechaCoprologia").value = F.getFecha();
     document.getElementById("fechaUrologia").value = F.getFecha();
     document.getElementById("fechaEnfermedadesInfecciosas").value = F.getFecha();
@@ -2718,7 +2745,7 @@ function addListeners(){
     document.getElementById("fechaResultadosVarios").value = F.getFecha();
 
 
-    catalogoPacientes()
+    catalogoPacientesCopro()
     .then((data) => {
         let strTableCopro = '';
         data.forEach(pacienteCopro => {
@@ -2733,13 +2760,7 @@ function addListeners(){
                             data-id="${pacienteCopro.id}">
                             <i class="fal fa-plus"></i>
                         </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
-                            <i class="fal fa-user-plus"></i>
-                        </button>
-                    </td>
-                    
+                    </td>  
                 </tr>
             `;
         });
@@ -2771,7 +2792,7 @@ function addListeners(){
 
 
     // Pacientes en urologia
-    catalogoPacientes()
+    catalogoPacientesUro()
     .then((data) => {
         let strTableUro = '';
         data.forEach(pacienteUro => {
@@ -2784,11 +2805,6 @@ function addListeners(){
                             data-nombre="${pacienteUro.nombre_paciente}"
                             data-id="${pacienteUro.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioUrologia()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -2821,7 +2837,7 @@ function addListeners(){
     })
 
     // Pacientes enfermedades infecciosas
-    catalogoPacientes()
+    catalogoPacientesEnferInfecciosas()
     .then((data) => {
         let strTableEnfeInfecciosas = '';
         data.forEach(pacienteEnfeInfecciosas => {
@@ -2834,11 +2850,6 @@ function addListeners(){
                             data-nombre="${pacienteEnfeInfecciosas.nombre_paciente}"
                             data-id="${pacienteEnfeInfecciosas.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioEnferInfecciosas()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -2871,7 +2882,7 @@ function addListeners(){
     })
 
     // Pacientes examenes bacteriologicos
-    catalogoPacientes()
+    catalogoPacientesEnferInfecciosas()
     .then((data) => {
         let strTableExamBacteriologicos = '';
         data.forEach(pacienteExamBacteriologicos => {
@@ -2884,11 +2895,6 @@ function addListeners(){
                             data-nombre="${pacienteExamBacteriologicos.nombre_paciente}"
                             data-id="${pacienteExamBacteriologicos.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioEnferBacteriologico()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -2921,7 +2927,7 @@ function addListeners(){
     })
 
     // Pacientes Hemoglobina Glicosilada
-    catalogoPacientes()
+    catalogoPacientesHemoglobina()
     .then((data) => {
         let strTableHemoglobina = '';
         data.forEach(pacienteHemoglobina => {
@@ -2934,11 +2940,6 @@ function addListeners(){
                             data-nombre="${pacienteHemoglobina.nombre_paciente}"
                             data-id="${pacienteHemoglobina.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioHemoglobina()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -2971,7 +2972,7 @@ function addListeners(){
     })
 
     // Pacientes pruebas especiales
-    catalogoPacientes()
+    catalogoPacientesPruebaEspeciales()
     .then((data) => {
         let strTablePruebasEspeciales = '';
         data.forEach(pacientePruebasEspeciales => {
@@ -2984,11 +2985,6 @@ function addListeners(){
                             data-nombre="${pacientePruebasEspeciales.nombre_paciente}"
                             data-id="${pacientePruebasEspeciales.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioPruebasEspeciales()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -3021,7 +3017,7 @@ function addListeners(){
     })
 
     // Pacientes hcg cuantitativa
-    catalogoPacientes()
+    catalogoPacientesHcgCuantitativa()
     .then((data) => {
         let strTableHgcCuantitativa = '';
         data.forEach(pacienteHgcCuantitativa => {
@@ -3034,11 +3030,6 @@ function addListeners(){
                             data-nombre="${pacienteHgcCuantitativa.nombre_paciente}"
                             data-id="${pacienteHgcCuantitativa.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioHcgCuantitativa()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -3071,7 +3062,7 @@ function addListeners(){
     })
 
     // Pacientes Quimica Sanguinea
-    catalogoPacientes()
+    catalogoPacientesQuimicaSanguinea()
     .then((data) => {
         let strTableQuimicaSanguinea = '';
         data.forEach(pacienteQuimicaSanguinea => {
@@ -3084,11 +3075,6 @@ function addListeners(){
                             data-nombre="${pacienteQuimicaSanguinea.nombre_paciente}"
                             data-id="${pacienteQuimicaSanguinea.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioQuimicaSanguinea()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -3121,7 +3107,7 @@ function addListeners(){
     })
 
     // Pacientes Resultados varios
-    catalogoPacientes()
+    catalogoPacientesResultadosVarios()
     .then((data) => {
         let strTableResultadosVarios = '';
         data.forEach(pacienteResultadosVarios => {
@@ -3134,11 +3120,6 @@ function addListeners(){
                             data-nombre="${pacienteResultadosVarios.nombre_paciente}"
                             data-id="${pacienteResultadosVarios.id}">
                             <i class="fal fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioResultadosVarios()">
-                            <i class="fal fa-user-plus"></i>
                         </button>
                     </td>
                 </tr>
@@ -3253,6 +3234,7 @@ function retrocederVistaLaboratorista() {
 }
 
 function getAbrirModalCoprologia() {
+    catalogoPacientesCopro();
     $("#modal_catalogo_pacientes_coprologia").modal("show");
 
     let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
@@ -3365,8 +3347,9 @@ function modalAgregarNuevoUsuarioCoprologia() {
                     insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                     .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        catalogoPacientes();
+                        catalogoPacientesCopro();
                         $("#modal_agregar_paciente_coprologia").modal('hide');
+                        $("#modal_catalogo_pacientes_coprologia").modal('hide');
                         // limpiar_datos_pacientes();
     
                         btnGuardarPacienteCopro.disabled = false;
@@ -3391,35 +3374,35 @@ function modalAgregarNuevoUsuarioCoprologia() {
 function btnAbrirModalEmpresaCopro(){
     $("#modal_agregar_empresa_copro").modal('show');
 
-    let btnGuardarEmpresaPaciente = document.getElementById("btnGuardarEmpresaPaciente");
-    btnGuardarEmpresaPaciente.addEventListener('click', () => {
+    let btnGuardarEmpresaPacienteLaboratorioCopro = document.getElementById("btnGuardarEmpresaPacienteLaboratorioCopro");
+    btnGuardarEmpresaPacienteLaboratorioCopro.addEventListener('click', () => {
         F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
         .then((value) => {
             if(value == true) {
-                let nombreEmpresa = document.getElementById("txtNombreEmpresa").value;
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaCopro").value;
                 
-                btnGuardarEmpresaPaciente.disabled = true;
-                btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                btnGuardarEmpresaPacienteLaboratorioCopro.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioCopro();
                     // limpiar_input_empresa();
                    
-                    btnGuardarEmpresaPaciente.disabled = false;
-                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 })
                 .catch((e) => {
                     F.AvisoError("No se puede guardar la empresa" + e);
                     console.error(`Error guardar empresa: ${e}`);
-                    btnGuardarEmpresaPaciente.disabled = false;
-                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save"></i>`;
                 })
                 .finally(()=> {
-                    btnGuardarEmpresaPaciente.disabled = false;
-                    btnGuardarEmpresaPaciente.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save"></i>`;
                 })
 
             }
@@ -3427,7 +3410,7 @@ function btnAbrirModalEmpresaCopro(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioCopro() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -3443,7 +3426,7 @@ function cargarEmpresasLaboratorio() {
                     </tr>
                 `;
             });
-            document.getElementById("tblDeEmpresasPacientesLaboratorio").innerHTML = strTable;
+            document.getElementById("tblDeEmpresasPacientesLaboratorioCopro").innerHTML = strTable;
 
             // Cargar empresas en el selector
             let strCombo = '<option value="">Seleccione una empresa</option>';
@@ -3571,7 +3554,7 @@ function getAbrirModalPacientesUrologia() {
 function modalAgregarNuevoUsuarioUrologia() {
     $("#modal_agregar_paciente_urologia").modal('show'); 
 
-    let btnGuardarPacienteUro = document.getElementById('btnGuardarPacienteUros');
+    let btnGuardarPacienteUro = document.getElementById('btnGuardarPacienteUro');
     btnGuardarPacienteUro.addEventListener('click', () => {
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
             .then((value) => {
@@ -3589,8 +3572,8 @@ function modalAgregarNuevoUsuarioUrologia() {
                     insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                     .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        catalogoPacientes();
                         $("#modal_agregar_paciente_urologia").modal('hide');
+                        catalogoPacientesUro();
                         // limpiar_datos_pacientes();
     
                         btnGuardarPacienteUro.disabled = false;
@@ -3629,7 +3612,7 @@ function btnAbrirModalEmpresaUro(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioUro();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioUro.disabled = false;
@@ -3651,7 +3634,7 @@ function btnAbrirModalEmpresaUro(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioUro() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -3795,7 +3778,7 @@ function btnAbrirModalEmpresaEnferInfecciosas(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_enfer_infecciosas").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioEnferInfecciosas();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioEnferInfecciosas.disabled = false;
@@ -3817,7 +3800,7 @@ function btnAbrirModalEmpresaEnferInfecciosas(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioEnferInfecciosas() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -3961,7 +3944,7 @@ function btnAbrirModalEmpresaEnferBacteriologico(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_enfer_bacteriologico").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioEnferBacteriologico();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioEnferBacteriologico.disabled = false;
@@ -3983,7 +3966,7 @@ function btnAbrirModalEmpresaEnferBacteriologico(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioEnferBacteriologico() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4099,7 +4082,7 @@ function modalAgregarNuevoUsuarioHemoglobina(){
                     .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
                         catalogoPacientes();
-                        $("#modal_agregar_paciente_enfer_infecciosas").modal('hide');
+                        $("#modal_agregar_paciente_hemoglobina").modal('hide');
                         // limpiar_datos_pacientes();
                         btnGuardarPacienteHemoglobina.disabled = false;
                         btnGuardarPacienteHemoglobina.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
@@ -4137,7 +4120,7 @@ function btnAbrirModalEmpresaHemoglobina(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_hemoglobina").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioHemoglobina();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioHemoglobina.disabled = false;
@@ -4159,7 +4142,7 @@ function btnAbrirModalEmpresaHemoglobina(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioHemoglobina() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4262,7 +4245,7 @@ function modalAgregarNuevoUsuarioPruebasEspeciales(){
                     .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
                         catalogoPacientes();
-                        $("#modal_agregar_paciente_enfer_infecciosas").modal('hide');
+                        $("#modal_agregar_paciente_pruebas_especiales").modal('hide');
                         // limpiar_datos_pacientes();
                         btnGuardarPacientePruebasEspeciales.disabled = false;
                         btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
@@ -4300,7 +4283,7 @@ function btnAbrirModalEmpresaPruebasEspeciales(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_pruebas_especiales").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioPruebasEspeciales();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioPruebasEspeciales.disabled = false;
@@ -4322,7 +4305,7 @@ function btnAbrirModalEmpresaPruebasEspeciales(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioPruebasEspeciales() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4464,7 +4447,7 @@ function btnAbrirModalEmpresaHcgCuantitativa(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_hcg_cuantitativa").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioHcgCuantitativa();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioHcgCuantitativa.disabled = false;
@@ -4486,7 +4469,7 @@ function btnAbrirModalEmpresaHcgCuantitativa(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioHcgCuantitativa() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4629,7 +4612,7 @@ function btnAbrirModalEmpresaQuimicaSanguinea(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_quimica_sanguinea").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratorioQuimicaSanguinea();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioQuimicaSanguinea.disabled = false;
@@ -4651,7 +4634,7 @@ function btnAbrirModalEmpresaQuimicaSanguinea(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratorioQuimicaSanguinea() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4710,8 +4693,9 @@ function modalAgregarNuevoUsuarioResultadosVarios(){
                     insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                     .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        catalogoPacientes();
+                        catalogoPacientesResultadosVarios();
                         $("#modal_agregar_paciente_resultados_varios").modal('hide');
+                        $("#modal_catalogo_pacientes_resultados_varios").modal('hide');
                         // limpiar_datos_pacientes();
                         btnGuardarPacienteResultadosVarios.disabled = false;
                         btnGuardarPacienteResultadosVarios.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
@@ -4749,7 +4733,7 @@ function btnAbrirModalEmpresaResultadosVarios(){
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
                     $("#modal_agregar_empresa_resultados_varios").modal('hide'); 
-                    cargarEmpresasLaboratorio();
+                    cargarEmpresasLaboratoriResultadosVarios();
                     // limpiar_input_empresa();
                    
                     btnGuardarEmpresaPacienteLaboratorioResultadosVarios.disabled = false;
@@ -4771,7 +4755,7 @@ function btnAbrirModalEmpresaResultadosVarios(){
     })
 }
 
-function cargarEmpresasLaboratorio() {
+function cargarEmpresasLaboratoriResultadosVarios() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -4805,7 +4789,191 @@ function cargarEmpresasLaboratorio() {
         });
 }
 
-function catalogoPacientes() {
+function catalogoPacientesCopro() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesUro() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesUro() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesEnferInfecciosas() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesHemoglobina() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesPruebaEspeciales() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesHcgCuantitativa() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesQuimicaSanguinea() {
+    return new Promise((resolve, reject) => {
+        axios.post("/lista_pacientes", {
+            filtro: ''
+        })
+        .then((response) => {
+            let data = response.data;
+            if(Array.isArray(data) && data.length > 0){
+                resolve(data); 
+            } else{
+                reject(); 
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            reject();
+        })
+        .finally(() => {
+            console.info("Catalogo pacientes finalizado");
+        })
+    })
+}
+
+function catalogoPacientesResultadosVarios() {
     return new Promise((resolve, reject) => {
         axios.post("/lista_pacientes", {
             filtro: ''
