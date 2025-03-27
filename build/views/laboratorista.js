@@ -1449,7 +1449,7 @@ function getView(){
                             <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                 <i class="fal fa-arrow-left"></i>
                             </button>
-                            <button class="btn btn-circle btn-xl btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
                                 <i class="fal fa-user-plus"></i>
                             </button>
                         </div>
