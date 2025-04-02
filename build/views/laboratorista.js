@@ -210,13 +210,13 @@ function getView(){
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" value="FEB25-001" readonly>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly>
                             </div>
                        </div>
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaCoprologia">
+                                <input type="date" class="form-control negrita text-info" id="fechaCoprologia">
                             </div>
                        </div>
                     </div>
@@ -420,13 +420,13 @@ function getView(){
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" value="FEB25-001" readonly>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly>
                             </div>
                        </div>
                        <div class="col-12 col-md-3">
                             <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaUrologia">
+                                <input type="date" class="form-control negrita text-info" id="fechaUrologia">
                             </div>
                        </div>
                 </div>
@@ -715,13 +715,13 @@ function getView(){
                     <div class="col-12 col-md-3">
                         <div class="mb-2">
                             <label class="form-label mb-0 text-white">REF:</label>
-                            <input type="text" class="form-control" id="txtRefEnferInfe" value="FEB25-001" readonly />
+                            <input type="text" class="form-control negrita text-info" id="txtRefEnferInfe" value="FEB25-001" readonly />
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div>
                             <label class="form-label mb-0 text-white">Fecha:</label>
-                            <input type="date" class="form-control" id="fechaEnfermedadesInfecciosas" />
+                            <input type="date" class="form-control negrita text-info" id="fechaEnfermedadesInfecciosas" />
                         </div>
                     </div>
                 </div>
@@ -798,13 +798,13 @@ function getView(){
                     <div class="col-12 col-md-3">
                         <div class="mb-2">
                             <label class="form-label mb-0 text-white">REF:</label>
-                            <input type="text" class="form-control" id="txtRefEnfermedadesBacteriologicos" value="FEB25-001" readonly />
+                            <input type="text" class="form-control negrita text-info" id="txtRefEnfermedadesBacteriologicos" value="FEB25-001" readonly />
                         </div>
                     </div>
                     <div class="col-12 col-md-3">
                         <div>
                             <label class="form-label mb-0 text-white">Fecha:</label>
-                            <input type="date" class="form-control" id="fechaExamenesBacteriologicos" />
+                            <input type="date" class="form-control negrita text-info" id="fechaExamenesBacteriologicos" />
                         </div>
                     </div>
                 </div>
@@ -879,13 +879,13 @@ function getView(){
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" value="FEB25-001" readonly id="txtRefHemoglobinaGlicosilada" />
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly id="txtRefHemoglobinaGlicosilada" />
                             </div>
                        </div>
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaHemoglobinaGlicosilada">
+                                <input type="date" class="form-control negrita text-info" id="fechaHemoglobinaGlicosilada">
                             </div>
                        </div>
                     </div>
@@ -1005,13 +1005,13 @@ function getView(){
                         <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" id="txtRefPruebasEspeciales" value="FEB25-001" readonly />
+                                <input type="text" class="form-control negrita text-info" id="txtRefPruebasEspeciales" value="FEB25-001" readonly />
                             </div>
                         </div>
                         <div class="col-12 col-md-3">
                             <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaPruebasEspeciales" />
+                                <input type="date" class="form-control negrita text-info" id="fechaPruebasEspeciales" />
                             </div>
                         </div>
                     </div>
@@ -1091,13 +1091,13 @@ function getView(){
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" value="FEB25-001" readonly id="txtRefHcgCuantitativa" />
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly id="txtRefHcgCuantitativa" />
                             </div>
                        </div>
                        <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaHcgCuantitativa">
+                                <input type="date" class="form-control negrita text-info" id="fechaHcgCuantitativa">
                             </div>
                        </div>
                     </div>
@@ -1196,13 +1196,13 @@ function getView(){
                         <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" id="txtRefQuimicaSanguinea" value="FEB25-001" readonly />
+                                <input type="text" class="form-control negrita text-info" id="txtRefQuimicaSanguinea" value="FEB25-001" readonly />
                             </div>
                         </div>
                         <div class="col-12 col-md-3">
                             <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaQuimicaSanguinea" />
+                                <input type="date" class="form-control negrita text-info" id="fechaQuimicaSanguinea" />
                             </div>
                         </div>
                     </div>
@@ -1283,13 +1283,13 @@ function getView(){
                         <div class="col-12 col-md-3">
                             <div class="mb-2">
                                 <label class="form-label mb-0 text-white">REF:</label>
-                                <input type="text" class="form-control" id="txtRefResultadosVarios" value="FEB25-001" readonly />
+                                <input type="text" class="form-control negrita text-info" id="txtRefResultadosVarios" value="FEB25-001" readonly />
                             </div>
                         </div>
                         <div class="col-12 col-md-3">
                             <div>
                                 <label class="form-label mb-0 text-white">Fecha:</label>
-                                <input type="date" class="form-control" id="fechaResultadosVarios" />
+                                <input type="date" class="form-control negrita text-info" id="fechaResultadosVarios" />
                             </div>
                         </div>
                     </div>
@@ -1800,14 +1800,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoCopro"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoCopro"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteCopro">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteCopro">
                                                     
                                                 </select>
                                                 
@@ -1904,14 +1904,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoUro"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoUro"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteUro">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteUro">
                                                     
                                                 </select>
                                                 
@@ -2008,14 +2008,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoEnferInfecciosas"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoEnferInfecciosas"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteEnferInfecciones">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteEnferInfecciones">
                                                     
                                                 </select>
                                                 
@@ -2112,14 +2112,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoEnferBacteriologico"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoEnferBacteriologico"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteEnferBacteriologico">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteEnferBacteriologico">
                                                     
                                                 </select>
                                                 
@@ -2211,19 +2211,19 @@ function getView(){
 
                                         <div class="form-group">
                                             <label>Nombre:</label>
-                                            <input type="text" class="form-control" id="txtNombrePacienteHemoglobina"/>
+                                            <input type="text" class="form-control negrita" id="txtNombrePacienteHemoglobina"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoHemoglobina"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoHemoglobina"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteHemoglobina">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteHemoglobina">
                                                     
                                                 </select>
                                                 
@@ -2320,14 +2320,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoPruebasEspeciales"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoPruebasEspeciales"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacientePruebasEspeciales">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacientePruebasEspeciales">
                                                     
                                                 </select>
                                                 
@@ -2424,14 +2424,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoHcgCuantitativa"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoHcgCuantitativa"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteHcgCuantitativa">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteHcgCuantitativa">
                                                     
                                                 </select>
                                                 
@@ -2528,14 +2528,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoQuimicaSanguinea"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoQuimicaSanguinea"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteQuimicaSanguinea">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteQuimicaSanguinea">
                                                     
                                                 </select>
                                                 
@@ -2632,14 +2632,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimientoResultadosVarios"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoResultadosVarios"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteResultadosVarios">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteResultadosVarios">
                                                     
                                                 </select>
                                                 
@@ -2743,6 +2743,18 @@ function addListeners(){
     document.getElementById("fechaHcgCuantitativa").value = F.getFecha();
     document.getElementById("fechaQuimicaSanguinea").value = F.getFecha();
     document.getElementById("fechaResultadosVarios").value = F.getFecha();
+
+    // fechas de modales al agregar a los usuarios
+    document.getElementById("txtFechaNacimientoCopro").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoUro").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoEnferInfecciosas").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoEnferBacteriologico").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoHemoglobina").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoPruebasEspeciales").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoHcgCuantitativa").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoQuimicaSanguinea").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoResultadosVarios").value = F.getFecha();
+    
 
 
     catalogoPacientesCopro()

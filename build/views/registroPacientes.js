@@ -92,14 +92,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control" id="txtFechaNacimiento"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimiento"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPaciente">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPaciente">
                                                     
                                                 </select>
                                                 
@@ -199,14 +199,14 @@ function getView(){
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control negrita" id="txtFechaNacimientoUpdate" />
+                                            <input type="date" class="form-control negrita negrita text-info" id="txtFechaNacimientoUpdate" />
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control" id="cmbEmpresaPacienteE">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteE">
                                                     
                                                 </select>
                                                 
