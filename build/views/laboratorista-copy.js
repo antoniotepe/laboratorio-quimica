@@ -9,10 +9,10 @@ function getView(){
                             ${view.vista_listado()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ciproanalisis() }
+                            ${view.vista_ciproanalisis() + view.vista_modal_pacientes_copro() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_uroanalisis() }
+                            ${view.vista_uroanalisis() + view.vista_modal_pacientes_urologia() + view.vista_modal_agregar_paciente_urologia() + view.vista_modal_agregar_empresas_urologia()}
                         </div>    
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_enfermedades_infecciosas() + view.vista_modal_enfermedades_infecciosas_pacientes() + view.vista_modal_agregar_paciente_enfer_infecciosas() + view.vista_modal_agregar_empresas_enfer_infecciosas()}
@@ -40,14 +40,8 @@ function getView(){
                         </div>
                         <div class="tab-pane fade" id="doce" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_listado_examenes()}
+
                         </div>
-                        <div class="tab-pane fade" id="trece" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_mostrar_pacientes_coprologia() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
-                        </div>
-                        <div class="tab-pane fade" id="catorce" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_mostrar_pacientes_urologia() + view.vista_modal_agregar_paciente_urologia() + view.vista_modal_agregar_empresas_urologia()}
-                        </div>
-                        
                         
                     </div>
 
@@ -99,14 +93,7 @@ function getView(){
                             <a class="nav-link negrita text-danger" id="tab-doce" data-toggle="tab" href="#doce" role="tab" aria-controls="home" aria-selected="true">
                                 <i class="fal fa-comments"></i></a>
                         </li> 
-                        <li class="nav-item">
-                            <a class="nav-link negrita text-danger" id="tab-trece" data-toggle="tab" href="#trece" role="tab" aria-controls="home" aria-selected="true">
-                                <i class="fal fa-comments"></i></a>
-                        </li> 
-                        <li class="nav-item">
-                            <a class="nav-link negrita text-danger" id="tab-catorce" data-toggle="tab" href="#catorce" role="tab" aria-controls="home" aria-selected="true">
-                                <i class="fal fa-comments"></i></a>
-                        </li> 
+
                     </ul>
                     
                 </div>
@@ -151,7 +138,6 @@ function getView(){
         vista_listado_examenes:()=>{
             return `
                 <div class="container-fluid mt-5">
-                    <div class="h2 text-center">Selecciona el examen</div>
                     <div class="row text-center">
                         <div class="col-12 col-md-6">
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_coproanalisis">
@@ -225,84 +211,9 @@ function getView(){
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaCardsExamenes">
-                            <i class="fal fa-arrow-left"></i>
-                        </button>
                     </div>
                 </div>
             `;             
-        },
-        vista_mostrar_pacientes_coprologia:()=>{
-            return `
-                <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mt-2">
-                                <h3 class="text-center mt-5">Listado de pacientes</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead-primary text-white">
-                                            <tr>
-                                                <td>NO. DPI</td>
-                                                <td>NOMBRE</td>
-                                                <td>FECHA NACIMIENTO</td>
-                                                <td>EMPRESA</td>
-                                                <td>SELECCIONAR USUARIO</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="tblPacientesParaExamenesCoprologia">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaPacientesCoprologia">
-                        <i class="fal fa-arrow-left"></i>
-                    </button>
-                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow"  onclick="modalAgregarNuevoUsuarioCoprologia()">
-                        <i class="fal fa-plus"></i>
-                    </button> 
-            `;
-        },
-        vista_mostrar_pacientes_urologia:()=>{
-            return `
-                <div class="container-fluid">
-                        <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mt-2">
-                                <h3 class="text-center mt-5">Listado de pacientes</h4>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="thead-primary text-white">
-                                            <tr>
-                                                <td>NO. DPI</td>
-                                                <td>NOMBRE</td>
-                                                <td>FECHA NACIMIENTO</td>
-                                                <td>EMPRESA</td>
-                                                <td>SELECCIONAR USUARIO</td>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="tblPacientesParaExamenesUrologia">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaPacientesUrologia">
-                        <i class="fal fa-arrow-left"></i>
-                    </button>
-                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow"  onclick="modalAgregarNuevoUsuarioUrologia()">
-                        <i class="fal fa-plus"></i>
-                    </button> 
-            `;
         },
         vista_mostrar_pacientes:()=>{
             return `
@@ -367,7 +278,10 @@ function getView(){
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
-                                <input class="form-control negrita" type="search" placeholder="Paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalCoprologia()">
+                                    <i class="fal fa-search"></i>
+                                </button>
                             </div>
                         </div>
                         <div class="col-12 col-md-4">
@@ -534,7 +448,7 @@ function getView(){
                     </div>
 
                     
-                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederDeVistaExamenCoprologia">
+                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button class="btn btn-circle btn-xl btn-referencia btn-bottom-r hand shadow" id="btnGuardarExamenCopro">
@@ -1556,6 +1470,86 @@ function getView(){
 
                 </div>
             `;  
+        },
+        vista_modal_pacientes_copro() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_coprologia">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesCoprologia">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
+                                <i class="fal fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        },
+        vista_modal_pacientes_urologia() {
+            return `
+                <div class="modal fade" id="modal_catalogo_pacientes_urologia">
+                <div class="modal-dialog modal-dialog-right modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body p-2">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead class="thead-primary">
+                                                    <tr>
+                                                        <td class="text-white">ID PACIENTE</td>
+                                                        <td class="text-white">NOMBRE</td>
+                                                        <td></td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblCatalogoPacientesUrologia">
+                                                   
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
+                                <i class="fal fa-arrow-left"></i>
+                            </button>
+                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioUrologia()">
+                                <i class="fal fa-user-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
         },
         vista_modal_enfermedades_infecciosas_pacientes() {
             return `
@@ -2823,9 +2817,8 @@ function addListeners(){
             strTableCopro += `
                 <tr>
                     <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteCopro.nombre_paciente}</td>
-                    <td>${F.formatearFechaANormal(pacienteCopro.fecha_nacimiento)}</td>
-                    <td>${pacienteCopro.nombre_empresa}</td>
+                    <td>${pacienteCopro.nombre_paciente}
+                    </td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
                             data-nombre="${pacienteCopro.nombre_paciente}"
@@ -2836,10 +2829,10 @@ function addListeners(){
                 </tr>
             `;
         });
-        document.getElementById("tblPacientesParaExamenesCoprologia").innerHTML = strTableCopro;
+        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = strTableCopro;
         
         // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesCoprologia .btn-rounded");
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -2847,15 +2840,12 @@ function addListeners(){
 
                 // Guardar el ID del paciente en la variable global
                 GlobalIdPaciente = idPaciente;
-                console.log(GlobalIdPaciente);
-                console.log(nombrePaciente);
+
                 // Actualizar el campo de búsqueda con el nombre del paciente
                 document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
 
-                F.slideAnimationTabs();
-                const tabDos = document.getElementById("tab-dos"); // Selecciona la pestaña "dos"
-                const tabLink = new bootstrap.Tab(tabDos); // Usamos Bootstrap Tab para cambiar de pestaña
-                tabLink.show(); 
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_coprologia").modal('hide');
 
             });
         });
@@ -2875,8 +2865,6 @@ function addListeners(){
                 <tr>
                     <td>${pacienteUro.id || 'Sin Documento de identificación'}</td>
                     <td>${pacienteUro.nombre_paciente}</td>
-                    <td>${F.formatearFechaANormal(pacienteUro.fecha_nacimiento)}</td>
-                    <td>${pacienteUro.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
                             data-nombre="${pacienteUro.nombre_paciente}"
@@ -2887,10 +2875,10 @@ function addListeners(){
                 </tr>
             `;
         });
-        document.getElementById("tblPacientesParaExamenesUrologia").innerHTML = strTableUro;
+        document.getElementById("tblCatalogoPacientesUrologia").innerHTML = strTableUro;
         
         // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesUrologia .btn-rounded");
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesUrologia .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -2902,10 +2890,8 @@ function addListeners(){
                 // Actualizar el campo de búsqueda con el nombre del paciente
                 document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
 
-                F.slideAnimationTabs();
-                const tabTres = document.getElementById("tab-tres"); // Selecciona la pestaña "dos"
-                const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
-                tabLink.show();
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_urologia").modal('hide');
 
         });
     });
@@ -3230,131 +3216,30 @@ function addListeners(){
         document.getElementById("tblCatalogoPacientesResultadosVarios").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
-    // catalogoPacientesParaNuevoExamen()
-    // .then((data) => {
-    //     let strTablePacientes = '';
-    //     data.forEach(pacientes => {
-    //         strTablePacientes += `
-    //             <tr>
-    //                 <td>${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
-    //                 <td>${pacientes.nombre_paciente}</td>
-    //                 <td>${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
-    //                 <td>${pacientes.nombre_empresa}</td>
-    //                 <td>
-    //                     <button class="btn btn-sm btn-success btn-rounded"
-    //                         data-nombre="${pacientes.nombre_paciente}"
-    //                         data-id="${pacientes.id}">
-    //                         <i class="fal fa-plus"></i>
-    //                     </button>
-    //                 </td>  
-    //             </tr>
-    //         `;
-    //     });
-    //     document.getElementById("tblPacientesParaExamenes").innerHTML = strTablePacientes;
-        
-    //     // Agregar evento de click a los botones de agregar
-    //     const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
-    //     botonesAgregar.forEach((boton) => {
-    //         boton.addEventListener("click", () => {
-    //             const nombrePaciente = boton.getAttribute("data-nombre");
-    //             const idPaciente = boton.getAttribute("data-id");
-
-    //             // Guardar el ID del paciente en la variable global
-    //             GlobalIdPaciente = idPaciente;
-
-    //             // Actualizar el campo de búsqueda con el nombre del paciente
-    //             document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-    //             // Cerrar el modal (si estás usando Bootstrap)
-    //             // $("#modal_catalogo_pacientes_coprologia").modal('hide');
-
-    //         });
-    //     });
-    // })
-    // .catch((error) => {
-    //     console.error("Error al obtener los pacientes:", error);
-    //     document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-    // })
-
-    
-    retrocederVistaLaboratorista();
-    accionesDeBotones();
-};
-
-function initView(){
-
-    getView();
-    addListeners();
-
-};
-
-function dibujarTablaPacientesCoprologia(data) {
-    let strTableCopro = '';
-    data.forEach(pacienteCopro => {
-        strTableCopro += `
-            <tr>
-                <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                <td>${pacienteCopro.nombre_paciente}</td>
-                <td>${F.formatearFechaANormal(pacienteCopro.fecha_nacimiento)}</td>
-                <td>${pacienteCopro.nombre_empresa}</td>
-                <td>
-                    <button class="btn btn-sm btn-success btn-rounded"
-                        data-nombre="${pacienteCopro.nombre_paciente}"
-                        data-id="${pacienteCopro.id}">
-                        <i class="fal fa-plus"></i>
-                    </button>
-                </td>  
-            </tr>
-        `;
-    });
-    // Actualizar el contenido de la tabla
-    document.getElementById("tblPacientesParaExamenesCoprologia").innerHTML = strTableCopro;
-    
-    // Agregar eventos de clic a los botones de agregar pacientes
-    const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesCoprologia .btn-rounded");
-    botonesAgregar.forEach((boton) => {
-        boton.addEventListener("click", () => {
-            const nombrePaciente = boton.getAttribute("data-nombre");
-            const idPaciente = boton.getAttribute("data-id");
-
-            // Guardar el ID del paciente en la variable global
-            GlobalIdPaciente = idPaciente;
-            console.log(GlobalIdPaciente);
-            console.log(nombrePaciente);
-            // Actualizar el campo de búsqueda con el nombre del paciente
-            document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-            F.slideAnimationTabs();
-            const tabDos = document.getElementById("tab-dos"); // Selecciona la pestaña "dos"
-            const tabLink = new bootstrap.Tab(tabDos); // Usamos Bootstrap Tab para cambiar de pestaña
-            tabLink.show(); 
-        });
-    });
-}
-
-function dibujarTablaPacientesUrologia(data) {
-    let strTableUro = '';
-        data.forEach(pacienteUro => {
-            strTableUro += `
+    catalogoPacientesParaNuevoExamen()
+    .then((data) => {
+        let strTablePacientes = '';
+        data.forEach(pacientes => {
+            strTablePacientes += `
                 <tr>
-                    <td>${pacienteUro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteUro.nombre_paciente}</td>
-                    <td>${F.formatearFechaANormal(pacienteUro.fecha_nacimiento)}</td>
-                    <td>${pacienteUro.nombre_empresa}</td>
+                    <td>${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
+                    <td>${pacientes.nombre_paciente}</td>
+                    <td>${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
+                    <td>${pacientes.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
-                            data-nombre="${pacienteUro.nombre_paciente}"
-                            data-id="${pacienteUro.id}">
+                            data-nombre="${pacientes.nombre_paciente}"
+                            data-id="${pacientes.id}">
                             <i class="fal fa-plus"></i>
                         </button>
-                    </td>
+                    </td>  
                 </tr>
             `;
         });
-        document.getElementById("tblPacientesParaExamenesUrologia").innerHTML = strTableUro;
+        document.getElementById("tblPacientesParaExamenes").innerHTML = strTablePacientes;
         
-        // Agregar evento de clic a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesUrologia .btn-rounded");
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -3364,26 +3249,41 @@ function dibujarTablaPacientesUrologia(data) {
                 GlobalIdPaciente = idPaciente;
 
                 // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
 
-                F.slideAnimationTabs();
-                const tabTres = document.getElementById("tab-tres"); // Selecciona la pestaña "dos"
-                const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
-                tabLink.show();
+                // Cerrar el modal (si estás usando Bootstrap)
+                // $("#modal_catalogo_pacientes_coprologia").modal('hide');
 
+            });
         });
-    });
-}
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    
+    retrocederVistaLaboratorista();
+
+};
+
+function initView(){
+
+    getView();
+    addListeners();
+
+};
+
 
 function navegacionPage() {
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-trece").click();
+        document.getElementById("tab-dos").click();
     });
 
     document.getElementById("card_uroanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-catorce").click()
+        document.getElementById("tab-tres").click()
     });
 
     document.getElementById("enfermedades_infecciosas").addEventListener('click', ()=> {
@@ -3423,7 +3323,7 @@ function navegacionPage() {
 
     document.getElementById("card_nuevo_examen").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-doce").click();
+        document.getElementById("tab-once").click();
     });
 
     document.getElementById("card_tbla_pacientes").addEventListener('click', () => {
@@ -3434,26 +3334,26 @@ function navegacionPage() {
         Navegar.examenes();
     })
 
-
-    document.getElementById("idRetrocederVistaPacientesCoprologia").addEventListener('click', () => {
-        F.slideAnimationTabs();
-        document.getElementById("tab-doce").click();
-    })
-
-    document.getElementById("idRetrocederVistaCardsExamenes").addEventListener('click', () => {
-        F.slideAnimationTabs();
-        document.getElementById("tab-uno").click();
-    })
-
-    document.getElementById("idRetrocederDeVistaExamenCoprologia").addEventListener('click', () => {
-        F.slideAnimationTabs();
-        document.getElementById("tab-trece").click();
-    })
-    
-    
 }
 
-function accionesDeBotones() {
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
+
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
+        modalPacientesCoprologia();
+    }
+
+    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
+        modalPacientesUrologia();
+    }
+}
+
+function getAbrirModalCoprologia() {
+    catalogoPacientesCopro();
+    $("#modal_catalogo_pacientes_coprologia").modal("show");
+
     let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
     btnGuardarExamenCopro.addEventListener('click', () => {
         F.Confirmacion("¿Esta seguro de guardar el examen?")
@@ -3543,77 +3443,50 @@ function accionesDeBotones() {
     })
 }
 
-function retrocederVistaLaboratorista() {
-    F.slideAnimationTabs();
-    document.getElementById("tab-uno").click();
-
-    // Verificar si el modal está visible y recargar los datos si es necesario
-    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
-        modalPacientesCoprologia();
-    }
-
-    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
-        modalPacientesUrologia();
-    }
-}
-
-async function modalAgregarNuevoUsuarioCoprologia() {
+function modalAgregarNuevoUsuarioCoprologia() {
     $("#modal_agregar_paciente_coprologia").modal('show'); 
 
     let btnGuardarPacienteCopro = document.getElementById('btnGuardarPacienteCopro');
-    btnGuardarPacienteCopro.addEventListener('click', async () => { // Usamos async aquí para trabajar con promesas
+    btnGuardarPacienteCopro.addEventListener('click', () => {
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then(async (value) => {
-                if(value == true) {
+            .then((value) => {
+                if(value==true) {
                     let noDPI = document.getElementById("txtnoDPICopro").value;
                     let nombrePaciente = document.getElementById("txtNombrePacienteCopro").value;
                     let fecha_nacimiento = document.getElementById("txtFechaNacimientoCopro").value;
                     let empresaPaciente = document.getElementById("cmbEmpresaPacienteCopro").value;
-
-                    // Desactivar el botón para evitar múltiples clics
+    
+                    
                     btnGuardarPacienteCopro.disabled = true;
                     btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                    try {
-                        // Llamar a la función que guarda el paciente
-                        await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente);
-                        
-                        // Mostrar mensaje de éxito
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        limpiarDatosGuardadoPacientesCoprologia();
-
-                        // Esperar a que la tabla se recargue
-                        let data = await catalogoPacientesCopro();
-
-                        // Redibujar la tabla con los nuevos datos
-                        dibujarTablaPacientesCoprologia(data);
-
-                        // Cerrar el modal
+                        catalogoPacientesCopro();
                         $("#modal_agregar_paciente_coprologia").modal('hide');
-
-                    } catch (e) {
-                        // Si hubo un error, mostrar mensaje de error
+                        $("#modal_catalogo_pacientes_coprologia").modal('hide');
+                        // limpiar_datos_pacientes();
+    
+                        btnGuardarPacienteCopro.disabled = false;
+                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
                         F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                         console.error(`Error al agregar paciente: ${e}`);
                         btnGuardarPacienteCopro.disabled = false;
                         btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
-                    } finally {
-                        // Resetear el botón
+                    })
+                    .finally(() => {
                         btnGuardarPacienteCopro.disabled = false;
                         btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
-                    }
+                    })
                 }
             })
-    });
+        
+    })
 }
-
- function limpiarDatosGuardadoPacientesCoprologia() {
-    document.getElementById("txtnoDPICopro").value = '';
-    document.getElementById("txtNombrePacienteCopro").value = '';
-    document.getElementById("txtFechaNacimientoCopro").value = F.getFecha();
-    document.getElementById("cmbEmpresaPacienteCopro").value = '';
-}
-
 
 function btnAbrirModalEmpresaCopro(){
     $("#modal_agregar_empresa_copro").modal('show');
@@ -3631,7 +3504,7 @@ function btnAbrirModalEmpresaCopro(){
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
-                    $("#modal_agregar_empresa_copro").modal('hide'); 
+                    $("#modal_agregar_empresa").modal('hide'); 
                     cargarEmpresasLaboratorioCopro();
                     // limpiar_input_empresa();
                    
@@ -3795,13 +3668,13 @@ function getAbrirModalPacientesUrologia() {
 
 }
 
-async function modalAgregarNuevoUsuarioUrologia() {
+function modalAgregarNuevoUsuarioUrologia() {
     $("#modal_agregar_paciente_urologia").modal('show'); 
 
     let btnGuardarPacienteUro = document.getElementById('btnGuardarPacienteUro');
-    btnGuardarPacienteUro.addEventListener('click', async () => {
+    btnGuardarPacienteUro.addEventListener('click', () => {
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then(async (value) => {
+            .then((value) => {
                 if(value==true) {
                     let noDPI = document.getElementById("txtnoDPIUro").value;
                     let nombrePaciente = document.getElementById("txtNombrePacienteUro").value;
@@ -3812,33 +3685,27 @@ async function modalAgregarNuevoUsuarioUrologia() {
                     btnGuardarPacienteUro.disabled = true;
                     btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                     
-                    try {
-                        // Llamar a la función que guarda el paciente
-                        await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente);
-                        
-                        // Mostrar mensaje de éxito
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        // limpiarDatosGuardadoPacientesCoprologia();
-
-                        // Esperar a que la tabla se recargue
-                        let data = await catalogoPacientesUro();
-                        // Redibujar la tabla con los nuevos datos
-                        dibujarTablaPacientesUrologia(data);
-
-                        // Cerrar el modal
                         $("#modal_agregar_paciente_urologia").modal('hide');
-
-                    } catch (e) {
-                        // Si hubo un error, mostrar mensaje de error
+                        catalogoPacientesUro();
+                        // limpiar_datos_pacientes();
+    
+                        btnGuardarPacienteUro.disabled = false;
+                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
                         F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                         console.error(`Error al agregar paciente: ${e}`);
-                        btnGuardarPacienteCopro.disabled = false;
-                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
-                    } finally {
-                        // Resetear el botón
-                        btnGuardarPacienteCopro.disabled = false;
-                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
-                    }
+                        btnGuardarPacienteUro.disabled = false;
+                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacienteUro.disabled = false;
+                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
                 }
             })
         
@@ -3861,7 +3728,7 @@ function btnAbrirModalEmpresaUro(){
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
-                    $("#modal_agregar_empresa_urologia").modal('hide'); 
+                    $("#modal_agregar_empresa").modal('hide'); 
                     cargarEmpresasLaboratorioUro();
                     // limpiar_input_empresa();
                    

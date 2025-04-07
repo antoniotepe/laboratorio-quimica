@@ -879,6 +879,34 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
               indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
             },
           });
+        } else if (examen.tipo_examen === 'ENFERMEDADES INFECCIOSAS') {
+          // Tabla Macroscópico Uro
+          doc.fontSize(11).text("EXAMEN MACROSCÓPICO:", { align: "center" });
+          doc.moveDown();
+
+          const tableResultadosEnfermedadesInfecciosas = {
+            headers: [
+              { label: "Analisis", property: 'analisis', width: 60, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Resultado", property: 'resultado', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+              { label: "Valor de referencia", property: 'valor', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+            ],
+            datas: [
+              {
+                analisis: examen.exa,
+                resultado: examen.uro_macro_aspecto,
+                valor: examen.uro_macro_densidad,
+              },
+            ],
+          };
+          doc.table(tableResultadosEnfermedadesInfecciosas, {
+            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+          });
+
+          
         }
 
         // Finalizar el PDF
