@@ -108,7 +108,7 @@ function getView(){
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_nuevo_examen">
                                 <div class="card-body">
                                     <h5 class="card-title text-center negrita">NUEVO EXAMEN</h5>
-                                    <img src="../img/icon-plus.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="TABLA USUARIOS" />
+                                    <img src="../img/add_examen.png" class="card-img-top rounded text-center" style="max-width: 50px; max-height: 100px; display: block; margin: auto" alt="TABLA USUARIOS" />
                                 </div>
                             </div>
                         </div>
@@ -142,25 +142,25 @@ function getView(){
                             <div class="col-12- col-md-3 mt-3 mb-2">    
                                 <div class="input-group">
                                     <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled />
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPaciente" disabled />
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 mt-3 mb-2">
                                 <div class="input-group">
                                     <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoCiprologia" />
+                                    <input class="form-control bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPaciente" />
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 mt-3 mb-2">
                                 <div class="input-group">
                                     <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" value="FEB25-001" id="txtReferenciaDeExamen">
+                                    <input type="text" class="form-control negrita bg-amarillo" value="FEB25-001" id="txtReferenciaDeExamenPaciente">
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 mt-3 mb-2">
                                 <div class="input-group">
                                     <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaCoprologia">
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPaciente">
                                 </div>
                             </div>
                     </div>
@@ -768,7 +768,7 @@ function getView(){
                     </div>
                 </div>
 
-                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaDeEnfermedadesInfecciosas">
                     <i class="fal fa-arrow-left"></i>
                 </button>
                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenEnfermedadesInfecc">
@@ -823,7 +823,7 @@ function getView(){
                     </div>
                 </div>
 
-                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaEnfermedadesBacteriologicos">
                     <i class="fal fa-arrow-left"></i>
                 </button>
                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenBacteriologicos">
@@ -914,9 +914,7 @@ function getView(){
                     </div>
 
                     <button
-                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
-                        onclick="retrocederVistaLaboratorista()"
-                    >
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaHemoglobinaGlicosilada"/>
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button
@@ -978,7 +976,7 @@ function getView(){
                     </div>
                 </div>
 
-                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
+                <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaPruebasEspeciales">
                     <i class="fal fa-arrow-left"></i>
                 </button>
                 <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenPruebasEspeciales">
@@ -1050,9 +1048,7 @@ function getView(){
                     </div>
 
                     <button
-                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
-                        onclick="retrocederVistaLaboratorista()"
-                    >
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaHcgCuantitativa" />
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button
@@ -1110,9 +1106,7 @@ function getView(){
                     </div>
 
                     <button
-                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
-                        onclick="retrocederVistaLaboratorista()"
-                    >
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaQuimicaSanguinea" />
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button
@@ -1232,9 +1226,7 @@ function getView(){
                     </div>
 
                     <button
-                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"
-                        onclick="retrocederVistaLaboratorista()"
-                    >
+                        class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederVistaResutltadosVarios" />
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button
@@ -2563,54 +2555,9 @@ function addListeners(){
     cargarEmpresasLaboratorioQuimicaSanguinea();
     cargarEmpresasLaboratoriResultadosVarios();
     cargarEmpresasLaboratorioPruebasEspeciales()
-    document.getElementById("fechaCoprologia").value = F.getFecha();
+    document.getElementById("fechaPaciente").value = F.getFecha();
     document.getElementById("txtFechaNacimientoPaciente").value = F.getFecha();
 
-
-    catalogoPacientesCopro()
-    .then((data) => {
-        let strTableCopro = '';
-        data.forEach(pacienteCopro => {
-            strTableCopro += `
-                <tr>
-                    <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteCopro.nombre_paciente}
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-success btn-rounded"
-                            data-nombre="${pacienteCopro.nombre_paciente}"
-                            data-id="${pacienteCopro.id}">
-                            <i class="fal fa-plus"></i>
-                        </button>
-                    </td>  
-                </tr>
-            `;
-        });
-        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = strTableCopro;
-        
-        // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
-
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_coprologia").modal('hide');
-
-            });
-        });
-    })
-    .catch((error) => {
-        console.error("Error al obtener los pacientes:", error);
-        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
-    })
 
     catalogoPacientesParaNuevoExamen()
     .then((data) => {
@@ -2645,19 +2592,12 @@ function addListeners(){
                 GlobalIdPaciente = idPaciente;
 
                 // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacienteEnfermedadesInfecciosas").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-
-                // Actualizar el campo del nombre del paciente en el formulario de exámenes
-                
+                document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
                 F.slideAnimationTabs();
                 const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
                 const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
                 tabLink.show();
-                document.getElementById("nombrePaciente").value = nombrePaciente;
+                // document.getElementById("nombrePaciente").value = nombrePaciente;
 
                 // Cerrar el modal (si estás usando Bootstrap)
                 // $("#modal_catalogo_pacientes_coprologia").modal('hide');
@@ -2669,9 +2609,195 @@ function addListeners(){
         document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
+    let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
+    btnGuardarExamenCopro.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+                
+               
+                let importe = document.getElementById("FloatImporteCiprologia").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return};
 
+                let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value || '';
+                if(colorHecesMacro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
+
+                let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value || '';
+                if(restoAlimentacionMacro==''){F.AvisoError("Ingrese el valor en RESTOS DE ALIMENTOS!!!");return;};
+
+                let sangreMacro = document.getElementById("sangreMacro").value || '';
+                if(sangreMacro==''){F.AvisoError("Ingrese el valor en SANGRE!!!");return;};
+
+                let consistenciaMacro = document.getElementById("consistenciaMacro").value || '';
+                if(consistenciaMacro==''){F.AvisoError("Ingrese el valor en CONSISTENCIA!!!");return;};
+
+                let mocoMacro = document.getElementById("mocoMacro").value || '';
+                if(mocoMacro==''){F.AvisoError("Ingrese el valor de MOCO!!!");return;};
+
+                let phMacro = document.getElementById("phMacro").value || '';
+                if(phMacro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
+
+                let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value || '';
+                if(leucocitosQuimicos==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
+
+                let celulasQuimico = document.getElementById("celulasVegQuimico").value || '';
+                if(celulasQuimico==''){F.AvisoError("Ingrese el valor en CELULAS");return;};
+
+                let almidonesQuimico = document.getElementById("almidonesQuimico").value || '';
+                if(almidonesQuimico==''){F.AvisoError("Ingrese el valor en ALMIDONES");return;}
+
+                let levadurasQuimico = document.getElementById("levadurasQuimico").value || '';
+                if(levadurasQuimico==''){F.AvisoError("Ingrese el valor en LEVADURAS");return;};
+
+                let huevoQuimico = document.getElementById("huevoQuimico").value || '';
+                if(huevoQuimico==''){F.AvisoError("Ingrese el valor en HUEVO");return;};
+
+                let quistesQuimico = document.getElementById("quistesQuimico").value || '';
+                if(quistesQuimico==''){F.AvisoError("Ingrese el valor en QUISTES");return;};
+
+                let eritrocitosMicro = document.getElementById("eritrocitosMicro").value || '';
+                if(eritrocitosMicro==''){F.AvisoError("Ingrese el valor en ERITROCITOS");return;};
+
+                let grasasMicro = document.getElementById("grasasMicro").value || '';
+                if(grasasMicro==''){F.AvisoError("Ingrese el valor en GRASAS");return;};
+
+                let jabonMicro = document.getElementById("jabonMicro").value || '';
+                if(jabonMicro==''){F.AvisoError("Ingrese el valor en JABON");return;};
+
+                let bacterias = document.getElementById("bacteriasMicro").value || '';
+                if(bacterias==''){F.AvisoError("Ingrese el valor en BACTERIAS");return;};
+
+                btnGuardarExamenCopro.disabled = true;
+                btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenCipro()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenCopro.disabled = false;
+                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    limpiarDatosDeExamenCoprologia()
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenCopro.disabled = false;
+                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
+                })
+            }
+        })
+        .catch((error) => {
+            F.AvisoError("Hubo un error al guardar con la peticion");
+            console.error(error);
+        })
+    })
+
+    let btnGuardarExamenUrologia = document.getElementById('btnGuardarExamenUrologia');
+    btnGuardarExamenUrologia.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value == true) {
+
+                
+                let importeUro = document.getElementById("FloatImporteUrologia").value || '';
+                if(importeUro==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return;};
+
+                let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value || '';
+                if(colorHecesMacroUro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
+
+                let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value || '';
+                if(aspectoMacroUro==''){F.AvisoError("Ingrese el valor de ASPECTO");return;};
+
+                let densidadMacroUro = document.getElementById("densidadMacroUrologia").value || '';
+                if(densidadMacroUro==''){F.AvisoError("Ingrese el valor en DENSIDAD");return;};
+
+                let phMacroUro = document.getElementById("phMacroUrologia").value || '';
+                if(phMacroUro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
+
+                let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value || '';
+                if(leucocitosQuimUro==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
+
+                let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value || '';
+                if(glucosaQuimUro==''){F.AvisoError("Ingrese el valor en GLUCOSA");return;};
+
+                let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value || '';
+                if(proteinasQuimUro==''){F.AvisoError("Ingrese el valor en PROTEINAS");return;};
+
+                let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value || '';
+                if(cetonasQuimUro==''){F.AvisoError("Ingrese el valor en CETONAS");return;};
+
+                let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value || '';
+                if(hemoglobinaQuimUro==''){F.AvisoError("Ingrese el valor en HEMOGLOBINA");return;};
+
+                let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value || '';
+                if(urobiligenoQuimUro==''){F.AvisoError("Ingrese el valor en UROBILIGENO");return;};
+
+                let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value || '';
+                if(nitritosQuimUro==''){F.AvisoError("Ingrese el valor en NITRITOS");return;};
+
+                let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value || '';
+                if(acidoAscorbicoQuimUro==''){F.AvisoError("Ingrese el valor en ACIDO ASCORBICO");return;};
+
+                let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value || '';
+                if(bilirrubinaQuimUro==''){F.AvisoError("Ingrese el valor en BILIRRUBINA");return;};                
+
+                let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value || '';
+                if(leucocitosMicroUro==''){F.AvisoError("Ingrese el valor de LEUCOCITOS");return;};
+
+                let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value || '';
+                if(eritrocitosMicroUro==''){F.AvisoError("Ingrese el valor de ERITROCITOS");return;};
+
+                let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value || '';
+                if(epitelialesMicroUro==''){F.AvisoError("Ingrese el valor de EPITELIALES");return;};
+
+                let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value || '';
+                if(bacteriasMicroUro==''){F.AvisoError("Ingrese el valor de BACTERIAS");return;};
+
+                let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value || '';
+                if(cristalesMicroUro==''){F.AvisoError("Ingrese el valor de CRISTALES");return;};
+
+                let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value || '';
+                if(cilindrosMicroUro==''){F.AvisoError("Ingrese el valor de CILINDROS");return;};
+
+                let otroMicroUro = document.getElementById("otrosMicroUrologia").value || '';
+                if(otroMicroUro==''){F.AvisoError("Ingrese el valor de OTROS");return;};
+
+                btnGuardarExamenUrologia.disabled = true;
+                btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenUro()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenUrologia.disabled = false;
+                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    limpiarDatosDeExamenUrologia()
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenCopro.disabled = false;
+                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
+                })
+
+            }
+        })
+        .catch((error) => {
+            F.AvisoError("Hubo un error al guardar con la peticion");
+            console.error(error);
+        })        
+    })
     
-    retrocederVistaLaboratorista();
 
 };
 
@@ -2757,117 +2883,62 @@ function navegacionPage() {
         document.getElementById("tab-doce").click();
     });
     
+    document.getElementById("idRetrocederVistaDeEnfermedadesInfecciosas").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
+    
+    document.getElementById("idRetrocederVistaEnfermedadesBacteriologicos").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
+    
+    document.getElementById("idRetrocederVistaHemoglobinaGlicosilada").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
+    
+    document.getElementById("idRetrocederVistaPruebasEspeciales").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
 
-    
-    
+    document.getElementById("idRetrocederVistaHcgCuantitativa").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
+
+    document.getElementById("idRetrocederVistaQuimicaSanguinea").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
+
+    document.getElementById("idRetrocederVistaResutltadosVarios").addEventListener('click', ()=> {
+        F.slideAnimationTabs();
+        document.getElementById("tab-doce").click();
+    });
 
 }
 
-function retrocederVistaLaboratorista() {
-    F.slideAnimationTabs();
-    document.getElementById("tab-uno").click();
 
-    // Verificar si el modal está visible y recargar los datos si es necesario
-    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
-        modalPacientesCoprologia();
-    }
-
-    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
-        modalPacientesUrologia();
-    }
-}
-
-function getAbrirModalCoprologia() {
-    catalogoPacientesCopro();
-    $("#modal_catalogo_pacientes_coprologia").modal("show");
-
-    let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
-    btnGuardarExamenCopro.addEventListener('click', () => {
-        F.Confirmacion("¿Esta seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-                
-               
-                let importe = document.getElementById("FloatImporteCiprologia").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return};
-
-                let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value || '';
-                if(colorHecesMacro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
-
-                let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value || '';
-                if(restoAlimentacionMacro==''){F.AvisoError("Ingrese el valor en RESTOS DE ALIMENTOS!!!");return;};
-
-                let sangreMacro = document.getElementById("sangreMacro").value || '';
-                if(sangreMacro==''){F.AvisoError("Ingrese el valor en SANGRE!!!");return;};
-
-                let consistenciaMacro = document.getElementById("consistenciaMacro").value || '';
-                if(consistenciaMacro==''){F.AvisoError("Ingrese el valor en CONSISTENCIA!!!");return;};
-
-                let mocoMacro = document.getElementById("mocoMacro").value || '';
-                if(mocoMacro==''){F.AvisoError("Ingrese el valor de MOCO!!!");return;};
-
-                let phMacro = document.getElementById("phMacro").value || '';
-                if(phMacro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
-
-                let leucocitosQuimicos = document.getElementById("leucocitosQuimico").value || '';
-                if(leucocitosQuimicos==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
-
-                let celulasQuimico = document.getElementById("celulasVegQuimico").value || '';
-                if(celulasQuimico==''){F.AvisoError("Ingrese el valor en CELULAS");return;};
-
-                let almidonesQuimico = document.getElementById("almidonesQuimico").value || '';
-                if(almidonesQuimico==''){F.AvisoError("Ingrese el valor en ALMIDONES");return;}
-
-                let levadurasQuimico = document.getElementById("levadurasQuimico").value || '';
-                if(levadurasQuimico==''){F.AvisoError("Ingrese el valor en LEVADURAS");return;};
-
-                let huevoQuimico = document.getElementById("huevoQuimico").value || '';
-                if(huevoQuimico==''){F.AvisoError("Ingrese el valor en HUEVO");return;};
-
-                let quistesQuimico = document.getElementById("quistesQuimico").value || '';
-                if(quistesQuimico==''){F.AvisoError("Ingrese el valor en QUISTES");return;};
-
-                let eritrocitosMicro = document.getElementById("eritrocitosMicro").value || '';
-                if(eritrocitosMicro==''){F.AvisoError("Ingrese el valor en ERITROCITOS");return;};
-
-                let grasasMicro = document.getElementById("grasasMicro").value || '';
-                if(grasasMicro==''){F.AvisoError("Ingrese el valor en GRASAS");return;};
-
-                let jabonMicro = document.getElementById("jabonMicro").value || '';
-                if(jabonMicro==''){F.AvisoError("Ingrese el valor en JABON");return;};
-
-                let bacterias = document.getElementById("bacteriasMicro").value || '';
-                if(bacterias==''){F.AvisoError("Ingrese el valor en BACTERIAS");return;};
-
-                btnGuardarExamenCopro.disabled = true;
-                btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenCipro()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
-                })
-            }
-        })
-        .catch((error) => {
-            F.AvisoError("Hubo un error al guardar con la peticion");
-            console.error(error);
-        })
-    })
+function limpiarDatosDeExamenCoprologia() {
+    document.getElementById("FloatImporteCiprologia").value = '';
+    document.getElementById("colorHecesMacroscopio").value = '';
+    document.getElementById("restoAlimenticiosMacro").value = '';
+    document.getElementById("sangreMacro").value = '';  
+    document.getElementById("consistenciaMacro").value = '';
+    document.getElementById("mocoMacro").value = '';
+    document.getElementById("phMacro").value = '';
+    document.getElementById("leucocitosQuimico").value = '';
+    document.getElementById("celulasVegQuimico").value = '';
+    document.getElementById("almidonesQuimico").value = '';
+    document.getElementById("levadurasQuimico").value = '';
+    document.getElementById("huevoQuimico").value = '';
+    document.getElementById("quistesQuimico").value = '';
+    document.getElementById("eritrocitosMicro").value = '';
+    document.getElementById("grasasMicro").value = '';
+    document.getElementById("jabonMicro").value = '';
+    document.getElementById("bacteriasMicro").value = '';               
 }
 
 function btnAgregarPacienteModal() {
@@ -2987,111 +3058,28 @@ function cargarEmpresasLaboratorioPaciente() {
         });
 }
 
-function getAbrirModalPacientesUrologia() {
-    $("#modal_catalogo_pacientes_urologia").modal("show");
-
-
-    let btnGuardarExamenUrologia = document.getElementById('btnGuardarExamenUrologia');
-    btnGuardarExamenUrologia.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value == true) {
-
-                
-                let importeUro = document.getElementById("FloatImporteUrologia").value || '';
-                if(importeUro==''){F.AvisoError("Ingrese el valor de IMPORTE!!!");return;};
-
-                let colorHecesMacroUro = document.getElementById("colorHecesMacroUrologia").value || '';
-                if(colorHecesMacroUro==''){F.AvisoError("Ingrese el valor en COLOR DE HECES!!!");return;};
-
-                let aspectoMacroUro = document.getElementById("aspectoMacroUrologia").value || '';
-                if(aspectoMacroUro==''){F.AvisoError("Ingrese el valor de ASPECTO");return;};
-
-                let densidadMacroUro = document.getElementById("densidadMacroUrologia").value || '';
-                if(densidadMacroUro==''){F.AvisoError("Ingrese el valor en DENSIDAD");return;};
-
-                let phMacroUro = document.getElementById("phMacroUrologia").value || '';
-                if(phMacroUro==''){F.AvisoError("Ingrese el valor en PH!!!");return;};
-
-                let leucocitosQuimUro = document.getElementById("leucocitosQuimicoUrologia").value || '';
-                if(leucocitosQuimUro==''){F.AvisoError("Ingrese el valor en LEUCOCITOS");return;};
-
-                let glucosaQuimUro = document.getElementById("glucosaQuimicoUrologia").value || '';
-                if(glucosaQuimUro==''){F.AvisoError("Ingrese el valor en GLUCOSA");return;};
-
-                let proteinasQuimUro = document.getElementById("proteinasQuimicoUrologia").value || '';
-                if(proteinasQuimUro==''){F.AvisoError("Ingrese el valor en PROTEINAS");return;};
-
-                let cetonasQuimUro = document.getElementById("cetonasQuimicoUrologia").value || '';
-                if(cetonasQuimUro==''){F.AvisoError("Ingrese el valor en CETONAS");return;};
-
-                let hemoglobinaQuimUro = document.getElementById("hemoglobinaQuimicoUrologia").value || '';
-                if(hemoglobinaQuimUro==''){F.AvisoError("Ingrese el valor en HEMOGLOBINA");return;};
-
-                let urobiligenoQuimUro = document.getElementById("urobiligenoQuimicoUrologia").value || '';
-                if(urobiligenoQuimUro==''){F.AvisoError("Ingrese el valor en UROBILIGENO");return;};
-
-                let nitritosQuimUro = document.getElementById("nitritoQuimicoUrologia").value || '';
-                if(nitritosQuimUro==''){F.AvisoError("Ingrese el valor en NITRITOS");return;};
-
-                let acidoAscorbicoQuimUro = document.getElementById("acidoAscorbicoQuimicoUrologia").value || '';
-                if(acidoAscorbicoQuimUro==''){F.AvisoError("Ingrese el valor en ACIDO ASCORBICO");return;};
-
-                let bilirrubinaQuimUro = document.getElementById("bilirrubinaQuimicoUrologia").value || '';
-                if(bilirrubinaQuimUro==''){F.AvisoError("Ingrese el valor en BILIRRUBINA");return;};                
-
-                let leucocitosMicroUro = document.getElementById("leucocitosMicroUrologia").value || '';
-                if(leucocitosMicroUro==''){F.AvisoError("Ingrese el valor de LEUCOCITOS");return;};
-
-                let eritrocitosMicroUro = document.getElementById("eritrocitosMicroUrologia").value || '';
-                if(eritrocitosMicroUro==''){F.AvisoError("Ingrese el valor de ERITROCITOS");return;};
-
-                let epitelialesMicroUro = document.getElementById("epitelialesMicroUrologia").value || '';
-                if(epitelialesMicroUro==''){F.AvisoError("Ingrese el valor de EPITELIALES");return;};
-
-                let bacteriasMicroUro = document.getElementById("bacteriasMicroUrologia").value || '';
-                if(bacteriasMicroUro==''){F.AvisoError("Ingrese el valor de BACTERIAS");return;};
-
-                let cristalesMicroUro = document.getElementById("cristalesMicroUrologia").value || '';
-                if(cristalesMicroUro==''){F.AvisoError("Ingrese el valor de CRISTALES");return;};
-
-                let cilindrosMicroUro = document.getElementById("cilindrosMicroUrologia").value || '';
-                if(cilindrosMicroUro==''){F.AvisoError("Ingrese el valor de CILINDROS");return;};
-
-                let otroMicroUro = document.getElementById("otrosMicroUrologia").value || '';
-                if(otroMicroUro==''){F.AvisoError("Ingrese el valor de OTROS");return;};
-
-                btnGuardarExamenUrologia.disabled = true;
-                btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenUro()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenUrologia.disabled = false;
-                    btnGuardarExamenUrologia.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenCopro.disabled = false;
-                    btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save"></i>`; 
-                })
-
-            }
-        })
-        .catch((error) => {
-            F.AvisoError("Hubo un error al guardar con la peticion");
-            console.error(error);
-        })        
-    })
-
+function limpiarDatosDeExamenUrologia() {
+    document.getElementById("FloatImporteUrologia").value = '';
+    document.getElementById("colorHecesMacroUrologia").value = '';
+    document.getElementById("aspectoMacroUrologia").value = '';
+    document.getElementById("densidadMacroUrologia").value = '';
+    document.getElementById("phMacroUrologia").value = '';
+    document.getElementById("leucocitosQuimicoUrologia").value = '';
+    document.getElementById("glucosaQuimicoUrologia").value = '';
+    document.getElementById("proteinasQuimicoUrologia").value = '';
+    document.getElementById("cetonasQuimicoUrologia").value = '';
+    document.getElementById("hemoglobinaQuimicoUrologia").value = '';
+    document.getElementById("urobiligenoQuimicoUrologia").value = '';
+    document.getElementById("nitritoQuimicoUrologia").value = '';
+    document.getElementById("acidoAscorbicoQuimicoUrologia").value = '';
+    document.getElementById("bilirrubinaQuimicoUrologia").value = '';
+    document.getElementById("leucocitosMicroUrologia").value = '';
+    document.getElementById("eritrocitosMicroUrologia").value = '';
+    document.getElementById("epitelialesMicroUrologia").value = '';
+    document.getElementById("bacteriasMicroUrologia").value = '';
+    document.getElementById("cristalesMicroUrologia").value = '';
+    document.getElementById("cilindrosMicroUrologia").value = '';
+    document.getElementById("otrosMicroUrologia").value = '';
 }
 
 function modalAgregarNuevoUsuarioUrologia() {
@@ -4565,12 +4553,12 @@ function catalogoPacientesParaNuevoExamen() {
 function insertDatosExamenCipro() {
 
     // Fecha base para tomar mes y año 
-    let fechaBaseParaTomarMesYAnio =  new Date(document.getElementById("fechaCoprologia").value);
+    let fechaBaseParaTomarMesYAnio =  new Date(document.getElementById("fechaPaciente").value);
                 
     let tipo_examen_copro =  document.getElementById('txtTipoExamenCopro').querySelector('strong').textContent;
-    let nombreMedico = document.getElementById("txtMedicoCiprologia").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importe = document.getElementById("FloatImporteCiprologia").value;
-    let fecha = F.devuelveFecha("fechaCoprologia");
+    let fecha = F.devuelveFecha("fechaPaciente");
     let colorHecesMacro = document.getElementById("colorHecesMacroscopio").value;
     let restoAlimentacionMacro = document.getElementById("restoAlimenticiosMacro").value;
     let sangreMacro = document.getElementById("sangreMacro").value;
@@ -4598,7 +4586,7 @@ function insertDatosExamenCipro() {
             tipo_examen: tipo_examen_copro,
             paciente_id: GlobalIdPaciente,
             importe: importe,
-            medico_tratante: nombreMedico || 'Sin medico referido',
+            medico_tratante: medicoTratante || 'Sin medico referido',
             fecha: fecha,
             anio: anio,
             mes: mes,
@@ -4639,12 +4627,12 @@ function insertDatosExamenCipro() {
 
 function insertDatosExamenUro() {
 
-    let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaUrologia").value);
+    let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaPaciente").value);
 
     let tipo_examen_uro = document.getElementById("txtTipoExamenUrologia").querySelector('strong').textContent;
-    // let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importeUro = document.getElementById("FloatImporteUrologia").value;
-    let fechaUro = F.devuelveFecha("fechaUrologia");
+    let fechaUro = F.devuelveFecha("fechaPaciente");
     let anioUro = fechaBaseParaTomarMesYAnioUrologia.getFullYear();
     let mesUro = fechaBaseParaTomarMesYAnioUrologia.getUTCMonth()+1;
 
@@ -4678,7 +4666,7 @@ function insertDatosExamenUro() {
             tipo_examen: tipo_examen_uro,
             paciente_id: GlobalIdPaciente,
             importe: importeUro,
-            medico_tratante: nombreMedicoUro || 'Sin medico referido',
+            medico_tratante: medicoTratante || 'Sin medico referido',
             fecha: fechaUro,
             anio: anioUro,
             mes: mesUro,
@@ -4724,12 +4712,12 @@ function insertDatosExamenUro() {
 
 function insertDatosEnfermedadesInfecciosas() {
 
-    // let fechaEnfeInfecciosasTomarMesYAnio = new Date(document.getElementById("fechaEnfermedadesInfecciosas").value);
+    let fechaEnfeInfecciosasTomarMesYAnio = new Date(document.getElementById("fechaPaciente").value);
 
     let tipoExamenEnfermedadesInfecciosas = document.getElementById("txtTipoExamenEmfeInfecciosas").querySelector('strong').textContent;
-    // let nombreMedicoEnfeInfecciosas = document.getElementById("txtMedicoEnferInfeccio").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importeEnfInfecciosas = document.getElementById("floatImporteEnfInfecciosas").value;
-    // let fechaEnfeInfecciosas = F.devuelveFecha("fechaEnfermedadesInfecciosas");
+    let fechaEnfeInfecciosas = F.devuelveFecha("fechaPaciente");
     let anioEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getFullYear();
     let mesEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getUTCMonth()+1;
 
@@ -4743,7 +4731,7 @@ function insertDatosEnfermedadesInfecciosas() {
             tipo_examen: tipoExamenEnfermedadesInfecciosas,
             paciente_id: GlobalIdPaciente,
             importe: importeEnfInfecciosas,
-            medico_tratante: nombreMedicoEnfeInfecciosas || 'Sin medico referido',
+            medico_tratante: medicoTratante || 'Sin medico referido',
             fecha: fechaEnfeInfecciosas,
             anio: anioEnfeInfecciosas,
             mes: mesEnfeInfecciosas,
@@ -4771,12 +4759,12 @@ function insertDatosEnfermedadesInfecciosas() {
 
 function insertDatosExamenesBacteriologicos() {
 
-    // let fechaExamenBacteriologicoTomarMesyAnio =  new Date(document.getElementById("fechaExamenesBacteriologicos").value);
+    let fechaExamenBacteriologicoTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
 
     let tipoExamenBacteriologico = document.getElementById("txtTipoExamenBacteriologicos").querySelector('strong').textContent;
-    // let nombreMedicoExamenBacteriologico = document.getElementById("txtMedicoExamenesBacteriologicos").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importeExamenBacteriologicos = document.getElementById("floatImporteExamenesBacteriologicos").value;
-    // let fechaExamenBacteriologico = F.devuelveFecha("fechaExamenesBacteriologicos");
+    let fechaExamenBacteriologico = F.devuelveFecha("fechaPaciente");
     let anioExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getFullYear();
     let mesExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getUTCMonth()+1;
     let analisisExamenBacteriologico = document.getElementById("txtExamenesExamenesBacteriologicos").value;
@@ -4789,7 +4777,7 @@ function insertDatosExamenesBacteriologicos() {
             tipo_examen: tipoExamenBacteriologico,
             paciente_id: GlobalIdPaciente,
             importe: importeExamenBacteriologicos,
-            medico_tratante: nombreMedicoExamenBacteriologico || 'Sin medico referido',
+            medico_tratante: medicoTratante || 'Sin medico referido',
             fecha: fechaExamenBacteriologico,
             anio: anioExamenBacteriologico,
             mes: mesExamenBacteriologico,
@@ -4817,12 +4805,12 @@ function insertDatosExamenesBacteriologicos() {
 
 function insertDatosExamenHemoglobinaGlicosilada() {
 
-    // let fechaExamenHemoglobinaGlicosiladaTomarMesyAnio =  new Date(document.getElementById("fechaHemoglobinaGlicosilada").value);
+    let fechaExamenHemoglobinaGlicosiladaTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
 
     let tipoExamenHemoglobinaGlicosilada = document.getElementById("txtTipoHemoglobinaGlicosilada").querySelector('strong').textContent;
-    // let nombreMedicoExamenHemoglobinaGlicosilada = document.getElementById("txtMedicoHemoglobinaGlicosilada").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importeExamenHemoglobinaGlicosilada = document.getElementById("FloatImporteHemoglobinaGlicosilada").value;
-    // let fechaExamenHemoglobinaGlicosilada = F.devuelveFecha("fechaHemoglobinaGlicosilada");
+    let fechaExamenHemoglobinaGlicosilada = F.devuelveFecha("fechaPaciente");
     let anioExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getFullYear();
     let mesExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getUTCMonth()+1;
 
@@ -4838,7 +4826,7 @@ function insertDatosExamenHemoglobinaGlicosilada() {
             tipo_examen:tipoExamenHemoglobinaGlicosilada,
             paciente_id:GlobalIdPaciente,
             importe:importeExamenHemoglobinaGlicosilada,
-            medico_tratante:nombreMedicoExamenHemoglobinaGlicosilada || 'Sin medico referido',
+            medico_tratante:medicoTratante || 'Sin medico referido',
             fecha:fechaExamenHemoglobinaGlicosilada,
             anio:anioExamenHemoglobinaGlicosilada,
             mes:mesExamenHemoglobinaGlicosilada,
@@ -4869,12 +4857,12 @@ function insertDatosExamenHemoglobinaGlicosilada() {
 
 function insertarDatosPruebasEspeciales() {
 
-    // let fechaExamenPruebasEspecialesTomarMesyAnio =  new Date(document.getElementById("fechaPruebasEspeciales").value);
+    let fechaExamenPruebasEspecialesTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
 
     let tipoExamenPruebasEspeciales = document.getElementById("txtTipoHcgCualitativa").querySelector('strong').textContent;
-    // let nombreMedicoPruebasEspeciales = document.getElementById("txtMedicoPruebasEspeciales").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importePruebasEspeciales = document.getElementById("floatImportePruebasEspeciales").value;
-    // let fechaPruebasEspeciales = F.devuelveFecha("fechaPruebasEspeciales");
+    let fechaPruebasEspeciales = F.devuelveFecha("fechaPaciente");
     let anioPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getFullYear();
     let mesPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getUTCMonth()+1;
 
@@ -4888,8 +4876,8 @@ function insertarDatosPruebasEspeciales() {
             tipo_examen:tipoExamenPruebasEspeciales,
             paciente_id: GlobalIdPaciente,
             importe:importePruebasEspeciales,
-            medico_tratante:nombreMedicoPruebasEspeciales || 'Sin medico referido',
-            // fecha:fechaPruebasEspeciales,
+            medico_tratante:medicoTratante || 'Sin medico referido',
+            fecha:fechaPruebasEspeciales,
             anio:anioPruebasEspeciales,
             mes:mesPruebasEspeciales,
             pruebas_especiales_examen_resultado:examenResultadoPruebasEspeciales,
@@ -4916,14 +4904,14 @@ function insertarDatosPruebasEspeciales() {
 
 function insertDatosHcgCuantitativa() {
 
-    // let fechaExamenHcgCuantitativaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let fechaExamenHcgCuantitativaTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
     let tipoExamenHcgCuantitativa = document.getElementById("txtTipoHcgCuantitativa").querySelector('strong').textContent;
-    // let medicoTratanteHcgCuantitativa = document.getElementById("txtMedicoHcgCuantitativa").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
     let importeHcgCuantitativa = document.getElementById("FloatImporteHcgCuantitativa").value;
     let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value;
     let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value;
     let valoresDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value;
-    // let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
+    let fechaHcgCuantitativa = F.devuelveFecha("fechaPaciente");
     let anioExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getFullYear();
     let mesExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getUTCMonth()+1;
 
@@ -4934,8 +4922,8 @@ function insertDatosHcgCuantitativa() {
             tipo_examen:tipoExamenHcgCuantitativa,
             paciente_id: GlobalIdPaciente,
             importe:importeHcgCuantitativa,
-            medico_tratante: medicoTratanteHcgCuantitativa || 'Sin medico referido',
-            // fecha:fechaHcgCuantitativa,
+            medico_tratante: medicoTratante || 'Sin medico referido',
+            fecha:fechaHcgCuantitativa,
             anio: anioExamenHcgCuantitativa,
             mes: mesExamenHcgCuantitativa,
             hcg_cuantitativa_analisis: analisisHcgCuantitativa,
@@ -4962,12 +4950,12 @@ function insertDatosHcgCuantitativa() {
 
 function insertDatosQuimicaSanguinea() {
 
-    // let fechaQuimicaSanguineaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let fechaQuimicaSanguineaTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
     let tipoExamenQuimicaSanguinea = document.getElementById("txtTipoQuimicaSanguinea").querySelector('strong').textContent;
-    // let medicoTratanteQuimicaSanguinea = document.getElementById("txtMedicoQuimicaSanguinea").value;
-    // let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
-    // let anioQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getFullYear();
-    // let mesQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getUTCMonth()+1;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
+    let fechaQuimicaSanguinea = F.devuelveFecha("fechaPaciente");
+    let anioQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getFullYear();
+    let mesQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getUTCMonth()+1;
 
     let importe = document.getElementById("FloatImporteQuimicaSanguinea").value;
     let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value;
@@ -4979,8 +4967,8 @@ function insertDatosQuimicaSanguinea() {
             tipo_examen: tipoExamenQuimicaSanguinea,
             paciente_id: GlobalIdPaciente,
             importe: importe,
-            medico_tratante:medicoTratanteQuimicaSanguinea || 'Sin medico referido',
-            // fecha: fechaHcgCuantitativa,
+            medico_tratante:medicoTratante || 'Sin medico referido',
+            fecha: fechaQuimicaSanguinea,
             anio: anioQuimicaSanguinea,
             mes: mesQuimicaSanguinea,
             quimica_sanguinea_examen: examenQuimicaSanguinea,
