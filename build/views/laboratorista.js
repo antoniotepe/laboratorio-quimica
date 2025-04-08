@@ -255,7 +255,7 @@ function getView(){
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table table-bordered h-full">
                                         <thead class="thead-primary text-white">
                                             <tr>
                                                 <td>NO. DPI</td>
@@ -2565,10 +2565,10 @@ function addListeners(){
         data.forEach(pacientes => {
             strTablePacientes += `
                 <tr>
-                    <td>${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
-                    <td>${pacientes.nombre_paciente}</td>
-                    <td>${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
-                    <td>${pacientes.nombre_empresa}</td>
+                    <td class="negrita">${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
+                    <td class="negrita">${pacientes.nombre_paciente}</td>
+                    <td class="negrita">${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
+                    <td class="negrita">${pacientes.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
                             data-nombre="${pacientes.nombre_paciente}"
