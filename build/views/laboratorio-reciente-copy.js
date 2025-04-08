@@ -9,10 +9,10 @@ function getView(){
                             ${view.vista_listado()}
                         </div>
                         <div class="tab-pane fade" id="dos" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_ciproanalisis() + view.vista_modal_pacientes_copro() }
+                            ${view.vista_ciproanalisis() }
                         </div>
                         <div class="tab-pane fade" id="tres" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_uroanalisis() + view.vista_modal_pacientes_urologia() + view.vista_modal_agregar_paciente_urologia() + view.vista_modal_agregar_empresas_urologia()}
+                            ${view.vista_uroanalisis() }
                         </div>    
                         <div class="tab-pane fade" id="cuatro" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_enfermedades_infecciosas() + view.vista_modal_enfermedades_infecciosas_pacientes() + view.vista_modal_agregar_paciente_enfer_infecciosas() + view.vista_modal_agregar_empresas_enfer_infecciosas()}
@@ -36,12 +36,18 @@ function getView(){
                             ${view.vista_examenes_resultados_varios() + view.vista_modal_resultados_varios() + view.vista_modal_agregar_resultados_varios() + view.vista_modal_agregar_empresas_resultados_varios()}
                         </div>
                         <div class="tab-pane fade" id="once" role="tabpanel" aria-labelledby="home-tab">
-                            ${view.vista_mostrar_pacientes() + view.vista_modal_agregar_paciente() + view.vista_modal_agregar_empresas()} 
+                            ${view.vista_mostrar_pacientes()} 
                         </div>
                         <div class="tab-pane fade" id="doce" role="tabpanel" aria-labelledby="home-tab">
                             ${view.vista_listado_examenes()}
-
                         </div>
+                        <div class="tab-pane fade" id="trece" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_mostrar_pacientes_coprologia() + view.vista_modal_agregar_paciente_coprologia() + view.vista_modal_agregar_empresas()}
+                        </div>
+                        <div class="tab-pane fade" id="catorce" role="tabpanel" aria-labelledby="home-tab">
+                            ${view.vista_mostrar_pacientes_urologia() + view.vista_modal_agregar_paciente_urologia() + view.vista_modal_agregar_empresas_urologia()}
+                        </div>
+                        
                         
                     </div>
 
@@ -93,7 +99,14 @@ function getView(){
                             <a class="nav-link negrita text-danger" id="tab-doce" data-toggle="tab" href="#doce" role="tab" aria-controls="home" aria-selected="true">
                                 <i class="fal fa-comments"></i></a>
                         </li> 
-
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-trece" data-toggle="tab" href="#trece" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
+                        <li class="nav-item">
+                            <a class="nav-link negrita text-danger" id="tab-catorce" data-toggle="tab" href="#catorce" role="tab" aria-controls="home" aria-selected="true">
+                                <i class="fal fa-comments"></i></a>
+                        </li> 
                     </ul>
                     
                 </div>
@@ -138,32 +151,7 @@ function getView(){
         vista_listado_examenes:()=>{
             return `
                 <div class="container-fluid mt-5">
-                    <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled />
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoCiprologia" />
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" value="FEB25-001" id="txtReferenciaDeExamen">
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaCoprologia">
-                                </div>
-                            </div>
-                    </div>
+                    <div class="h2 text-center">Selecciona el examen</div>
                     <div class="row text-center">
                         <div class="col-12 col-md-6">
                             <div class="card card-rounded m-2 p-3 hand shadow" id="card_coproanalisis">
@@ -244,6 +232,78 @@ function getView(){
                 </div>
             `;             
         },
+        vista_mostrar_pacientes_coprologia:()=>{
+            return `
+                <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">Listado de pacientes</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-primary text-white">
+                                            <tr>
+                                                <td>NO. DPI</td>
+                                                <td>NOMBRE</td>
+                                                <td>FECHA NACIMIENTO</td>
+                                                <td>EMPRESA</td>
+                                                <td>SELECCIONAR USUARIO</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tblPacientesParaExamenesCoprologia">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaPacientesCoprologia">
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow"  onclick="modalAgregarNuevoUsuarioCoprologia()">
+                        <i class="fal fa-plus"></i>
+                    </button> 
+            `;
+        },
+        vista_mostrar_pacientes_urologia:()=>{
+            return `
+                <div class="container-fluid">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">Listado de pacientes</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class="thead-primary text-white">
+                                            <tr>
+                                                <td>NO. DPI</td>
+                                                <td>NOMBRE</td>
+                                                <td>FECHA NACIMIENTO</td>
+                                                <td>EMPRESA</td>
+                                                <td>SELECCIONAR USUARIO</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="tblPacientesParaExamenesUrologia">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaPacientesUrologia">
+                        <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow"  onclick="modalAgregarNuevoUsuarioUrologia()">
+                        <i class="fal fa-plus"></i>
+                    </button> 
+            `;
+        },
         vista_mostrar_pacientes:()=>{
             return `
                 <div class="container-fluid">
@@ -275,7 +335,7 @@ function getView(){
                     <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.laboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
-                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" onclick="btnAgregarPacienteModal()">
+                    <button class="btn btn-circle btn-xl btn-success btn-bottom-r   hand shadow" id="btnAgregarPacienteModal">
                         <i class="fal fa-plus"></i>
                     </button> 
             `;
@@ -289,8 +349,33 @@ function getView(){
                                 <strong>COPROLOGÍA</strong>
                             </div>    
                        </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly>
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaCoprologia">
+                            </div>
+                       </div>
                     </div>
+
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control negrita" type="search" placeholder="Paciente..." autocomplete="off" id="txtFiltrarPacientesCiprologia" disabled>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoCiprologia" />
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -298,6 +383,7 @@ function getView(){
                             </div>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-md-4 mb-4">
                             <div class="card">
@@ -448,7 +534,7 @@ function getView(){
                     </div>
 
                     
-                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  id="idRetrocederDeVistaExamenCoprologia">
+                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederDeVistaExamenCoprologia">
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button class="btn btn-circle btn-xl btn-referencia btn-bottom-r hand shadow" id="btnGuardarExamenCopro">
@@ -470,8 +556,36 @@ function getView(){
                                 <strong>UROLOGIA</strong>
                             </div>
                        </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly>
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaUrologia">
+                            </div>
+                       </div>
                 </div>
+               
                 <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesUrologia" disabled>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesUrologia()">
+                                <i class="fal fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoUrologia" />
+                        </div>
+                    </div>
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -479,7 +593,10 @@ function getView(){
                         </div>
                     </div>
                 </div>
+
+            
                 <div class="row">
+
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-header bg-info text-center">
@@ -714,7 +831,7 @@ function getView(){
                 </div>
 
               
-                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" id="idRetrocederDeVistaExamenUrologia">
+                    <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" onclick="retrocederVistaLaboratorista()">
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarExamenUrologia">
@@ -734,8 +851,37 @@ function getView(){
                             <strong>ENFERMEDADES INFECCIOSAS</strong>
                         </div>
                     </div>
+                    <div class="col-12 col-md-3">
+                        <div class="mb-2">
+                            <label class="form-label mb-0 text-white">REF:</label>
+                            <input type="text" class="form-control negrita text-info" id="txtRefEnferInfe" value="FEB25-001" readonly />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div>
+                            <label class="form-label mb-0 text-white">Fecha:</label>
+                            <input type="date" class="form-control negrita text-info" id="fechaEnfermedadesInfecciosas" />
+                        </div>
+                    </div>
                 </div>
+
                 <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                            id="txtFiltrarPacienteEnfermedadesInfecciosas" disabled/>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesEnfInfecciosas()">
+                                <i class="fal fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoEnferInfeccio" />
+                        </div>
+                    </div>
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -788,9 +934,37 @@ function getView(){
                             <strong>EXAMENES BACTERIOLOGICOS</strong>
                         </div>
                     </div>
+                    <div class="col-12 col-md-3">
+                        <div class="mb-2">
+                            <label class="form-label mb-0 text-white">REF:</label>
+                            <input type="text" class="form-control negrita text-info" id="txtRefEnfermedadesBacteriologicos" value="FEB25-001" readonly />
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div>
+                            <label class="form-label mb-0 text-white">Fecha:</label>
+                            <input type="date" class="form-control negrita text-info" id="fechaExamenesBacteriologicos" />
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row mb-2 rounded d-flex justify-content-between">
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                            <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                            id="txtFiltrarPacienteExamenesBacteriologicos" disabled/>
+                            <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPacientesExamenesBacteriologicos()">
+                                <i class="fal fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoExamenesBacteriologicos" />
+                        </div>
+                    </div>
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -841,9 +1015,36 @@ function getView(){
                                 <strong>HEMOGLOBINA GLICOSILADA</strong>
                             </div>    
                        </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly id="txtRefHemoglobinaGlicosilada" />
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaHemoglobinaGlicosilada">
+                            </div>
+                       </div>
                     </div>
                     
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesHemoglobinaGlicosilada" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalHemoglobinaGlicosilada()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoHemoglobinaGlicosilada" />
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -940,9 +1141,37 @@ function getView(){
                                 <strong>HCG CUALITATIVA</strong>
                             </div>
                         </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" id="txtRefPruebasEspeciales" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaPruebasEspeciales" />
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off"
+                                id="txtFiltrarPruebasEspeciales" disabled/>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalPruebasEspeciales()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    <div class="col-12 col-md-4">
+                        <div class="input-group">
+                            <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                            <input type="text" class="form-control bg-amarillo rounded" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPruebasEspeciales" />
+                        </div>
+                    </div>
                     <div class="col-12 col-md-4">
                         <div class="input-group">
                             <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -998,9 +1227,36 @@ function getView(){
                                 <strong>EXAMEN HCG CUANTITATIVA</strong>
                             </div>    
                        </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" value="FEB25-001" readonly id="txtRefHcgCuantitativa" />
+                            </div>
+                       </div>
+                       <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaHcgCuantitativa">
+                            </div>
+                       </div>
                     </div>
 
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesHcgCuantitativa" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalHcgCuantitativa()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoHcgCuantitativa" />
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -1076,9 +1332,36 @@ function getView(){
                                 <strong>QUIMICA SANGUINEA</strong>
                             </div>
                         </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" id="txtRefQuimicaSanguinea" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaQuimicaSanguinea" />
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesQuimicaSanguinea" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalQuimicaSanguinea()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoQuimicaSanguinea" />
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -1136,9 +1419,36 @@ function getView(){
                                 <strong>RESULTADOS VARIOS</strong>
                             </div>
                         </div>
+                        <div class="col-12 col-md-3">
+                            <div class="mb-2">
+                                <label class="form-label mb-0 text-white">REF:</label>
+                                <input type="text" class="form-control negrita text-info" id="txtRefResultadosVarios" value="FEB25-001" readonly />
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <div>
+                                <label class="form-label mb-0 text-white">Fecha:</label>
+                                <input type="date" class="form-control negrita text-info" id="fechaResultadosVarios" />
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row mb-2 rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Nombre:</label>
+                                <input class="form-control" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesResultadosVarios" disabled>
+                                <button class="btn btn-info btn-sm hand shadow" onclick="getAbrirModalResultadosVarios()">
+                                    <i class="fal fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4">
+                            <div class="input-group">
+                                <label class="col-12 col-md-4 col-lg-4 col-form-label text-info">Medico tratante:</label>
+                                <input class="form-control bg-amarillo" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoResultadosVarios" />
+                            </div>
+                        </div>
                         <div class="col-12 col-md-4">
                             <div class="input-group">
                                 <label class="col-12 col-md-4 col-lg-2 col-form-label text-info">Importe:</label>
@@ -1246,86 +1556,6 @@ function getView(){
 
                 </div>
             `;  
-        },
-        vista_modal_pacientes_copro() {
-            return `
-                <div class="modal fade" id="modal_catalogo_pacientes_coprologia">
-                <div class="modal-dialog modal-dialog-right modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body p-2">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="thead-primary">
-                                                    <tr>
-                                                        <td class="text-white">ID PACIENTE</td>
-                                                        <td class="text-white">NOMBRE</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tblCatalogoPacientesCoprologia">
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer text-center">
-                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
-                                <i class="fal fa-arrow-left"></i>
-                            </button>
-                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioCoprologia()">
-                                <i class="fal fa-user-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
-        },
-        vista_modal_pacientes_urologia() {
-            return `
-                <div class="modal fade" id="modal_catalogo_pacientes_urologia">
-                <div class="modal-dialog modal-dialog-right modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body p-2">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="thead-primary">
-                                                    <tr>
-                                                        <td class="text-white">ID PACIENTE</td>
-                                                        <td class="text-white">NOMBRE</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tblCatalogoPacientesUrologia">
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer text-center">
-                            <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
-                                <i class="fal fa-arrow-left"></i>
-                            </button>
-                            <button class="btn btn-circle btn-xl btn-bottom-r btn-info btn-rounded" onclick="modalAgregarNuevoUsuarioUrologia()">
-                                <i class="fal fa-user-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `;
         },
         vista_modal_enfermedades_infecciosas_pacientes() {
             return `
@@ -1607,9 +1837,9 @@ function getView(){
             </div>
             `;
         },
-        vista_modal_agregar_paciente:()=> {
+        vista_modal_agregar_paciente_coprologia:()=> {
             return `
-                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente">
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_paciente_coprologia">
                     <div class="modal-dialog modal-dialog-right modal-xl">
                         <div class="modal-content">
                             
@@ -1619,28 +1849,28 @@ function getView(){
 
                                         <div class="form-group">
                                             <label>NO. DPI:</label>
-                                            <input type="text" class="form-control" id="txtnoDPIPaciente"/>
+                                            <input type="text" class="form-control" id="txtnoDPICopro"/>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Nombre:</label>
-                                            <input type="text" class="form-control" id="txtNombrePacientePaciente"/>
+                                            <input type="text" class="form-control" id="txtNombrePacienteCopro"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Fecha de nacimiento:</label>
-                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoPaciente"/>
+                                            <input type="date" class="form-control negrita text-info" id="txtFechaNacimientoCopro"/>
                                         </div>
                                         
                                         <div class="form-group">
                                             <label>Empresa:</label>
                                             <div style="display: flex; align-items: center; gap: 10px;">
                                                 
-                                                <select class="form-control negrita text-info" id="cmbEmpresaPacientePaciente">
+                                                <select class="form-control negrita text-info" id="cmbEmpresaPacienteCopro">
                                                     
                                                 </select>
                                                 
-                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaPaciente()">
+                                                <button type="button" class="btn btn-info" onclick="btnAbrirModalEmpresaCopro()">
                                                     <i class="fal fa-plus"></i>
                                                 </button>
                                             </div>
@@ -1653,7 +1883,7 @@ function getView(){
                                 <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow"  data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
-                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacientePaciente">
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarPacienteCopro">
                                     <i class="fal fa-save"></i>
                                 </button>
                             </div>
@@ -1665,7 +1895,7 @@ function getView(){
         },
         vista_modal_agregar_empresas:()=> {
             return `
-                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa">
+                <div class="modal fade js-modal-settings modal-backdrop-transparent modal-with-scroll" tabindex="-1" role="dialog" aria-hidden="true" id="modal_agregar_empresa_copro">
                     <div class="modal-dialog modal-dialog-right modal-xl">
                         <div class="modal-content">
                             <div class="modal-body p-2">
@@ -1673,7 +1903,7 @@ function getView(){
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Nombre Empresa:</label>
-                                            <input type="text" class="form-control" id="txtNombreEmpresaPaciente"/>
+                                            <input type="text" class="form-control" id="txtNombreEmpresaCopro"/>
                                         </div>
                                     </div>
                                 </div>
@@ -1690,7 +1920,7 @@ function getView(){
                                                             <td></td>
                                                         </tr>
                                                         </thead>
-                                                        <tbody id="tblDeEmpresasPacientesLaboratorioPacientes">
+                                                        <tbody id="tblDeEmpresasPacientesLaboratorioCopro">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -1702,7 +1932,7 @@ function getView(){
                                 <button class="btn btn-circle btn-xl btn-bottom-l btn-secondary hand shadow" data-bs-dismiss="modal">
                                     <i class="fal fa-arrow-left"></i>
                                 </button>
-                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioPaciente">
+                                <button class="btn btn-circle btn-xl btn-info btn-bottom-r hand shadow" id="btnGuardarEmpresaPacienteLaboratorioCopro">
                                     <i class="fal fa-save"></i>
                                 </button>
                             </div>
@@ -2554,7 +2784,7 @@ function getView(){
 
 function addListeners(){
     navegacionPage();
-    cargarEmpresasLaboratorioPaciente();
+    cargarEmpresasLaboratorioCopro();
     cargarEmpresasLaboratorioUro();
     cargarEmpresasLaboratorioEnferBacteriologico();
     cargarEmpresasLaboratorioEnferInfecciosas();
@@ -2564,7 +2794,26 @@ function addListeners(){
     cargarEmpresasLaboratoriResultadosVarios();
     cargarEmpresasLaboratorioPruebasEspeciales()
     document.getElementById("fechaCoprologia").value = F.getFecha();
-    document.getElementById("txtFechaNacimientoPaciente").value = F.getFecha();
+    document.getElementById("fechaUrologia").value = F.getFecha();
+    document.getElementById("fechaEnfermedadesInfecciosas").value = F.getFecha();
+    document.getElementById("fechaExamenesBacteriologicos").value = F.getFecha();
+    document.getElementById("fechaHemoglobinaGlicosilada").value = F.getFecha();
+    document.getElementById("fechaPruebasEspeciales").value = F.getFecha();
+    document.getElementById("fechaHcgCuantitativa").value = F.getFecha();
+    document.getElementById("fechaQuimicaSanguinea").value = F.getFecha();
+    document.getElementById("fechaResultadosVarios").value = F.getFecha();
+
+    // fechas de modales al agregar a los usuarios
+    document.getElementById("txtFechaNacimientoCopro").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoUro").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoEnferInfecciosas").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoEnferBacteriologico").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoHemoglobina").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoPruebasEspeciales").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoHcgCuantitativa").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoQuimicaSanguinea").value = F.getFecha();
+    document.getElementById("txtFechaNacimientoResultadosVarios").value = F.getFecha();
+    
 
 
     catalogoPacientesCopro()
@@ -2574,8 +2823,9 @@ function addListeners(){
             strTableCopro += `
                 <tr>
                     <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
-                    <td>${pacienteCopro.nombre_paciente}
-                    </td>
+                    <td>${pacienteCopro.nombre_paciente}</td>
+                    <td>${F.formatearFechaANormal(pacienteCopro.fecha_nacimiento)}</td>
+                    <td>${pacienteCopro.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
                             data-nombre="${pacienteCopro.nombre_paciente}"
@@ -2586,10 +2836,10 @@ function addListeners(){
                 </tr>
             `;
         });
-        document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = strTableCopro;
+        document.getElementById("tblPacientesParaExamenesCoprologia").innerHTML = strTableCopro;
         
         // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesCoprologia .btn-rounded");
+        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesCoprologia .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -2597,12 +2847,15 @@ function addListeners(){
 
                 // Guardar el ID del paciente en la variable global
                 GlobalIdPaciente = idPaciente;
-
+                console.log(GlobalIdPaciente);
+                console.log(nombrePaciente);
                 // Actualizar el campo de búsqueda con el nombre del paciente
                 document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
 
-                // Cerrar el modal (si estás usando Bootstrap)
-                $("#modal_catalogo_pacientes_coprologia").modal('hide');
+                F.slideAnimationTabs();
+                const tabDos = document.getElementById("tab-dos"); // Selecciona la pestaña "dos"
+                const tabLink = new bootstrap.Tab(tabDos); // Usamos Bootstrap Tab para cambiar de pestaña
+                tabLink.show(); 
 
             });
         });
@@ -2612,30 +2865,32 @@ function addListeners(){
         document.getElementById("tblCatalogoPacientesCoprologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
-    catalogoPacientesParaNuevoExamen()
+
+    // Pacientes en urologia
+    catalogoPacientesUro()
     .then((data) => {
-        let strTablePacientes = '';
-        data.forEach(pacientes => {
-            strTablePacientes += `
+        let strTableUro = '';
+        data.forEach(pacienteUro => {
+            strTableUro += `
                 <tr>
-                    <td>${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
-                    <td>${pacientes.nombre_paciente}</td>
-                    <td>${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
-                    <td>${pacientes.nombre_empresa}</td>
+                    <td>${pacienteUro.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteUro.nombre_paciente}</td>
+                    <td>${F.formatearFechaANormal(pacienteUro.fecha_nacimiento)}</td>
+                    <td>${pacienteUro.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
-                            data-nombre="${pacientes.nombre_paciente}"
-                            data-id="${pacientes.id}">
+                            data-nombre="${pacienteUro.nombre_paciente}"
+                            data-id="${pacienteUro.id}">
                             <i class="fal fa-plus"></i>
                         </button>
-                    </td>  
+                    </td>
                 </tr>
             `;
         });
-        document.getElementById("tblPacientesParaExamenes").innerHTML = strTablePacientes;
+        document.getElementById("tblPacientesParaExamenesUrologia").innerHTML = strTableUro;
         
-        // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
+        // Agregar evento de clic a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesUrologia .btn-rounded");
         botonesAgregar.forEach((boton) => {
             boton.addEventListener("click", () => {
                 const nombrePaciente = boton.getAttribute("data-nombre");
@@ -2645,34 +2900,385 @@ function addListeners(){
                 GlobalIdPaciente = idPaciente;
 
                 // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacienteEnfermedadesInfecciosas").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
-                // document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
 
-                // Actualizar el campo del nombre del paciente en el formulario de exámenes
-                
                 F.slideAnimationTabs();
-                const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
+                const tabTres = document.getElementById("tab-tres"); // Selecciona la pestaña "dos"
                 const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
                 tabLink.show();
-                document.getElementById("nombrePaciente").value = nombrePaciente;
+
+        });
+    });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesUrologia").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes enfermedades infecciosas
+    catalogoPacientesEnferInfecciosas()
+    .then((data) => {
+        let strTableEnfeInfecciosas = '';
+        data.forEach(pacienteEnfeInfecciosas => {
+            strTableEnfeInfecciosas += `
+                <tr>
+                    <td>${pacienteEnfeInfecciosas.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteEnfeInfecciosas.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteEnfeInfecciosas.nombre_paciente}"
+                            data-id="${pacienteEnfeInfecciosas.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesEnfermedadesInfecciosas").innerHTML = strTableEnfeInfecciosas;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesEnfermedadesInfecciosas .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacienteEnfermedadesInfecciosas").value = nombrePaciente;
 
                 // Cerrar el modal (si estás usando Bootstrap)
-                // $("#modal_catalogo_pacientes_coprologia").modal('hide');
+                $("#modal_catalogo_pacientes_enfermedades_infecciosas").modal('hide');
+
             });
         });
     })
     .catch((error) => {
         console.error("Error al obtener los pacientes:", error);
-        document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+        document.getElementById("tblCatalogoPacientesEnfermedadesInfecciosas").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
     })
 
+    // Pacientes examenes bacteriologicos
+    catalogoPacientesEnferInfecciosas()
+    .then((data) => {
+        let strTableExamBacteriologicos = '';
+        data.forEach(pacienteExamBacteriologicos => {
+            strTableExamBacteriologicos += `
+                <tr>
+                    <td>${pacienteExamBacteriologicos.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteExamBacteriologicos.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteExamBacteriologicos.nombre_paciente}"
+                            data-id="${pacienteExamBacteriologicos.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesExamenesBacteriologicos").innerHTML = strTableExamBacteriologicos;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesExamenesBacteriologicos .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacienteExamenesBacteriologicos").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_examenes_bacteriologicos").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesExamenesBacteriologicos").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Hemoglobina Glicosilada
+    catalogoPacientesHemoglobina()
+    .then((data) => {
+        let strTableHemoglobina = '';
+        data.forEach(pacienteHemoglobina => {
+            strTableHemoglobina += `
+                <tr>
+                    <td>${pacienteHemoglobina.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteHemoglobina.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteHemoglobina.nombre_paciente}"
+                            data-id="${pacienteHemoglobina.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesHemoglobina").innerHTML = strTableHemoglobina;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesHemoglobina .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesHemoglobinaGlicosilada").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_hemoglobina").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesHemoglobina").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes pruebas especiales
+    catalogoPacientesPruebaEspeciales()
+    .then((data) => {
+        let strTablePruebasEspeciales = '';
+        data.forEach(pacientePruebasEspeciales => {
+            strTablePruebasEspeciales += `
+                <tr>
+                    <td>${pacientePruebasEspeciales.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacientePruebasEspeciales.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacientePruebasEspeciales.nombre_paciente}"
+                            data-id="${pacientePruebasEspeciales.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesPruebasEspeciales").innerHTML = strTablePruebasEspeciales;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesPruebasEspeciales .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPruebasEspeciales").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_pruebas_especiales").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesPruebasEspeciales").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes hcg cuantitativa
+    catalogoPacientesHcgCuantitativa()
+    .then((data) => {
+        let strTableHgcCuantitativa = '';
+        data.forEach(pacienteHgcCuantitativa => {
+            strTableHgcCuantitativa += `
+                <tr>
+                    <td>${pacienteHgcCuantitativa.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteHgcCuantitativa.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteHgcCuantitativa.nombre_paciente}"
+                            data-id="${pacienteHgcCuantitativa.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesHgcCuantitativa").innerHTML = strTableHgcCuantitativa;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesHgcCuantitativa .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesHcgCuantitativa").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_hcg_cuantitativa").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesHgcCuantitativa").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Quimica Sanguinea
+    catalogoPacientesQuimicaSanguinea()
+    .then((data) => {
+        let strTableQuimicaSanguinea = '';
+        data.forEach(pacienteQuimicaSanguinea => {
+            strTableQuimicaSanguinea += `
+                <tr>
+                    <td>${pacienteQuimicaSanguinea.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteQuimicaSanguinea.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteQuimicaSanguinea.nombre_paciente}"
+                            data-id="${pacienteQuimicaSanguinea.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesQuimicaSanguinea").innerHTML = strTableQuimicaSanguinea;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesQuimicaSanguinea .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesQuimicaSanguinea").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_quimica_sanguinea").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesQuimicaSanguinea").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // Pacientes Resultados varios
+    catalogoPacientesResultadosVarios()
+    .then((data) => {
+        let strTableResultadosVarios = '';
+        data.forEach(pacienteResultadosVarios => {
+            strTableResultadosVarios += `
+                <tr>
+                    <td>${pacienteResultadosVarios.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteResultadosVarios.nombre_paciente}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteResultadosVarios.nombre_paciente}"
+                            data-id="${pacienteResultadosVarios.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblCatalogoPacientesResultadosVarios").innerHTML = strTableResultadosVarios;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblCatalogoPacientesResultadosVarios .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesResultadosVarios").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                $("#modal_catalogo_pacientes_resultados_varios").modal('hide');
+
+            });
+        });
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblCatalogoPacientesResultadosVarios").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    })
+
+    // catalogoPacientesParaNuevoExamen()
+    // .then((data) => {
+    //     let strTablePacientes = '';
+    //     data.forEach(pacientes => {
+    //         strTablePacientes += `
+    //             <tr>
+    //                 <td>${pacientes.no_dpi || 'Sin Documento de identificación'}</td>
+    //                 <td>${pacientes.nombre_paciente}</td>
+    //                 <td>${F.formatearFechaANormal(pacientes.fecha_nacimiento)}</td>
+    //                 <td>${pacientes.nombre_empresa}</td>
+    //                 <td>
+    //                     <button class="btn btn-sm btn-success btn-rounded"
+    //                         data-nombre="${pacientes.nombre_paciente}"
+    //                         data-id="${pacientes.id}">
+    //                         <i class="fal fa-plus"></i>
+    //                     </button>
+    //                 </td>  
+    //             </tr>
+    //         `;
+    //     });
+    //     document.getElementById("tblPacientesParaExamenes").innerHTML = strTablePacientes;
+        
+    //     // Agregar evento de click a los botones de agregar
+    //     const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
+    //     botonesAgregar.forEach((boton) => {
+    //         boton.addEventListener("click", () => {
+    //             const nombrePaciente = boton.getAttribute("data-nombre");
+    //             const idPaciente = boton.getAttribute("data-id");
+
+    //             // Guardar el ID del paciente en la variable global
+    //             GlobalIdPaciente = idPaciente;
+
+    //             // Actualizar el campo de búsqueda con el nombre del paciente
+    //             document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+
+    //             // Cerrar el modal (si estás usando Bootstrap)
+    //             // $("#modal_catalogo_pacientes_coprologia").modal('hide');
+
+    //         });
+    //     });
+    // })
+    // .catch((error) => {
+    //     console.error("Error al obtener los pacientes:", error);
+    //     document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="3">No hay pacientes disponibles</td></tr>';
+    // })
 
     
     retrocederVistaLaboratorista();
-
+    accionesDeBotones();
 };
 
 function initView(){
@@ -2682,16 +3288,102 @@ function initView(){
 
 };
 
+function dibujarTablaPacientesCoprologia(data) {
+    let strTableCopro = '';
+    data.forEach(pacienteCopro => {
+        strTableCopro += `
+            <tr>
+                <td>${pacienteCopro.id || 'Sin Documento de identificación'}</td>
+                <td>${pacienteCopro.nombre_paciente}</td>
+                <td>${F.formatearFechaANormal(pacienteCopro.fecha_nacimiento)}</td>
+                <td>${pacienteCopro.nombre_empresa}</td>
+                <td>
+                    <button class="btn btn-sm btn-success btn-rounded"
+                        data-nombre="${pacienteCopro.nombre_paciente}"
+                        data-id="${pacienteCopro.id}">
+                        <i class="fal fa-plus"></i>
+                    </button>
+                </td>  
+            </tr>
+        `;
+    });
+    // Actualizar el contenido de la tabla
+    document.getElementById("tblPacientesParaExamenesCoprologia").innerHTML = strTableCopro;
+    
+    // Agregar eventos de clic a los botones de agregar pacientes
+    const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesCoprologia .btn-rounded");
+    botonesAgregar.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            const nombrePaciente = boton.getAttribute("data-nombre");
+            const idPaciente = boton.getAttribute("data-id");
+
+            // Guardar el ID del paciente en la variable global
+            GlobalIdPaciente = idPaciente;
+            console.log(GlobalIdPaciente);
+            console.log(nombrePaciente);
+            // Actualizar el campo de búsqueda con el nombre del paciente
+            document.getElementById("txtFiltrarPacientesCiprologia").value = nombrePaciente;
+
+            F.slideAnimationTabs();
+            const tabDos = document.getElementById("tab-dos"); // Selecciona la pestaña "dos"
+            const tabLink = new bootstrap.Tab(tabDos); // Usamos Bootstrap Tab para cambiar de pestaña
+            tabLink.show(); 
+        });
+    });
+}
+
+function dibujarTablaPacientesUrologia(data) {
+    let strTableUro = '';
+        data.forEach(pacienteUro => {
+            strTableUro += `
+                <tr>
+                    <td>${pacienteUro.id || 'Sin Documento de identificación'}</td>
+                    <td>${pacienteUro.nombre_paciente}</td>
+                    <td>${F.formatearFechaANormal(pacienteUro.fecha_nacimiento)}</td>
+                    <td>${pacienteUro.nombre_empresa}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacienteUro.nombre_paciente}"
+                            data-id="${pacienteUro.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+        });
+        document.getElementById("tblPacientesParaExamenesUrologia").innerHTML = strTableUro;
+        
+        // Agregar evento de clic a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenesUrologia .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesUrologia").value = nombrePaciente;
+
+                F.slideAnimationTabs();
+                const tabTres = document.getElementById("tab-tres"); // Selecciona la pestaña "dos"
+                const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
+                tabLink.show();
+
+        });
+    });
+}
 
 function navegacionPage() {
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-dos").click();
+        document.getElementById("tab-trece").click();
     });
 
     document.getElementById("card_uroanalisis").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-tres").click()
+        document.getElementById("tab-catorce").click()
     });
 
     document.getElementById("enfermedades_infecciosas").addEventListener('click', ()=> {
@@ -2731,7 +3423,7 @@ function navegacionPage() {
 
     document.getElementById("card_nuevo_examen").addEventListener('click', ()=> {
         F.slideAnimationTabs();
-        document.getElementById("tab-once").click();
+        document.getElementById("tab-doce").click();
     });
 
     document.getElementById("card_tbla_pacientes").addEventListener('click', () => {
@@ -2742,45 +3434,26 @@ function navegacionPage() {
         Navegar.examenes();
     })
 
-    document.getElementById("idRetrocederVistaCardsExamenes").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
-        document.getElementById("tab-once").click();
-    });
 
-    document.getElementById("idRetrocederDeVistaExamenCoprologia").addEventListener('click', ()=> {
+    document.getElementById("idRetrocederVistaPacientesCoprologia").addEventListener('click', () => {
         F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
-    });
+    })
 
-    document.getElementById("idRetrocederDeVistaExamenUrologia").addEventListener('click', ()=> {
+    document.getElementById("idRetrocederVistaCardsExamenes").addEventListener('click', () => {
         F.slideAnimationTabs();
-        document.getElementById("tab-doce").click();
-    });
-    
+        document.getElementById("tab-uno").click();
+    })
 
+    document.getElementById("idRetrocederDeVistaExamenCoprologia").addEventListener('click', () => {
+        F.slideAnimationTabs();
+        document.getElementById("tab-trece").click();
+    })
     
     
-
 }
 
-function retrocederVistaLaboratorista() {
-    F.slideAnimationTabs();
-    document.getElementById("tab-uno").click();
-
-    // Verificar si el modal está visible y recargar los datos si es necesario
-    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
-        modalPacientesCoprologia();
-    }
-
-    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
-        modalPacientesUrologia();
-    }
-}
-
-function getAbrirModalCoprologia() {
-    catalogoPacientesCopro();
-    $("#modal_catalogo_pacientes_coprologia").modal("show");
-
+function accionesDeBotones() {
     let btnGuardarExamenCopro = document.getElementById("btnGuardarExamenCopro");
     btnGuardarExamenCopro.addEventListener('click', () => {
         F.Confirmacion("¿Esta seguro de guardar el examen?")
@@ -2870,82 +3543,110 @@ function getAbrirModalCoprologia() {
     })
 }
 
-function btnAgregarPacienteModal() {
-    $("#modal_agregar_paciente").modal('show'); 
+function retrocederVistaLaboratorista() {
+    F.slideAnimationTabs();
+    document.getElementById("tab-uno").click();
 
-    let btnGuardarPacientePaciente = document.getElementById('btnGuardarPacientePaciente');
-    btnGuardarPacientePaciente.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then((value) => {
-                if(value==true) {
-                    let noDPI = document.getElementById("txtnoDPIPaciente").value;
-                    let nombrePaciente = document.getElementById("txtNombrePacientePaciente").value;
-                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoPaciente").value;
-                    let empresaPaciente = document.getElementById("cmbEmpresaPacientePaciente").value;
-    
-                    
-                    btnGuardarPacientePaciente.disabled = true;
-                    btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    
-    
-                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
-                    .then(() => {
-                        F.Aviso("Paciente guardado exitosamente!!!");
-                        // catalogoPacientesCopro();
-                        $("#modal_agregar_paciente").modal('hide');
-                        // limpiar_datos_pacientes();
-    
-                        btnGuardarPacientePaciente.disabled = false;
-                        btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    })
-                    .catch((e) => {
-                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
-                        console.error(`Error al agregar paciente: ${e}`);
-                        btnGuardarPacientePaciente.disabled = false;
-                        btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                    .finally(() => {
-                        btnGuardarPacientePaciente.disabled = false;
-                        btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                }
-            })
-        
-    })
+    // Verificar si el modal está visible y recargar los datos si es necesario
+    if ($('#modal_catalogo_pacientes_coprologia').is(':visible')) {
+        modalPacientesCoprologia();
+    }
+
+    if($('#modal_catalogo_pacientes_urologia').is(':visible', )) {
+        modalPacientesUrologia();
+    }
 }
 
-function btnAbrirModalEmpresaPaciente(){
-    $("#modal_agregar_empresa").modal('show');
+async function modalAgregarNuevoUsuarioCoprologia() {
+    $("#modal_agregar_paciente_coprologia").modal('show'); 
 
-    let btnGuardarEmpresaPacienteLaboratorioPaciente = document.getElementById("btnGuardarEmpresaPacienteLaboratorioPaciente");
-    btnGuardarEmpresaPacienteLaboratorioPaciente.addEventListener('click', () => {
+    let btnGuardarPacienteCopro = document.getElementById('btnGuardarPacienteCopro');
+    btnGuardarPacienteCopro.addEventListener('click', async () => { // Usamos async aquí para trabajar con promesas
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then(async (value) => {
+                if(value == true) {
+                    let noDPI = document.getElementById("txtnoDPICopro").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacienteCopro").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoCopro").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacienteCopro").value;
+
+                    // Desactivar el botón para evitar múltiples clics
+                    btnGuardarPacienteCopro.disabled = true;
+                    btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                    try {
+                        // Llamar a la función que guarda el paciente
+                        await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente);
+                        
+                        // Mostrar mensaje de éxito
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        limpiarDatosGuardadoPacientesCoprologia();
+
+                        // Esperar a que la tabla se recargue
+                        let data = await catalogoPacientesCopro();
+
+                        // Redibujar la tabla con los nuevos datos
+                        dibujarTablaPacientesCoprologia(data);
+
+                        // Cerrar el modal
+                        $("#modal_agregar_paciente_coprologia").modal('hide');
+
+                    } catch (e) {
+                        // Si hubo un error, mostrar mensaje de error
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacienteCopro.disabled = false;
+                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
+                    } finally {
+                        // Resetear el botón
+                        btnGuardarPacienteCopro.disabled = false;
+                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
+                    }
+                }
+            })
+    });
+}
+
+ function limpiarDatosGuardadoPacientesCoprologia() {
+    document.getElementById("txtnoDPICopro").value = '';
+    document.getElementById("txtNombrePacienteCopro").value = '';
+    document.getElementById("txtFechaNacimientoCopro").value = F.getFecha();
+    document.getElementById("cmbEmpresaPacienteCopro").value = '';
+}
+
+
+function btnAbrirModalEmpresaCopro(){
+    $("#modal_agregar_empresa_copro").modal('show');
+
+    let btnGuardarEmpresaPacienteLaboratorioCopro = document.getElementById("btnGuardarEmpresaPacienteLaboratorioCopro");
+    btnGuardarEmpresaPacienteLaboratorioCopro.addEventListener('click', () => {
         F.Confirmacion("¿Esta seguro de guardar esta nueva Empresa?")
         .then((value) => {
             if(value == true) {
-                let nombreEmpresa = document.getElementById("txtNombreEmpresaPaciente").value;
+                let nombreEmpresa = document.getElementById("txtNombreEmpresaCopro").value;
                 
-                btnGuardarEmpresaPacienteLaboratorioPaciente.disabled = true;
-                btnGuardarEmpresaPacienteLaboratorioPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                btnGuardarEmpresaPacienteLaboratorioCopro.disabled = true;
+                btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
 
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
-                    $("#modal_agregar_empresa").modal('hide'); 
-                    cargarEmpresasLaboratorioPaciente();
+                    $("#modal_agregar_empresa_copro").modal('hide'); 
+                    cargarEmpresasLaboratorioCopro();
                     // limpiar_input_empresa();
                    
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.disabled = false;
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                 })
                 .catch((e) => {
                     F.AvisoError("No se puede guardar la empresa" + e);
                     console.error(`Error guardar empresa: ${e}`);
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.disabled = false;
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save"></i>`;
                 })
                 .finally(()=> {
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.disabled = false;
-                    btnGuardarEmpresaPacienteLaboratorioPaciente.innerHTML = `<i class="fal fa-save"></i>`;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.disabled = false;
+                    btnGuardarEmpresaPacienteLaboratorioCopro.innerHTML = `<i class="fal fa-save"></i>`;
                 })
 
             }
@@ -2953,7 +3654,7 @@ function btnAbrirModalEmpresaPaciente(){
     })
 }
 
-function cargarEmpresasLaboratorioPaciente() {
+function cargarEmpresasLaboratorioCopro() {
     get_data_empresas_pacientes_laboratorio()
         .then((data) => {
             // Cargar empresas en la tabla
@@ -2969,20 +3670,20 @@ function cargarEmpresasLaboratorioPaciente() {
                     </tr>
                 `;
             });
-            document.getElementById("tblDeEmpresasPacientesLaboratorioPacientes").innerHTML = strTable;
+            document.getElementById("tblDeEmpresasPacientesLaboratorioCopro").innerHTML = strTable;
 
             // Cargar empresas en el selector
             let strCombo = '<option value="">Seleccione una empresa</option>';
             data.forEach((r) => {
                 strCombo += `<option value='${r.ID}'>${r.NOMBRE}</option>`;
             });
-            document.getElementById('cmbEmpresaPacientePaciente').innerHTML = strCombo;
+            document.getElementById('cmbEmpresaPacienteCopro').innerHTML = strCombo;
             // document.getElementById('cmbEmpresaPacienteE').innerHTML = strCombo;
         })
         .catch((error) => {
             console.error("Error al cargar las empresas: ", error);
-            document.getElementById("cmbEmpresaPacientePaciente").innerHTML = 'No hay datos...';
-            document.getElementById('cmbEmpresaPacientePaciente').innerHTML = '<option value="">No hay datos</option>';
+            document.getElementById("cmbEmpresaPacienteCopro").innerHTML = 'No hay datos...';
+            document.getElementById('cmbEmpresaPacienteCopro').innerHTML = '<option value="">No hay datos</option>';
             // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
         });
 }
@@ -3094,13 +3795,13 @@ function getAbrirModalPacientesUrologia() {
 
 }
 
-function modalAgregarNuevoUsuarioUrologia() {
+async function modalAgregarNuevoUsuarioUrologia() {
     $("#modal_agregar_paciente_urologia").modal('show'); 
 
     let btnGuardarPacienteUro = document.getElementById('btnGuardarPacienteUro');
-    btnGuardarPacienteUro.addEventListener('click', () => {
+    btnGuardarPacienteUro.addEventListener('click', async () => {
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then((value) => {
+            .then(async (value) => {
                 if(value==true) {
                     let noDPI = document.getElementById("txtnoDPIUro").value;
                     let nombrePaciente = document.getElementById("txtNombrePacienteUro").value;
@@ -3111,27 +3812,33 @@ function modalAgregarNuevoUsuarioUrologia() {
                     btnGuardarPacienteUro.disabled = true;
                     btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                     
-    
-                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
-                    .then(() => {
+                    try {
+                        // Llamar a la función que guarda el paciente
+                        await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente);
+                        
+                        // Mostrar mensaje de éxito
                         F.Aviso("Paciente guardado exitosamente!!!");
+                        // limpiarDatosGuardadoPacientesCoprologia();
+
+                        // Esperar a que la tabla se recargue
+                        let data = await catalogoPacientesUro();
+                        // Redibujar la tabla con los nuevos datos
+                        dibujarTablaPacientesUrologia(data);
+
+                        // Cerrar el modal
                         $("#modal_agregar_paciente_urologia").modal('hide');
-                        catalogoPacientesUro();
-                        // limpiar_datos_pacientes();
-    
-                        btnGuardarPacienteUro.disabled = false;
-                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    })
-                    .catch((e) => {
+
+                    } catch (e) {
+                        // Si hubo un error, mostrar mensaje de error
                         F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                         console.error(`Error al agregar paciente: ${e}`);
-                        btnGuardarPacienteUro.disabled = false;
-                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                    .finally(() => {
-                        btnGuardarPacienteUro.disabled = false;
-                        btnGuardarPacienteUro.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
+                        btnGuardarPacienteCopro.disabled = false;
+                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
+                    } finally {
+                        // Resetear el botón
+                        btnGuardarPacienteCopro.disabled = false;
+                        btnGuardarPacienteCopro.innerHTML = `<i class="fal fa-save"></i>`;
+                    }
                 }
             })
         
@@ -3154,7 +3861,7 @@ function btnAbrirModalEmpresaUro(){
                 insert_empresas(F.limpiarTexto(nombreEmpresa))
                 .then(() => {
                     F.Aviso("Empresa guardado exitosamente!!!");
-                    $("#modal_agregar_empresa").modal('hide'); 
+                    $("#modal_agregar_empresa_urologia").modal('hide'); 
                     cargarEmpresasLaboratorioUro();
                     // limpiar_input_empresa();
                    
@@ -4642,7 +5349,7 @@ function insertDatosExamenUro() {
     let fechaBaseParaTomarMesYAnioUrologia =  new Date(document.getElementById("fechaUrologia").value);
 
     let tipo_examen_uro = document.getElementById("txtTipoExamenUrologia").querySelector('strong').textContent;
-    // let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
+    let nombreMedicoUro = document.getElementById("txtMedicoUrologia").value;
     let importeUro = document.getElementById("FloatImporteUrologia").value;
     let fechaUro = F.devuelveFecha("fechaUrologia");
     let anioUro = fechaBaseParaTomarMesYAnioUrologia.getFullYear();
@@ -4724,12 +5431,12 @@ function insertDatosExamenUro() {
 
 function insertDatosEnfermedadesInfecciosas() {
 
-    // let fechaEnfeInfecciosasTomarMesYAnio = new Date(document.getElementById("fechaEnfermedadesInfecciosas").value);
+    let fechaEnfeInfecciosasTomarMesYAnio = new Date(document.getElementById("fechaEnfermedadesInfecciosas").value);
 
     let tipoExamenEnfermedadesInfecciosas = document.getElementById("txtTipoExamenEmfeInfecciosas").querySelector('strong').textContent;
-    // let nombreMedicoEnfeInfecciosas = document.getElementById("txtMedicoEnferInfeccio").value;
+    let nombreMedicoEnfeInfecciosas = document.getElementById("txtMedicoEnferInfeccio").value;
     let importeEnfInfecciosas = document.getElementById("floatImporteEnfInfecciosas").value;
-    // let fechaEnfeInfecciosas = F.devuelveFecha("fechaEnfermedadesInfecciosas");
+    let fechaEnfeInfecciosas = F.devuelveFecha("fechaEnfermedadesInfecciosas");
     let anioEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getFullYear();
     let mesEnfeInfecciosas = fechaEnfeInfecciosasTomarMesYAnio.getUTCMonth()+1;
 
@@ -4771,12 +5478,12 @@ function insertDatosEnfermedadesInfecciosas() {
 
 function insertDatosExamenesBacteriologicos() {
 
-    // let fechaExamenBacteriologicoTomarMesyAnio =  new Date(document.getElementById("fechaExamenesBacteriologicos").value);
+    let fechaExamenBacteriologicoTomarMesyAnio =  new Date(document.getElementById("fechaExamenesBacteriologicos").value);
 
     let tipoExamenBacteriologico = document.getElementById("txtTipoExamenBacteriologicos").querySelector('strong').textContent;
-    // let nombreMedicoExamenBacteriologico = document.getElementById("txtMedicoExamenesBacteriologicos").value;
+    let nombreMedicoExamenBacteriologico = document.getElementById("txtMedicoExamenesBacteriologicos").value;
     let importeExamenBacteriologicos = document.getElementById("floatImporteExamenesBacteriologicos").value;
-    // let fechaExamenBacteriologico = F.devuelveFecha("fechaExamenesBacteriologicos");
+    let fechaExamenBacteriologico = F.devuelveFecha("fechaExamenesBacteriologicos");
     let anioExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getFullYear();
     let mesExamenBacteriologico = fechaExamenBacteriologicoTomarMesyAnio.getUTCMonth()+1;
     let analisisExamenBacteriologico = document.getElementById("txtExamenesExamenesBacteriologicos").value;
@@ -4817,12 +5524,12 @@ function insertDatosExamenesBacteriologicos() {
 
 function insertDatosExamenHemoglobinaGlicosilada() {
 
-    // let fechaExamenHemoglobinaGlicosiladaTomarMesyAnio =  new Date(document.getElementById("fechaHemoglobinaGlicosilada").value);
+    let fechaExamenHemoglobinaGlicosiladaTomarMesyAnio =  new Date(document.getElementById("fechaHemoglobinaGlicosilada").value);
 
     let tipoExamenHemoglobinaGlicosilada = document.getElementById("txtTipoHemoglobinaGlicosilada").querySelector('strong').textContent;
-    // let nombreMedicoExamenHemoglobinaGlicosilada = document.getElementById("txtMedicoHemoglobinaGlicosilada").value;
+    let nombreMedicoExamenHemoglobinaGlicosilada = document.getElementById("txtMedicoHemoglobinaGlicosilada").value;
     let importeExamenHemoglobinaGlicosilada = document.getElementById("FloatImporteHemoglobinaGlicosilada").value;
-    // let fechaExamenHemoglobinaGlicosilada = F.devuelveFecha("fechaHemoglobinaGlicosilada");
+    let fechaExamenHemoglobinaGlicosilada = F.devuelveFecha("fechaHemoglobinaGlicosilada");
     let anioExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getFullYear();
     let mesExamenHemoglobinaGlicosilada = fechaExamenHemoglobinaGlicosiladaTomarMesyAnio.getUTCMonth()+1;
 
@@ -4869,12 +5576,12 @@ function insertDatosExamenHemoglobinaGlicosilada() {
 
 function insertarDatosPruebasEspeciales() {
 
-    // let fechaExamenPruebasEspecialesTomarMesyAnio =  new Date(document.getElementById("fechaPruebasEspeciales").value);
+    let fechaExamenPruebasEspecialesTomarMesyAnio =  new Date(document.getElementById("fechaPruebasEspeciales").value);
 
     let tipoExamenPruebasEspeciales = document.getElementById("txtTipoHcgCualitativa").querySelector('strong').textContent;
-    // let nombreMedicoPruebasEspeciales = document.getElementById("txtMedicoPruebasEspeciales").value;
+    let nombreMedicoPruebasEspeciales = document.getElementById("txtMedicoPruebasEspeciales").value;
     let importePruebasEspeciales = document.getElementById("floatImportePruebasEspeciales").value;
-    // let fechaPruebasEspeciales = F.devuelveFecha("fechaPruebasEspeciales");
+    let fechaPruebasEspeciales = F.devuelveFecha("fechaPruebasEspeciales");
     let anioPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getFullYear();
     let mesPruebasEspeciales = fechaExamenPruebasEspecialesTomarMesyAnio.getUTCMonth()+1;
 
@@ -4889,7 +5596,7 @@ function insertarDatosPruebasEspeciales() {
             paciente_id: GlobalIdPaciente,
             importe:importePruebasEspeciales,
             medico_tratante:nombreMedicoPruebasEspeciales || 'Sin medico referido',
-            // fecha:fechaPruebasEspeciales,
+            fecha:fechaPruebasEspeciales,
             anio:anioPruebasEspeciales,
             mes:mesPruebasEspeciales,
             pruebas_especiales_examen_resultado:examenResultadoPruebasEspeciales,
@@ -4916,14 +5623,14 @@ function insertarDatosPruebasEspeciales() {
 
 function insertDatosHcgCuantitativa() {
 
-    // let fechaExamenHcgCuantitativaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let fechaExamenHcgCuantitativaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
     let tipoExamenHcgCuantitativa = document.getElementById("txtTipoHcgCuantitativa").querySelector('strong').textContent;
-    // let medicoTratanteHcgCuantitativa = document.getElementById("txtMedicoHcgCuantitativa").value;
+    let medicoTratanteHcgCuantitativa = document.getElementById("txtMedicoHcgCuantitativa").value;
     let importeHcgCuantitativa = document.getElementById("FloatImporteHcgCuantitativa").value;
     let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value;
     let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value;
     let valoresDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value;
-    // let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
+    let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
     let anioExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getFullYear();
     let mesExamenHcgCuantitativa = fechaExamenHcgCuantitativaTomarMesyAnio.getUTCMonth()+1;
 
@@ -4935,7 +5642,7 @@ function insertDatosHcgCuantitativa() {
             paciente_id: GlobalIdPaciente,
             importe:importeHcgCuantitativa,
             medico_tratante: medicoTratanteHcgCuantitativa || 'Sin medico referido',
-            // fecha:fechaHcgCuantitativa,
+            fecha:fechaHcgCuantitativa,
             anio: anioExamenHcgCuantitativa,
             mes: mesExamenHcgCuantitativa,
             hcg_cuantitativa_analisis: analisisHcgCuantitativa,
@@ -4962,12 +5669,12 @@ function insertDatosHcgCuantitativa() {
 
 function insertDatosQuimicaSanguinea() {
 
-    // let fechaQuimicaSanguineaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
+    let fechaQuimicaSanguineaTomarMesyAnio =  new Date(document.getElementById("fechaHcgCuantitativa").value);
     let tipoExamenQuimicaSanguinea = document.getElementById("txtTipoQuimicaSanguinea").querySelector('strong').textContent;
-    // let medicoTratanteQuimicaSanguinea = document.getElementById("txtMedicoQuimicaSanguinea").value;
-    // let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
-    // let anioQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getFullYear();
-    // let mesQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getUTCMonth()+1;
+    let medicoTratanteQuimicaSanguinea = document.getElementById("txtMedicoQuimicaSanguinea").value;
+    let fechaHcgCuantitativa = F.devuelveFecha("fechaHcgCuantitativa");
+    let anioQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getFullYear();
+    let mesQuimicaSanguinea = fechaQuimicaSanguineaTomarMesyAnio.getUTCMonth()+1;
 
     let importe = document.getElementById("FloatImporteQuimicaSanguinea").value;
     let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value;
@@ -4980,7 +5687,7 @@ function insertDatosQuimicaSanguinea() {
             paciente_id: GlobalIdPaciente,
             importe: importe,
             medico_tratante:medicoTratanteQuimicaSanguinea || 'Sin medico referido',
-            // fecha: fechaHcgCuantitativa,
+            fecha: fechaHcgCuantitativa,
             anio: anioQuimicaSanguinea,
             mes: mesQuimicaSanguinea,
             quimica_sanguinea_examen: examenQuimicaSanguinea,
