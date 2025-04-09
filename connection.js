@@ -73,16 +73,17 @@ let config = {
     queueLimit: 0
 };
 
-// let config = {
-//     user: 'antoniodb',
-//     password: 'antonio',
-//     host: '127.0.0.1',
-//     port: 3307,
-//     database: 'db_laboratorio_dev',
-//     waitForConnections: true,
-//     connectionLimit: 100,  // Ajustar según el límite del servidor
-//     queueLimit: 0
-// };
+
+    // let config = {
+    //     user: 'root',
+    //     password: 'root',
+    //     host: '127.0.0.1',
+    //     port: 3307,
+    //     database: 'db_laboratorio',
+    //     waitForConnections: true,
+    //     connectionLimit: 100,  // Ajustar según el límite del servidor
+    //     queueLimit: 0
+    // };
 
 // let config = {
 //     user: 'avnadmin',

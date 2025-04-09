@@ -2941,13 +2941,58 @@ function limpiarDatosDeExamenCoprologia() {
     document.getElementById("bacteriasMicro").value = '';               
 }
 
-function btnAgregarPacienteModal() {
+function dibujarTablaPacientes(data) {
+    let strTable = '';
+    data.forEach(pacientesExamen => {
+        strTable += `
+            <tr>
+                <td>${pacientesExamen.id || 'Sin Documento de identificación'}</td>
+                <td>${pacientesExamen.nombre_paciente}</td>
+                <td>${F.formatearFechaANormal(pacientesExamen.fecha_nacimiento)}</td>
+                <td>${pacientesExamen.nombre_empresa}</td>
+                <td>
+                    <button class="btn btn-sm btn-success btn-rounded"
+                        data-nombre="${pacientesExamen.nombre_paciente}"
+                        data-id="${pacientesExamen.id}">
+                        <i class="fal fa-plus"></i>
+                    </button>
+                </td>  
+            </tr>
+        `;
+    })
+    document.getElementById("tblPacientesParaExamenes").innerHTML = strTable;
+        
+        // Agregar evento de click a los botones de agregar
+        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
+        botonesAgregar.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                const nombrePaciente = boton.getAttribute("data-nombre");
+                const idPaciente = boton.getAttribute("data-id");
+
+                // Guardar el ID del paciente en la variable global
+                GlobalIdPaciente = idPaciente;
+
+                // Actualizar el campo de búsqueda con el nombre del paciente
+                document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
+                F.slideAnimationTabs();
+                const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
+                const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
+                tabLink.show();
+                // document.getElementById("nombrePaciente").value = nombrePaciente;
+
+                // Cerrar el modal (si estás usando Bootstrap)
+                // $("#modal_catalogo_pacientes_coprologia").modal('hide');
+            });
+        });
+}
+
+async function btnAgregarPacienteModal() {
     $("#modal_agregar_paciente").modal('show'); 
 
     let btnGuardarPacientePaciente = document.getElementById('btnGuardarPacientePaciente');
-    btnGuardarPacientePaciente.addEventListener('click', () => {
+    btnGuardarPacientePaciente.addEventListener('click', async () => {
         F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then((value) => {
+            .then(async (value) => {
                 if(value==true) {
                     let noDPI = document.getElementById("txtnoDPIPaciente").value;
                     let nombrePaciente = document.getElementById("txtNombrePacientePaciente").value;
@@ -2958,31 +3003,34 @@ function btnAgregarPacienteModal() {
                     btnGuardarPacientePaciente.disabled = true;
                     btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                     
-    
-                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
-                    .then(() => {
+                    try {
+                        await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                         F.Aviso("Paciente guardado exitosamente!!!");
-                        // catalogoPacientesCopro();
+                        limpiarDatosAgregarPacientes()
+                        let data = await catalogoPacientesParaNuevoExamen()
+                        dibujarTablaPacientes(data);
                         $("#modal_agregar_paciente").modal('hide');
-                        // limpiar_datos_pacientes();
-    
-                        btnGuardarPacientePaciente.disabled = false;
-                        btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    })
-                    .catch((e) => {
+                    } catch (e) {
                         F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                         console.error(`Error al agregar paciente: ${e}`);
                         btnGuardarPacientePaciente.disabled = false;
                         btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                    .finally(() => {
+                    } finally {
                         btnGuardarPacientePaciente.disabled = false;
                         btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
+                    }
+    
                 }
             })
         
     })
+}
+
+function limpiarDatosAgregarPacientes() {
+    document.getElementById("txtnoDPIPaciente").value = '';
+    document.getElementById("txtNombrePacientePaciente").value = '';
+    document.getElementById("txtFechaNacimientoPaciente").value = F.getFecha();
+    document.getElementById("cmbEmpresaPacientePaciente").value = '';
 }
 
 function btnAbrirModalEmpresaPaciente(){
