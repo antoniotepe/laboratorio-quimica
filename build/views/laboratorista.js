@@ -2939,26 +2939,7 @@ function navegacionPage() {
 
 }
 
-// Variable para almacenar todos los pacientes (cache)
-let todosLosPacientes = [];
 
-// Función para cargar y mostrar pacientes
-async function cargarPacientes() {
-    try {
-        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
-        
-        // Asegurarse que no_dpi esté definido para todos los pacientes
-        todosLosPacientes = todosLosPacientes.map(paciente => ({
-            ...paciente,
-            no_dpi: paciente.no_dpi || null
-        }));
-        
-        dibujarTablaPacientes(todosLosPacientes);
-    } catch (error) {
-        console.error("Error al obtener los pacientes:", error);
-        document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="5">No hay pacientes disponibles</td></tr>';
-    }
-}
 
 // Función para filtrar mientras se escribe
 function filtrarPacientesPorNombre() {
@@ -3086,7 +3067,7 @@ async function btnAgregarPacienteModal() {
                         limpiarDatosAgregarPacientes()
                         
                         // Actualizar la lista completa de pacientes
-                        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
+                        let  todosLosPacientes = await catalogoPacientesParaNuevoExamen();
                         dibujarTablaPacientes(todosLosPacientes);
                         
                         $("#modal_agregar_paciente").modal('hide');
