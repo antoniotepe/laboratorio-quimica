@@ -248,8 +248,18 @@ function getView(){
             return `
                 <div class="container-fluid">
                         <div class="row justify-content-center">
-                            <div class="col-md-6 text-center mt-2">
-                                <h3 class="text-center mt-5">Listado de pacientes</h4>
+                            <div class="col-12 col-md-6 text-center mt-2">
+                                <h3 class="text-center mt-5">Listado de pacientes</h3>
+                            </div>
+                        </div>
+                        <div class="row justify-content-left">
+                            <div class="col-12 col-md-3 mt-2">
+                                <div class="input-group">
+                                    <input type="search" class="form-control" placeholder="Buscar paciente por nombre..." id="txtFiltrarBusquedaDePaciente" />
+                                    <button class="btn btn-info btn-sm hand shadow">
+                                        <i class="fal fa-search"></i> 
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
@@ -2675,6 +2685,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenCopro.disabled = false;
                     btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    // getAbrirExamenEnPdf()
                     limpiarDatosDeExamenCoprologia()
                 })
                 .catch((e) => {
@@ -2799,6 +2810,14 @@ function addListeners(){
     })
     
 
+    // Agregar eventos de filtrado
+    document.getElementById("txtFiltrarBusquedaDePaciente").addEventListener("input", filtrarPacientesPorNombre);
+    document.querySelector("#txtFiltrarBusquedaDePaciente + button").addEventListener("click", filtrarPacientesPorNombreClick);
+
+
+    // Cargar pacientes al iniciar
+    cargarPacientes();
+
 };
 
 function initView(){
@@ -2920,6 +2939,80 @@ function navegacionPage() {
 
 }
 
+// Variable para almacenar todos los pacientes (cache)
+let todosLosPacientes = [];
+
+// Función para cargar y mostrar pacientes
+async function cargarPacientes() {
+    try {
+        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
+        
+        // Asegurarse que no_dpi esté definido para todos los pacientes
+        todosLosPacientes = todosLosPacientes.map(paciente => ({
+            ...paciente,
+            no_dpi: paciente.no_dpi || null
+        }));
+        
+        dibujarTablaPacientes(todosLosPacientes);
+    } catch (error) {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="5">No hay pacientes disponibles</td></tr>';
+    }
+}
+
+// Función para filtrar mientras se escribe
+function filtrarPacientesPorNombre() {
+    const filtro = this.value.toLowerCase();
+    if (filtro.length === 0) {
+        dibujarTablaPacientes(todosLosPacientes);
+        return;
+    }
+    
+    const pacientesFiltrados = todosLosPacientes.filter(paciente => {
+        // Buscar en nombre
+        const nombreMatch = paciente.nombre_paciente.toLowerCase().includes(filtro);
+        
+        // Buscar en DPI (eliminando guiones para mejor búsqueda)
+        const dpiClean = paciente.no_dpi ? paciente.no_dpi.replace(/-/g, '') : '';
+        const dpiMatch = dpiClean.includes(filtro.replace(/-/g, ''));
+        
+        // Buscar en fecha (formateada)
+        const fechaFormateada = F.formatearFechaANormal(paciente.fecha_nacimiento);
+        const fechaMatch = fechaFormateada.includes(filtro);
+        
+        return nombreMatch || dpiMatch || fechaMatch;
+    });
+    
+    dibujarTablaPacientes(pacientesFiltrados);
+}
+
+// Función para filtrar al hacer click en el botón
+function filtrarPacientesPorNombreClick() {
+    const input = document.getElementById("txtFiltrarBusquedaDePaciente");
+    const filtro = input.value.toLowerCase();
+    
+    if (filtro.length === 0) {
+        dibujarTablaPacientes(todosLosPacientes);
+        return;
+    }
+    
+    const pacientesFiltrados = todosLosPacientes.filter(paciente => {
+        // Buscar en nombre
+        const nombreMatch = paciente.nombre_paciente.toLowerCase().includes(filtro);
+        
+        // Buscar en DPI (eliminando guiones para mejor búsqueda)
+        const dpiClean = paciente.no_dpi ? paciente.no_dpi.replace(/-/g, '') : '';
+        const dpiMatch = dpiClean.includes(filtro.replace(/-/g, ''));
+        
+        // Buscar en fecha (formateada)
+        const fechaFormateada = F.formatearFechaANormal(paciente.fecha_nacimiento);
+        const fechaMatch = fechaFormateada.includes(filtro);
+        
+        return nombreMatch || dpiMatch || fechaMatch;
+    });
+    
+    dibujarTablaPacientes(pacientesFiltrados);
+}
 
 function limpiarDatosDeExamenCoprologia() {
     document.getElementById("FloatImporteCiprologia").value = '';
@@ -2943,47 +3036,32 @@ function limpiarDatosDeExamenCoprologia() {
 
 function dibujarTablaPacientes(data) {
     let strTable = '';
-    data.forEach(pacientesExamen => {
-        strTable += `
-            <tr>
-                <td>${pacientesExamen.id || 'Sin Documento de identificación'}</td>
-                <td>${pacientesExamen.nombre_paciente}</td>
-                <td>${F.formatearFechaANormal(pacientesExamen.fecha_nacimiento)}</td>
-                <td>${pacientesExamen.nombre_empresa}</td>
-                <td>
-                    <button class="btn btn-sm btn-success btn-rounded"
-                        data-nombre="${pacientesExamen.nombre_paciente}"
-                        data-id="${pacientesExamen.id}">
-                        <i class="fal fa-plus"></i>
-                    </button>
-                </td>  
-            </tr>
-        `;
-    })
-    document.getElementById("tblPacientesParaExamenes").innerHTML = strTable;
-        
-        // Agregar evento de click a los botones de agregar
-        const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
-        botonesAgregar.forEach((boton) => {
-            boton.addEventListener("click", () => {
-                const nombrePaciente = boton.getAttribute("data-nombre");
-                const idPaciente = boton.getAttribute("data-id");
-
-                // Guardar el ID del paciente en la variable global
-                GlobalIdPaciente = idPaciente;
-
-                // Actualizar el campo de búsqueda con el nombre del paciente
-                document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
-                F.slideAnimationTabs();
-                const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
-                const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
-                tabLink.show();
-                // document.getElementById("nombrePaciente").value = nombrePaciente;
-
-                // Cerrar el modal (si estás usando Bootstrap)
-                // $("#modal_catalogo_pacientes_coprologia").modal('hide');
-            });
+    
+    if (data.length === 0) {
+        strTable = '<tr><td colspan="5">No se encontraron pacientes</td></tr>';
+    } else {
+        data.forEach(pacientesExamen => {
+            strTable += `
+                <tr>
+                    <td class="negrita">${pacientesExamen.no_dpi || 'Sin Documento de identificación'}</td>
+                    <td class="negrita">${pacientesExamen.nombre_paciente}</td>
+                    <td class="negrita">${F.formatearFechaANormal(pacientesExamen.fecha_nacimiento)}</td>
+                    <td class="negrita">${pacientesExamen.nombre_empresa}</td>
+                    <td>
+                        <button class="btn btn-sm btn-success btn-rounded"
+                            data-nombre="${pacientesExamen.nombre_paciente}"
+                            data-id="${pacientesExamen.id}">
+                            <i class="fal fa-plus"></i>
+                        </button>
+                    </td>  
+                </tr>
+            `;
         });
+    }
+    
+    document.getElementById("tblPacientesParaExamenes").innerHTML = strTable;
+    
+    // Resto del código para los botones de agregar...
 }
 
 async function btnAgregarPacienteModal() {
@@ -2999,7 +3077,6 @@ async function btnAgregarPacienteModal() {
                     let fecha_nacimiento = document.getElementById("txtFechaNacimientoPaciente").value;
                     let empresaPaciente = document.getElementById("cmbEmpresaPacientePaciente").value;
     
-                    
                     btnGuardarPacientePaciente.disabled = true;
                     btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
                     
@@ -3007,23 +3084,22 @@ async function btnAgregarPacienteModal() {
                         await insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
                         F.Aviso("Paciente guardado exitosamente!!!");
                         limpiarDatosAgregarPacientes()
-                        let data = await catalogoPacientesParaNuevoExamen()
-                        dibujarTablaPacientes(data);
+                        
+                        // Actualizar la lista completa de pacientes
+                        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
+                        dibujarTablaPacientes(todosLosPacientes);
+                        
                         $("#modal_agregar_paciente").modal('hide');
                     } catch (e) {
                         F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
                         console.error(`Error al agregar paciente: ${e}`);
-                        btnGuardarPacientePaciente.disabled = false;
-                        btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
                     } finally {
                         btnGuardarPacientePaciente.disabled = false;
                         btnGuardarPacientePaciente.innerHTML = `<i class="fal fa-save"></i>`;
                     }
-    
                 }
-            })
-        
-    })
+            });
+    });
 }
 
 function limpiarDatosAgregarPacientes() {
@@ -4658,7 +4734,7 @@ function insertDatosExamenCipro() {
         .then((response) => {
             let data = response.data;
             if(data && data.affectedRows > 0) {
-                resolve(data);
+                resolve(data.insertId);
             } else {
                 reject();
             }

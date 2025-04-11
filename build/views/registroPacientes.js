@@ -45,7 +45,7 @@ function getView(){
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table table-bordered h-full">
                                         <thead class="thead-primary text-white">
                                             <tr>
                                                 <td>NO. DPI</td>
@@ -144,8 +144,7 @@ function getView(){
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive">
-                                            
-                                                <table class="table">
+                                                <table class="table table-bordered h-full">
                                                     <thead class="thead-primary">
                                                         <tr>
                                                             <th>ID EMPRESA</th>
@@ -418,10 +417,10 @@ function get_listado_pacientes() {
             data.map((r) => {
                 str += `
                     <tr class="hand">
-                        <td>${r.no_dpi || 'Sin numero de DPI'}</td>
-                        <td>${r.nombre_paciente}</td>
-                        <td>${F.formatearFechaANormal(r.fecha_nacimiento)}</td>
-                        <td>${r.nombre_empresa || 'Sin empresa'}
+                        <td class="negrita">${r.no_dpi || 'Sin numero de DPI'}</td>
+                        <td class="negrita">${r.nombre_paciente}</td>
+                        <td class="negrita">${F.formatearFechaANormal(r.fecha_nacimiento)}</td>
+                        <td class="negrita">${r.nombre_empresa || 'Sin empresa'}
                         <td>
                             <br>
                             <button class="btn btn-info btn-sm btn-circle shadow" onclick="get_datos_paciente('${r.id}','${r.fecha_nacimiento}')">
