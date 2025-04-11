@@ -2818,6 +2818,7 @@ function addListeners(){
     // Cargar pacientes al iniciar
     cargarPacientes();
 
+    
 };
 
 function initView(){
@@ -3042,7 +3043,28 @@ function dibujarTablaPacientes(data) {
     
     document.getElementById("tblPacientesParaExamenes").innerHTML = strTable;
     
-    // Resto del código para los botones de agregar...
+    // Agregar evento de click a los botones de agregar
+    const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
+    botonesAgregar.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            const nombrePaciente = boton.getAttribute("data-nombre");
+            const idPaciente = boton.getAttribute("data-id");
+
+            // Guardar el ID del paciente en la variable global
+            GlobalIdPaciente = idPaciente;
+
+            // Actualizar el campo de búsqueda con el nombre del paciente
+            document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
+            F.slideAnimationTabs();
+            const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
+            const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
+            tabLink.show();
+            // document.getElementById("nombrePaciente").value = nombrePaciente;
+
+            // Cerrar el modal (si estás usando Bootstrap)
+            // $("#modal_catalogo_pacientes_coprologia").modal('hide');
+        });
+    });
 }
 
 async function btnAgregarPacienteModal() {
@@ -3067,7 +3089,7 @@ async function btnAgregarPacienteModal() {
                         limpiarDatosAgregarPacientes()
                         
                         // Actualizar la lista completa de pacientes
-                        let  todosLosPacientes = await catalogoPacientesParaNuevoExamen();
+                        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
                         dibujarTablaPacientes(todosLosPacientes);
                         
                         $("#modal_agregar_paciente").modal('hide');
