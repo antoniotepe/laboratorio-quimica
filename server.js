@@ -694,6 +694,7 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
       if (Array.isArray(data) && data.length > 0) {
         const examen = data[0];
         let doc = new PDFDocument({ margin: 30, size: 'A4' });
+        console.log(examen);
 
         const fileName = `examen_${examen.tipo_examen}.pdf`;
         const stream = fs.createWriteStream(fileName);
@@ -701,9 +702,11 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
 
         doc.image('./build/img/logo_laboratorio.jpg', 430, 15, { fit: [80, 80], align: 'center', valign: 'bottom' });
         doc.moveDown(6);
-        doc.fontSize(11).text(`Nombre: ${examen.nombre_paciente}`, { align: "left" });
-        doc.fontSize(11).text(`Fecha: ${formatearFechaANormal(examen.fecha)}`, { align: "left" });
-        doc.fontSize(11).text(`Tratante: ${examen.medico_tratante}`, { align: "left" });
+        doc.fontSize(11).text(`Nombre: ${examen.nombre_paciente || 'No especificado'}`, { align: "left" });
+        doc.fontSize(11).text(`Fecha: ${formatearFechaANormal(examen.fecha) || 'No especificado'}`, { align: "left" });
+        doc.fontSize(11).text(`Tratante: ${examen.medico_tratante || 'No especificado'}`, { align: "left" });
+        doc.fontSize(11).text(`Importe: Q. ${examen.importe || 'No especificado'}`, { align: "left" });
+        doc.moveDown(2);
         doc.moveDown(2);
         doc.fontSize(18).font("Helvetica-Bold").text(`EXAMEN ${examen.tipo_examen}`, { align: "center" });
         doc.moveDown();
@@ -724,12 +727,12 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                color_heces: examen.copro_macroscopio_color,
-                restos_alimenticios: examen.copro_macroscopio_restos_alimenticios,
-                sangre: examen.copro_macroscopio_sangre,
-                consitencia: examen.copro_macroscopio_consistencia,
-                moco: examen.copro_macroscopio_Moco,
-                ph: examen.copro_macroscopio_PH,
+                color_heces: examen.copro_macroscopio_color || 'No especificado',
+                restos_alimenticios: examen.copro_macroscopio_restos_alimenticios || 'No especificado',
+                sangre: examen.copro_macroscopio_sangre || 'No especificado',
+                consitencia: examen.copro_macroscopio_consistencia || 'No especificado',
+                moco: examen.copro_macroscopio_Moco || 'No especificado',
+                ph: examen.copro_macroscopio_PH || 'No especificado',
               },
             ],
           };
@@ -758,12 +761,12 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                leucocitos: examen.copro_quimico_leucocitos,
-                celulas_vegetales: examen.copro_quimico_celulas_vegetales,
-                almidones: examen.copro_quimico_almidones,
-                levaduras: examen.copro_quimico_levaduras,
-                huevo: examen.copro_quimico_huevo,
-                quistes: examen.copro_quimico_quistes,
+                leucocitos: examen.copro_quimico_leucocitos || 'No especificado',
+                celulas_vegetales: examen.copro_quimico_celulas_vegetales || 'No especificado',
+                almidones: examen.copro_quimico_almidones || 'No especificado',
+                levaduras: examen.copro_quimico_levaduras || 'No especificado',
+                huevo: examen.copro_quimico_huevo || 'No especificado',
+                quistes: examen.copro_quimico_quistes || 'No especificado',
               },
             ],
           };
@@ -790,10 +793,10 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                eritrocitos: examen.copro_microscopio_eritrocitos,
-                grasas: examen.copro_microscopio_grasas,
-                jabon: examen.copro_microscopio_jabon,
-                bacterias: examen.copro_microscopio_bacterias,
+                eritrocitos: examen.copro_microscopio_eritrocitos || 'No especificado',
+                grasas: examen.copro_microscopio_grasas || 'No especificado',
+                jabon: examen.copro_microscopio_jabon || 'No especificado',
+                bacterias: examen.copro_microscopio_bacterias || 'No especificado',
               },
             ],
           };
@@ -820,10 +823,10 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                color: examen.uro_macro_color,
-                aspecto: examen.uro_macro_aspecto,
-                densidad: examen.uro_macro_densidad,
-                ph: examen.uro_macro_ph,
+                color: examen.uro_macro_color || 'No especificado',
+                aspecto: examen.uro_macro_aspecto || 'No especificado',
+                densidad: examen.uro_macro_densidad || 'No especificado',
+                ph: examen.uro_macro_ph || 'No especificado',
               },
             ],
           };
@@ -855,15 +858,15 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                leucocitos: examen.uro_quimico_leucocitos,
-                glucosa: examen.uro_quimico_glucosa,
-                proteinas: examen.uro_quimico_proteinas,
-                cetonas: examen.uro_quimico_cetonas,
-                hemoglobina: examen.uro_quimico_hemoglobina,
-                urobilinogeno: examen.uro_quimico_urobilinogeno,
-                nitritos: examen.uro_quimico_nitritos,
-                acido_ascorbico: examen.uro_quimico_acido_ascorbico,
-                bilirrubina: examen.uro_quimico_bilirrubina,
+                leucocitos: examen.uro_quimico_leucocitos || 'No especificado',
+                glucosa: examen.uro_quimico_glucosa || 'No especificado',
+                proteinas: examen.uro_quimico_proteinas || 'No especificado',
+                cetonas: examen.uro_quimico_cetonas || 'No especificado',
+                hemoglobina: examen.uro_quimico_hemoglobina || 'No especificado',
+                urobilinogeno: examen.uro_quimico_urobilinogeno || 'No especificado',
+                nitritos: examen.uro_quimico_nitritos || 'No especificado',
+                acido_ascorbico: examen.uro_quimico_acido_ascorbico || 'No especificado',
+                bilirrubina: examen.uro_quimico_bilirrubina || 'No especificado',
               },
             ],
           };
@@ -893,13 +896,13 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             ],
             datas: [
               {
-                leucocitos: examen.uro_micro_leucocitos,
-                eritrocitos: examen.uro_micro_eritocitos,
-                c_epiteliales: examen.uro_micro_c_epiteliales,
-                bacterias: examen.uro_micro_bacterias,
-                cristales: examen.uro_micro_cristales,
-                cilindros: examen.uro_micro_cilindros,
-                otros: examen.uro_micro_otros,
+                leucocitos: examen.uro_micro_leucocitos || 'No especificado',
+                eritrocitos: examen.uro_micro_eritocitos || 'No especificado',
+                c_epiteliales: examen.uro_micro_c_epiteliales || 'No especificado',
+                bacterias: examen.uro_micro_bacterias || 'No especificado',
+                cristales: examen.uro_micro_cristales || 'No especificado',
+                cilindros: examen.uro_micro_cilindros || 'No especificado',
+                otros: examen.uro_micro_otros || 'No especificado',
               },
             ],
           };
@@ -912,35 +915,140 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
             },
           });
         } else if (examen.tipo_examen === 'ENFERMEDADES INFECCIOSAS') {
-          // Tabla Macroscópico Uro
-          doc.fontSize(11).text("EXAMEN MACROSCÓPICO:", { align: "center" });
-          doc.moveDown();
-
-          const tableResultadosEnfermedadesInfecciosas = {
+      
+          // Tabla de resultados
+          const tableResultados = {
+              headers: [
+                  { label: "ANÁLISIS", property: 'analisis', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+                  { label: "RESULTADO", property: 'resultado', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+                  { label: "VALOR REFERENCIA", property: 'valor_referencia', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
+              ],
+              datas: [
+                  {
+                      analisis: examen.enfermedades_infecciosas_analisis || 'No especificado',
+                      resultado: examen.enfermedades_infecciosas_resultados || 'No especificado',
+                      valor_referencia: examen.enfermedades_infecciosas_valor_referencia || 'No especificado',
+                  }
+              ]
+          };
+      
+          doc.table(tableResultados, {
+              prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+              prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+                doc.font("Helvetica-Bold").fontSize(8);
+                indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+              },
+          });
+      } else if (examen.tipo_examen === 'EXAMENES BACTERIOLOGICOS') {
+      
+        // Tabla de resultados
+        const tableResultados = {
             headers: [
-              { label: "Analisis", property: 'analisis', width: 60, headerColor: "#de0606", headerOpacity: 0.15 },
-              { label: "Resultado", property: 'resultado', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
-              { label: "Valor de referencia", property: 'valor', width: 100, headerColor: "#de0606", headerOpacity: 0.15 },
+                { label: "ANÁLISIS", property: 'analisis_bacteriologico', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+                { label: "RESULTADO", property: 'resultado_bacteriologico', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+                { label: "VALOR REFERENCIA", property: 'valor_referencia_bacteriologico', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
             ],
             datas: [
-              {
-                analisis: examen.exa,
-                resultado: examen.uro_macro_aspecto,
-                valor: examen.uro_macro_densidad,
-              },
-            ],
-          };
-          doc.table(tableResultadosEnfermedadesInfecciosas, {
-            prepareHeader: () => doc.font("Helvetica").fontSize(8),
+                {
+                    analisis_bacteriologico: examen.examenes_bacteriologicos_analisis || 'No especificado',
+                    resultado_bacteriologico: examen.examenes_bacteriologicos_resultado || 'No especificado',
+                    valor_referencia_bacteriologico: examen.examenes_bacteriologicos_valor_de_referencia || 'No especificado',
+                }
+            ]
+        };
+    
+        doc.table(tableResultados, {
+            prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
             prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
               doc.font("Helvetica-Bold").fontSize(8);
               indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
             },
-          });
+        });
 
-          
-        }
+    } else if (examen.tipo_examen == 'HEMOGLOBINA GLICOSILADA') {
+      doc.fontSize(11).text("INMUNOLOGIA:", { align: "center" });
+      doc.moveDown();
 
+      const tableHemoglobinaGlicosilada = {
+        headers: [
+          { label: "EXAMEN", property: 'examen_hm', width: 80, headerColor: "#64fd00", headerOpacity: 0.15 },
+          { label: "RESULTADO", property: 'resultado_hm', width: 100, headerColor: "#64fd00", headerOpacity: 0.15 },
+          { label: "VALOR NORMAL", property: 'valor_normal_hm', width: 100, headerColor: "#64fd00", headerOpacity: 0.15 },
+          { label: "PRUEBA DE HBA1C EN %", property: 'prueba_de_hba1c_hm', width: 100, headerColor: "#64fd00", headerOpacity: 0.15 },
+          { label: "PROMEDIO DE GLICEMIA EN MG/DL", property: 'promedio_de_glicemia_hm', width: 80, headerColor: "#64fd00", headerOpacity: 0.15 },
+          { label: "CALIFICACION", property: 'califcacion_hm', width: 60, headerColor: "#64fd00", headerOpacity: 0.15 },
+        ],
+        datas: [
+          {
+            examen_hm: examen.hemoglobina_inmunologia_examen || 'No especificado',
+            resultado_hm: examen.hemoglobina_inmunologia_resultado || 'No especificado',
+            valor_normal_hm: examen.hemoglobina_inmunologia_valor_normal || 'No especificado',
+            prueba_de_hba1c_hm: examen.hemoglobina_inmunologia_prueba_de_hba1c || 'No especificado',
+            promedio_de_glicemia_hm: examen.hemoglobina_inmunologia_promedio_de_glicemia || 'No especificado',
+            califcacion_hm: examen.hemoglobina_inmunologia_calificacion || 'No especificado',
+          },
+        ],
+      };
+
+      doc.table(tableHemoglobinaGlicosilada, {
+        prepareHeader: () => doc.font("Helvetica").fontSize(8),
+        prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+          doc.font("Helvetica-Bold").fontSize(8);
+          indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+        },
+      });
+    } else if (examen.tipo_examen === 'EXAMENES BACTERIOLOGICOS') {
+      
+        // Tabla de resultados
+        const tableResultados = {
+            headers: [
+                { label: "ANÁLISIS", property: 'analisis_bacteriologico', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+                { label: "RESULTADO", property: 'resultado_bacteriologico', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+                { label: "VALOR REFERENCIA", property: 'valor_referencia_bacteriologico', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
+            ],
+            datas: [
+                {
+                    analisis_bacteriologico: examen.examenes_bacteriologicos_analisis || 'No especificado',
+                    resultado_bacteriologico: examen.examenes_bacteriologicos_resultado || 'No especificado',
+                    valor_referencia_bacteriologico: examen.examenes_bacteriologicos_valor_de_referencia || 'No especificado',
+                }
+            ]
+        };
+    
+        doc.table(tableResultados, {
+            prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+            prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+              doc.font("Helvetica-Bold").fontSize(8);
+              indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+            },
+        });
+    } else if (examen.tipo_examen === 'HCG CUALITATIVA') {
+
+       // Tabla de resultados
+       const tableResultadosHCG = {
+        headers: [
+            { label: "EXAMEN RESULTADO", property: 'examen_resultado_hcg', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+            { label: "RESULTADO", property: 'resultado_hcg', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+            { label: "VALOR REFERENCIA", property: 'valor_referencia_hcg', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
+        ],
+        datas: [
+            {
+                examen_resultado_hcg: examen.pruebas_especiales_examen_resultado || 'No especificado',
+                resultado_hcg: examen.pruebas_especiales_resultado || 'No especificado',
+                valor_referencia_hcg: examen.pruebas_especiales_valor_de_referencia || 'No especificado',
+            }
+        ]
+    };
+
+    doc.table(tableResultadosHCG, {
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+        prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+          doc.font("Helvetica-Bold").fontSize(8);
+          indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+        },
+    });
+
+    }
         // Finalizar el PDF
         doc.end();
         stream.on('finish', () => {
