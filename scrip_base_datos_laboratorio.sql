@@ -110,7 +110,7 @@ CREATE TABLE EXAMENES (
     quimica_sanguinea_valor_normal VARCHAR(200),
     
     resultados_varios_examen VARCHAR(200),
-    resutlados_varios_resultado VARCHAR(200),
+    resultados_varios_resultado VARCHAR(200),
     resultados_varios_valor_normal VARCHAR(200),
     resultados_varios_grupo_sanguineo_analisis VARCHAR(200),
     resultados_varios_grupo_sanguineo_rh VARCHAR(200),

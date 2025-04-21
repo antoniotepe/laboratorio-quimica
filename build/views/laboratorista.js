@@ -2685,7 +2685,6 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenCopro.disabled = false;
                     btnGuardarExamenCopro.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    // getAbrirExamenEnPdf()
                     limpiarDatosDeExamenCoprologia()
                 })
                 .catch((e) => {
@@ -2808,17 +2807,322 @@ function addListeners(){
             console.error(error);
         })        
     })
+
+    let btnGuardarExamenEnfermedadesInfecc = document.getElementById("btnGuardarExamenEnfermedadesInfecc");
+    btnGuardarExamenEnfermedadesInfecc.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("floatImporteEnfInfecciosas").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
+
+                let AnalisisEnfermedadesInfecciosas = document.getElementById("txtAnalisisEnfermedadesInfecciosas").value || '';
+                if(AnalisisEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
+
+                let resultadosEnfermedadesInfecciosas = document.getElementById("txtResultadosEnfermedadesInfecciosas").value || '';
+                if(resultadosEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
+
+                let valorReferenciaEnfermedadesInfecciosas = document.getElementById("txtValorReferenciaEnfermedadesInfecciosas").value || '';
+                if(valorReferenciaEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
+
+                btnGuardarExamenEnfermedadesInfecc.disabled = true;
+                btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosEnfermedadesInfecciosas()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
+                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
+                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    })
+
+    let btnGuardarExamenBacteriologicos = document.getElementById("btnGuardarExamenBacteriologicos");
+    btnGuardarExamenBacteriologicos.addEventListener('click', () => {
+        F.Confirmacion("¿Esta seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+                
+                let importe = document.getElementById("floatImporteExamenesBacteriologicos").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
+
+                let examenesBacteriologicosAnalisis = document.getElementById("txtExamenesExamenesBacteriologicos").value || '';
+                if(examenesBacteriologicosAnalisis==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
+
+                let resultadosExamenesBacteriologicos = document.getElementById("txtResultadosExamenesBacteriologicos").value || '';
+                if(resultadosExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
+
+                let valorReferenciaExamenesBacteriologicos = document.getElementById("txtValorReferenciaExamenesBacteriologicos").value || '';
+                if(valorReferenciaExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
+
+                btnGuardarExamenBacteriologicos.disabled = true;
+                btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenesBacteriologicos()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!")
+                    btnGuardarExamenBacteriologicos.disabled = false;
+                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((errr) => {
+                    if (errr instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + errr.message);
+                    }
+                    console.error("Error detallado:", errr);
+                })
+                .finally(() => {
+                    btnGuardarExamenBacteriologicos.disabled = false;
+                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    });
     
+    let btnGuardarExamenHemoglobinaGlicosilada = document.getElementById("btnGuardarExamenHemoglobinaGlicosilada");
+    btnGuardarExamenHemoglobinaGlicosilada.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true){
+                
+                let importe = document.getElementById("FloatImporteHemoglobinaGlicosilada").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
 
-    // Agregar eventos de filtrado
-    document.getElementById("txtFiltrarBusquedaDePaciente").addEventListener("input", filtrarPacientesPorNombre);
-    document.querySelector("#txtFiltrarBusquedaDePaciente + button").addEventListener("click", filtrarPacientesPorNombreClick);
+                let examenHemoglobinaGlicosilada = document.getElementById("txtExamenHemoglobinaGlicosilada").value || '';
+                if(examenHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de EXAMEN!!!"); return};
 
+                let resultadoHemoglobinaGlicosilada = document.getElementById("txtResultadoHemoglobinaGlicosilada").value || '';
+                if(resultadoHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
 
-    // Cargar pacientes al iniciar
-    cargarPacientes();
+                let valorNormalHemoglobinaGlicosilada = document.getElementById("txtvalorNormalHemoglobinaGlicosilada").value || '';
+                if(valorNormalHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de VALOR NORMAL!!!"); return}
+;
+                let pruebaDeHba1c = document.getElementById("txtPruebaDeHba1c").value || '';
+                if(pruebaDeHba1c==''){F.AvisoError("Ingrese el valor de PRUEBA DE HBA1C!!!"); return};
 
+                let promedioDeGlicemia = document.getElementById("txtPromedioDeGlicemia").value || '';
+                if(promedioDeGlicemia==''){F.AvisoError("Ingrese el valor de PROMEDIO DE GLICEMIA"); return};
+
+                let calificacionGlicemia = document.getElementById("txtCalificacionGlicemia").value || '';
+                if(calificacionGlicemia==''){F.AvisoError("Ingrese el valor de CALIFICACION"); return};
+
+                btnGuardarExamenHemoglobinaGlicosilada.disabled = true;
+                btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+
+                insertDatosExamenHemoglobinaGlicosilada()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
+                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
+                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    });
+
+    let btnGuardarExamenPruebasEspeciales = document.getElementById("btnGuardarExamenPruebasEspeciales");
+    btnGuardarExamenPruebasEspeciales.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("floatImportePruebasEspeciales").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!"); return};
+
+                let examenResultadoPruebasEspeciales = document.getElementById("txtExamenResultadoPruebasEspeciales").value || '';
+                if(examenResultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valor de EXAMEN");return};
+                let resultadoPruebasEspeciales = document.getElementById("txtResultadoPruebasEspeciales").value || '';
+                if(resultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valro de RESULTADO!!!");return};
+                let valorReferenciaPruebasEspeciales = document.getElementById("txtvalorReferenciaPruebasEspeciales").value || '';
+                if(valorReferenciaPruebasEspeciales==''){F.AvisoError("Ingrese el valro de VALOR REFERENCIA!!!");return};
+
+                btnGuardarExamenPruebasEspeciales.disabled = true;
+                btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertarDatosPruebasEspeciales()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarExamenPruebasEspeciales.disabled = false;
+                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarExamenPruebasEspeciales.disabled = false;
+                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    });
+
+    let btnGuardarHcgCuantitativa = document.getElementById("btnGuardarHcgCuantitativa");
+    btnGuardarHcgCuantitativa.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("FloatImporteHcgCuantitativa").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
+
+                let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value || '';
+                if(analisisHcgCuantitativa==''){F.AvisoError("Ingrese el valor de ANALISIS!!!"); return};
+
+                let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value || '';
+                if(resultadoHcgCuantitativa==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+
+                let valorDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value || '';
+                if(valorDeReferenciaHcgCuantitativa==''){F.AvisoError("Ingrese el valor de VALOR DE REFERENCIA!!!"); return};
+
+                btnGuardarHcgCuantitativa.disabled = true;
+                btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosHcgCuantitativa()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarHcgCuantitativa.disabled = false;
+                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarHcgCuantitativa.disabled = false;
+                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    });
+
+    let btnGuardarQuimicaSanguinea = document.getElementById("btnGuardarQuimicaSanguinea");
+
+    btnGuardarQuimicaSanguinea.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro de guardar el examen?")
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("FloatImporteQuimicaSanguinea").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
+
+                let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value || '';
+                if(examenQuimicaSanguinea==''){F.AvisoError("Ingrese el valor del EXAMEN!!!"); return};
+                let resultadoQuimicaSanguinea = document.getElementById("txtResultadoQuimicaSanguinea").value || '';
+                if(resultadoQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+                let valorNormalQuimicaSanguinea = document.getElementById("txtvalorNormalQuimicaSanguinea").value || '';
+                if(valorNormalQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de VALOR NORMAL")};
+
+                btnGuardarQuimicaSanguinea.disabled = true;
+                btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosQuimicaSanguinea()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    btnGuardarQuimicaSanguinea.disabled = false;
+                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                    Navegar.laboratorista();
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarQuimicaSanguinea.disabled = false;
+                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+
+            }
+        })
+    });
+
+}
+
+function modalAgregarNuevoUsuarioPruebasEspeciales(){
+    $("#modal_agregar_paciente_pruebas_especiales").modal('show'); 
+
+    let btnGuardarPacientePruebasEspeciales = document.getElementById('btnGuardarPacientePruebasEspeciales');
+    btnGuardarPacientePruebasEspeciales.addEventListener('click', () => {
+        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
+            .then((value) => {
+                if(value==true) {
+                    let noDPI = document.getElementById("txtnoDPIPruebasEspeciales").value;
+                    let nombrePaciente = document.getElementById("txtNombrePacientePruebasEspeciales").value;
+                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoPruebasEspeciales").value;
+                    let empresaPaciente = document.getElementById("cmbEmpresaPacientePruebasEspeciales").value;
     
+                    
+                    btnGuardarPacientePruebasEspeciales.disabled = true;
+                    btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    
+    
+                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
+                    .then(() => {
+                        F.Aviso("Paciente guardado exitosamente!!!");
+                        catalogoPacientes();
+                        $("#modal_agregar_paciente_pruebas_especiales").modal('hide');
+                        // limpiar_datos_pacientes();
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
+                    })
+                    .catch((e) => {
+                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
+                        console.error(`Error al agregar paciente: ${e}`);
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                    .finally(() => {
+                        btnGuardarPacientePruebasEspeciales.disabled = false;
+                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
+                    })
+                }
+            })
+    });        
 };
 
 function initView(){
@@ -2941,61 +3245,6 @@ function navegacionPage() {
 }
 
 
-
-// Función para filtrar mientras se escribe
-function filtrarPacientesPorNombre() {
-    const filtro = this.value.toLowerCase();
-    if (filtro.length === 0) {
-        dibujarTablaPacientes(todosLosPacientes);
-        return;
-    }
-    
-    const pacientesFiltrados = todosLosPacientes.filter(paciente => {
-        // Buscar en nombre
-        const nombreMatch = paciente.nombre_paciente.toLowerCase().includes(filtro);
-        
-        // Buscar en DPI (eliminando guiones para mejor búsqueda)
-        const dpiClean = paciente.no_dpi ? paciente.no_dpi.replace(/-/g, '') : '';
-        const dpiMatch = dpiClean.includes(filtro.replace(/-/g, ''));
-        
-        // Buscar en fecha (formateada)
-        const fechaFormateada = F.formatearFechaANormal(paciente.fecha_nacimiento);
-        const fechaMatch = fechaFormateada.includes(filtro);
-        
-        return nombreMatch || dpiMatch || fechaMatch;
-    });
-    
-    dibujarTablaPacientes(pacientesFiltrados);
-}
-
-// Función para filtrar al hacer click en el botón
-function filtrarPacientesPorNombreClick() {
-    const input = document.getElementById("txtFiltrarBusquedaDePaciente");
-    const filtro = input.value.toLowerCase();
-    
-    if (filtro.length === 0) {
-        dibujarTablaPacientes(todosLosPacientes);
-        return;
-    }
-    
-    const pacientesFiltrados = todosLosPacientes.filter(paciente => {
-        // Buscar en nombre
-        const nombreMatch = paciente.nombre_paciente.toLowerCase().includes(filtro);
-        
-        // Buscar en DPI (eliminando guiones para mejor búsqueda)
-        const dpiClean = paciente.no_dpi ? paciente.no_dpi.replace(/-/g, '') : '';
-        const dpiMatch = dpiClean.includes(filtro.replace(/-/g, ''));
-        
-        // Buscar en fecha (formateada)
-        const fechaFormateada = F.formatearFechaANormal(paciente.fecha_nacimiento);
-        const fechaMatch = fechaFormateada.includes(filtro);
-        
-        return nombreMatch || dpiMatch || fechaMatch;
-    });
-    
-    dibujarTablaPacientes(pacientesFiltrados);
-}
-
 function limpiarDatosDeExamenCoprologia() {
     document.getElementById("FloatImporteCiprologia").value = '';
     document.getElementById("colorHecesMacroscopio").value = '';
@@ -3088,9 +3337,9 @@ async function btnAgregarPacienteModal() {
                         F.Aviso("Paciente guardado exitosamente!!!");
                         limpiarDatosAgregarPacientes()
                         
-                        // Actualizar la lista completa de pacientes
-                        todosLosPacientes = await catalogoPacientesParaNuevoExamen();
-                        dibujarTablaPacientes(todosLosPacientes);
+                        // Filtrar por todo busqueda
+                        let todoLosPacientes = await catalogoPacientesParaNuevoExamen();
+                        dibujarTablaPacientes(todoLosPacientes);
                         
                         $("#modal_agregar_paciente").modal('hide');
                     } catch (e) {
@@ -3326,55 +3575,6 @@ function cargarEmpresasLaboratorioUro() {
         });
 }
 
-function getAbrirModalPacientesEnfInfecciosas() {
-    $("#modal_catalogo_pacientes_enfermedades_infecciosas").modal("show");
-
-    let btnGuardarExamenEnfermedadesInfecc = document.getElementById("btnGuardarExamenEnfermedadesInfecc");
-    btnGuardarExamenEnfermedadesInfecc.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-
-                let importe = document.getElementById("floatImporteEnfInfecciosas").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
-
-                let AnalisisEnfermedadesInfecciosas = document.getElementById("txtAnalisisEnfermedadesInfecciosas").value || '';
-                if(AnalisisEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
-
-                let resultadosEnfermedadesInfecciosas = document.getElementById("txtResultadosEnfermedadesInfecciosas").value || '';
-                if(resultadosEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
-
-                let valorReferenciaEnfermedadesInfecciosas = document.getElementById("txtValorReferenciaEnfermedadesInfecciosas").value || '';
-                if(valorReferenciaEnfermedadesInfecciosas==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
-
-                btnGuardarExamenEnfermedadesInfecc.disabled = true;
-                btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-spin"></i>`;
-
-                insertDatosEnfermedadesInfecciosas()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
-                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenEnfermedadesInfecc.disabled = false;
-                    btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-
-            }
-        })
-    })
-}
-
 function modalAgregarNuevoUsuarioEnferInfecciosas(){
     $("#modal_agregar_paciente_enfer_infecciosas").modal('show'); 
 
@@ -3492,54 +3692,7 @@ function cargarEmpresasLaboratorioEnferInfecciosas() {
         });
 }
 
-function getAbrirModalPacientesExamenesBacteriologicos() {
-    $("#modal_catalogo_pacientes_examenes_bacteriologicos").modal("show");
 
-    let btnGuardarExamenBacteriologicos = document.getElementById("btnGuardarExamenBacteriologicos");
-    btnGuardarExamenBacteriologicos.addEventListener('click', () => {
-        F.Confirmacion("¿Esta seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-                
-                let importe = document.getElementById("floatImporteExamenesBacteriologicos").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
-
-                let examenesBacteriologicosAnalisis = document.getElementById("txtExamenesExamenesBacteriologicos").value || '';
-                if(examenesBacteriologicosAnalisis==''){F.AvisoError("Ingrese el valor de ANALISIS!!!");return;}
-
-                let resultadosExamenesBacteriologicos = document.getElementById("txtResultadosExamenesBacteriologicos").value || '';
-                if(resultadosExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de RESULTADO!!!");return;}
-
-                let valorReferenciaExamenesBacteriologicos = document.getElementById("txtValorReferenciaExamenesBacteriologicos").value || '';
-                if(valorReferenciaExamenesBacteriologicos==''){F.AvisoError("Ingrese el valor de VALOR REFERENCIA!!!");return;}
-
-                btnGuardarExamenBacteriologicos.disabled = true;
-                btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenesBacteriologicos()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!")
-                    btnGuardarExamenBacteriologicos.disabled = false;
-                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((errr) => {
-                    if (errr instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + errr.message);
-                    }
-                    console.error("Error detallado:", errr);
-                })
-                .finally(() => {
-                    btnGuardarExamenBacteriologicos.disabled = false;
-                    btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-
-            }
-        })
-    })    
-}
 
 function modalAgregarNuevoUsuarioEnferBacteriologico(){
     $("#modal_agregar_paciente_enfer_bacteriologico").modal('show'); 
@@ -3658,66 +3811,6 @@ function cargarEmpresasLaboratorioEnferBacteriologico() {
         });
 }
 
-function getAbrirModalHemoglobinaGlicosilada() {
-    $("#modal_catalogo_pacientes_hemoglobina").modal("show");
-
-    let btnGuardarExamenHemoglobinaGlicosilada = document.getElementById("btnGuardarExamenHemoglobinaGlicosilada");
-    btnGuardarExamenHemoglobinaGlicosilada.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true){
-                
-                let importe = document.getElementById("FloatImporteHemoglobinaGlicosilada").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!");return};
-
-                let examenHemoglobinaGlicosilada = document.getElementById("txtExamenHemoglobinaGlicosilada").value || '';
-                if(examenHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de EXAMEN!!!"); return};
-
-                let resultadoHemoglobinaGlicosilada = document.getElementById("txtResultadoHemoglobinaGlicosilada").value || '';
-                if(resultadoHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
-
-                let valorNormalHemoglobinaGlicosilada = document.getElementById("txtvalorNormalHemoglobinaGlicosilada").value || '';
-                if(valorNormalHemoglobinaGlicosilada==''){F.AvisoError("Ingrese el valor de VALOR NORMAL!!!"); return}
-;
-                let pruebaDeHba1c = document.getElementById("txtPruebaDeHba1c").value || '';
-                if(pruebaDeHba1c==''){F.AvisoError("Ingrese el valor de PRUEBA DE HBA1C!!!"); return};
-
-                let promedioDeGlicemia = document.getElementById("txtPromedioDeGlicemia").value || '';
-                if(promedioDeGlicemia==''){F.AvisoError("Ingrese el valor de PROMEDIO DE GLICEMIA"); return};
-
-                let calificacionGlicemia = document.getElementById("txtCalificacionGlicemia").value || '';
-                if(calificacionGlicemia==''){F.AvisoError("Ingrese el valor de CALIFICACION"); return};
-
-                btnGuardarExamenHemoglobinaGlicosilada.disabled = true;
-                btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-
-                insertDatosExamenHemoglobinaGlicosilada()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
-                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
-                    btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-
-
-            }
-        })
-    })
-
-}
-
 function modalAgregarNuevoUsuarioHemoglobina(){
     $("#modal_agregar_paciente_hemoglobina").modal('show'); 
 
@@ -3834,96 +3927,6 @@ function cargarEmpresasLaboratorioHemoglobina() {
         });
 }
 
-function getAbrirModalPruebasEspeciales() {
-    $("#modal_catalogo_pacientes_pruebas_especiales").modal("show");
-
-    let btnGuardarExamenPruebasEspeciales = document.getElementById("btnGuardarExamenPruebasEspeciales");
-    btnGuardarExamenPruebasEspeciales.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-
-                let importe = document.getElementById("floatImportePruebasEspeciales").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor de IMPORTE!!!"); return};
-
-                let examenResultadoPruebasEspeciales = document.getElementById("txtExamenResultadoPruebasEspeciales").value || '';
-                if(examenResultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valor de EXAMEN");return};
-                let resultadoPruebasEspeciales = document.getElementById("txtResultadoPruebasEspeciales").value || '';
-                if(resultadoPruebasEspeciales==''){F.AvisoError("Ingrese el valro de RESULTADO!!!");return};
-                let valorReferenciaPruebasEspeciales = document.getElementById("txtvalorReferenciaPruebasEspeciales").value || '';
-                if(valorReferenciaPruebasEspeciales==''){F.AvisoError("Ingrese el valro de VALOR REFERENCIA!!!");return};
-
-                btnGuardarExamenPruebasEspeciales.disabled = true;
-                btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-spin"></i>`;
-
-                insertarDatosPruebasEspeciales()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarExamenPruebasEspeciales.disabled = false;
-                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarExamenPruebasEspeciales.disabled = false;
-                    btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-            }
-        })
-    })
-
-}
-
-function modalAgregarNuevoUsuarioPruebasEspeciales(){
-    $("#modal_agregar_paciente_pruebas_especiales").modal('show'); 
-
-    let btnGuardarPacientePruebasEspeciales = document.getElementById('btnGuardarPacientePruebasEspeciales');
-    btnGuardarPacientePruebasEspeciales.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro que desea Guardar este nuevo usuario?")
-            .then((value) => {
-                if(value==true) {
-                    let noDPI = document.getElementById("txtnoDPIPruebasEspeciales").value;
-                    let nombrePaciente = document.getElementById("txtNombrePacientePruebasEspeciales").value;
-                    let fecha_nacimiento = document.getElementById("txtFechaNacimientoPruebasEspeciales").value;
-                    let empresaPaciente = document.getElementById("cmbEmpresaPacientePruebasEspeciales").value;
-    
-                    
-                    btnGuardarPacientePruebasEspeciales.disabled = true;
-                    btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    
-    
-                    insert_paciente_laboratorio(noDPI, F.limpiarTexto(nombrePaciente), fecha_nacimiento, empresaPaciente)
-                    .then(() => {
-                        F.Aviso("Paciente guardado exitosamente!!!");
-                        catalogoPacientes();
-                        $("#modal_agregar_paciente_pruebas_especiales").modal('hide');
-                        // limpiar_datos_pacientes();
-                        btnGuardarPacientePruebasEspeciales.disabled = false;
-                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    })
-                    .catch((e) => {
-                        F.AvisoError(`No se pudo guardar el paciente, error ${e}`);
-                        console.error(`Error al agregar paciente: ${e}`);
-                        btnGuardarPacientePruebasEspeciales.disabled = false;
-                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                    .finally(() => {
-                        btnGuardarPacientePruebasEspeciales.disabled = false;
-                        btnGuardarPacientePruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
-                    })
-                }
-            })
-        
-    })
-}
-
 function btnAbrirModalEmpresaPruebasEspeciales(){
     $("#modal_agregar_empresa_pruebas_especiales").modal('show');
 
@@ -3997,53 +4000,6 @@ function cargarEmpresasLaboratorioPruebasEspeciales() {
         });
 }
 
-function getAbrirModalHcgCuantitativa() {
-    $("#modal_catalogo_pacientes_hcg_cuantitativa").modal("show");
-
-    let btnGuardarHcgCuantitativa = document.getElementById("btnGuardarHcgCuantitativa");
-    btnGuardarHcgCuantitativa.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-
-                let importe = document.getElementById("FloatImporteHcgCuantitativa").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
-
-                let analisisHcgCuantitativa = document.getElementById("txtAnalisisHcgCuantitativa").value || '';
-                if(analisisHcgCuantitativa==''){F.AvisoError("Ingrese el valor de ANALISIS!!!"); return};
-
-                let resultadoHcgCuantitativa = document.getElementById("txtResultadoHcgCuantitativa").value || '';
-                if(resultadoHcgCuantitativa==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
-
-                let valorDeReferenciaHcgCuantitativa = document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value || '';
-                if(valorDeReferenciaHcgCuantitativa==''){F.AvisoError("Ingrese el valor de VALOR DE REFERENCIA!!!"); return};
-
-                btnGuardarHcgCuantitativa.disabled = true;
-                btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-spin"></i>`;
-
-                insertDatosHcgCuantitativa()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarHcgCuantitativa.disabled = false;
-                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarHcgCuantitativa.disabled = false;
-                    btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-            }
-        })
-    })
-}
 
 function modalAgregarNuevoUsuarioHcgCuantitativa(){
     $("#modal_agregar_paciente_hcg_cuantitativa").modal('show'); 
@@ -4159,55 +4115,6 @@ function cargarEmpresasLaboratorioHcgCuantitativa() {
             document.getElementById('cmbEmpresaPacienteHcgCuantitativa').innerHTML = '<option value="">No hay datos</option>';
             // document.getElementById('cmbEmpresaPacienteE').innerHTML = '<option value="">No hay datos</option>';
         });
-}
-
-function getAbrirModalQuimicaSanguinea() {
-    $("#modal_catalogo_pacientes_quimica_sanguinea").modal("show");
-
-    let btnGuardarQuimicaSanguinea = document.getElementById("btnGuardarQuimicaSanguinea");
-
-    btnGuardarQuimicaSanguinea.addEventListener('click', () => {
-        F.Confirmacion("¿Está seguro de guardar el examen?")
-        .then((value) => {
-            if(value==true) {
-
-                let importe = document.getElementById("FloatImporteQuimicaSanguinea").value || '';
-                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
-
-                let examenQuimicaSanguinea = document.getElementById("txtExamenQuimicaSanguinea").value || '';
-                if(examenQuimicaSanguinea==''){F.AvisoError("Ingrese el valor del EXAMEN!!!"); return};
-                let resultadoQuimicaSanguinea = document.getElementById("txtResultadoQuimicaSanguinea").value || '';
-                if(resultadoQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
-                let valorNormalQuimicaSanguinea = document.getElementById("txtvalorNormalQuimicaSanguinea").value || '';
-                if(valorNormalQuimicaSanguinea==''){F.AvisoError("Ingrese el valor de VALOR NORMAL")};
-
-                btnGuardarQuimicaSanguinea.disabled = true;
-                btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-spin"></i>`;
-
-                insertDatosQuimicaSanguinea()
-                .then(() => {
-                    F.Aviso("Examen guardado exitosamente!!!");
-                    btnGuardarQuimicaSanguinea.disabled = false;
-                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
-                })
-                .catch((e) => {
-                    if (e instanceof TypeError) {
-                        F.AvisoError("Error de conexión. Revise su red.");
-                    } else {
-                        F.AvisoError("No se pudo guardar el examen: " + e.message);
-                    }
-                    console.error("Error detallado:", e);
-                })
-                .finally(() => {
-                    btnGuardarQuimicaSanguinea.disabled = false;
-                    btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
-                })
-
-            }
-        })
-    })
-
 }
 
 function modalAgregarNuevoUsuarioQuimicaSanguinea(){
@@ -4326,9 +4233,6 @@ function cargarEmpresasLaboratorioQuimicaSanguinea() {
         });
 }
 
-function getAbrirModalResultadosVarios() {
-    $("#modal_catalogo_pacientes_resultados_varios").modal("show");
-}
 
 function modalAgregarNuevoUsuarioResultadosVarios(){
     $("#modal_agregar_paciente_resultados_varios").modal('show'); 

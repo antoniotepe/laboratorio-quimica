@@ -376,6 +376,24 @@ app.post("/lista_pacientes", function (req, res) {
   execute.Query(res, qry);
 });
 
+// Busqueda de pacientes con filtro
+app.post('/busquedaDePacientes', function (req, res) {
+
+  const {dpi, nombre, fecha_nacimiento, empresa} = req.body;
+
+  let qry = `
+      SELECT * FROM PACIENTES
+        WHERE nombre LIKE '%${dpi}%'
+        AND (NO_DPI LIKE '%${nombre}%')
+        AND (FECHA_NACIMIENTO LIKE '%${fecha_nacimiento}%')
+        AND (EMPRESA_ID LIKE '%${empresa}%');
+      ';
+  `;
+
+  execute.Query(res, qry);
+
+})
+
 app.post("/datos_pacientes", (req, res) => {
 
   const { id } = req.body;
@@ -592,6 +610,20 @@ app.post("/insert_examen_quimica_sanguinea", (req, res) => {
     QUIMICA_SANGUINEA_EXAMEN, QUIMICA_SANGUINEA_RESULTADO, QUIMICA_SANGUINEA_VALOR_NORMAL)
       VALUES
     ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}','${anio}','${mes}','${quimica_sanguinea_examen}','${quimica_sanguinea_resultado}','${quimica_sanguinea_valor_normal}')
+  `;
+  execute.Query(res, qry);
+  console.log(qry);
+})
+
+app.post("/insert_examen_resultados_varios", (req, res) => {
+  const { tipo_examen, pacientes_id, importe, medico_tratante, fecha, anio, mes, resultados_varios_examen, resultados_varios_resultado, resultados_varios_valor_normal, resultados_varios_grupo_sanguineo_analisis, resultados_varios_grupo_sanguineo_rh, resultados_varios_inmunoserologia_examen_widal, resultados_varios_inmunoserologia_resultado, resultados_varios_inmunoserologia_valor_normal, resultados_varios_dengue_analisis, resultados_varios_dengue_resultado, resultados_varios_dengue_valor_normal } = req.body;
+
+  let qry = `
+    INSERT INTO EXAMENES
+      (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES,
+      RESULTADOS_VARIOS_EXAMEN, RESULTADOS_VARIOS_RESULTADO, RESULTADOS_VARIOS_VALOR_NORMAL, RESULTADOS_VARIOS_GRUPO_SANGUINEO_ANALISIS, RESULTADOS_VARIOS_GRUPO_SANGUINEO_RH, RESULTADOS_VARIOS_INMUNOSEROLOGIA_EXAMEN_WIDAL, RESULTADOS_VARIOS_INMUNOSEROLOGIA_RESULTADO, RESULTADOS_VARIOS_INMUNOSEROLOGIA_VALOR_NORMAL, RESULTADOS_VARIOS_DENGUE_ANALISIS, RESULTADOS_VARIOS_DENGUE_RESULTADO, RESULTADOS_VARIOS_DENGUE_VALOR_NORMAL)
+      VALUES
+      ('${tipo_examen}', ${pacientes_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${resultados_varios_examen}', '${resultados_varios_resultado}', '${resultados_varios_valor_normal}', '${resultados_varios_grupo_sanguineo_analisis}', '${resultados_varios_grupo_sanguineo_rh}', '${resultados_varios_inmunoserologia_examen_widal}', '${resultados_varios_inmunoserologia_resultado}', '${resultados_varios_inmunoserologia_valor_normal}', '${resultados_varios_dengue_analisis}', '${resultados_varios_dengue_resultado}', '${resultados_varios_dengue_valor_normal}')
   `;
   execute.Query(res, qry);
   console.log(qry);
