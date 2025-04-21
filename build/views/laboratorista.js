@@ -2555,6 +2555,9 @@ function getView(){
 };
 
 function addListeners(){
+
+    F.slideAnimationTabs();
+
     navegacionPage();
     cargarEmpresasLaboratorioPaciente();
     cargarEmpresasLaboratorioUro();
@@ -3135,52 +3138,52 @@ function initView(){
 
 function navegacionPage() {
     document.getElementById("card_coproanalisis").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+    
         document.getElementById("tab-dos").click();
     });
 
     document.getElementById("card_uroanalisis").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-tres").click()
     });
 
     document.getElementById("enfermedades_infecciosas").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-cuatro").click();
     })
 
     document.getElementById("card_enfermedades_bacteriologicos").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-cinco").click();
     });
 
     document.getElementById("card_hemoglobina_glicosilada").addEventListener('click', () => {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-seis").click();
     })
 
     document.getElementById("card_pruebas_especiales").addEventListener('click', () => {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-siete").click();
     })
 
     document.getElementById("card_examenes_hcg_cuantitativa").addEventListener('click', () => {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-ocho").click();
     })
 
     document.getElementById("card_examenes_quimica_sanguinea").addEventListener('click', () => {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-nueve").click();
     })
 
     document.getElementById("card_examenes_resultados_varios").addEventListener('click', () => {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-diez").click();
     })
 
     document.getElementById("card_nuevo_examen").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-once").click();
     });
 
@@ -3193,52 +3196,52 @@ function navegacionPage() {
     })
 
     document.getElementById("idRetrocederVistaCardsExamenes").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-once").click();
     });
 
     document.getElementById("idRetrocederDeVistaExamenCoprologia").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+        //F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
 
     document.getElementById("idRetrocederDeVistaExamenUrologia").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
     
     document.getElementById("idRetrocederVistaDeEnfermedadesInfecciosas").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
     
     document.getElementById("idRetrocederVistaEnfermedadesBacteriologicos").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
     
     document.getElementById("idRetrocederVistaHemoglobinaGlicosilada").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
     
     document.getElementById("idRetrocederVistaPruebasEspeciales").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
 
     document.getElementById("idRetrocederVistaHcgCuantitativa").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
 
     document.getElementById("idRetrocederVistaQuimicaSanguinea").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       //F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
 
     document.getElementById("idRetrocederVistaResutltadosVarios").addEventListener('click', ()=> {
-        F.slideAnimationTabs();
+       // F.slideAnimationTabs();
         document.getElementById("tab-doce").click();
     });
 
