@@ -1049,9 +1049,6 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
     });
     } else if (examen.tipo_examen === 'HCG CUANTITATIVA') {
 
-        doc.fontSize(11).text("EXAMENES HCG CUANTITATIVA:", { align: "center" });
-        doc.moveDown();
-
         // Tabla de resultados
         const tableResultadosHCG = {
         headers: [
