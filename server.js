@@ -1047,8 +1047,37 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
           indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
         },
     });
+    } else if (examen.tipo_examen === 'HCG CUANTITATIVA') {
+
+        doc.fontSize(11).text("EXAMENES HCG CUANTITATIVA:", { align: "center" });
+        doc.moveDown();
+
+        // Tabla de resultados
+        const tableResultadosHCG = {
+        headers: [
+            { label: "ANALISIS", property: 'analisis_hcg_cuantitativa', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+            { label: "RESULTADO", property: 'resultado_hcg_cuantitativa', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+            { label: "VALOR REFERENCIA", property: 'valor_referencia_hcg_cuantitativa', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
+        ],
+        datas: [
+            {
+                analisis_hcg_cuantitativa: examen.hcg_cuantitativa_analisis || 'No especificado',
+                resultado_hcg_cuantitativa: examen.hcg_cuantitativa_resultado || 'No especificado',
+                valor_referencia_hcg_cuantitativa: examen.hcg_cuantitativa_valores_de_referencia || 'No especificado',
+            }
+        ]
+    };
+
+    doc.table(tableResultadosHCG, {
+        prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+        prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+          doc.font("Helvetica-Bold").fontSize(8);
+          indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+        },
+    });
 
     }
+
         // Finalizar el PDF
         doc.end();
         stream.on('finish', () => {

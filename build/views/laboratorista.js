@@ -1003,7 +1003,7 @@ function getView(){
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
                        <div class="col-12 col-md-6 mt-3">
                             <div class="h3" id="txtTipoHcgCuantitativa">
-                                <strong>EXAMEN HCG CUANTITATIVA</strong>
+                                <strong>HCG CUANTITATIVA</strong>
                             </div>    
                        </div>
                     </div>
