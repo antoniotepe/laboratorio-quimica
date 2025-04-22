@@ -3079,11 +3079,88 @@ function addListeners(){
                     btnGuardarQuimicaSanguinea.disabled = false;
                     btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
                 })
-
             }
         })
     });
 
+    let btnGuardarResultadoVarios = document.getElementById('btnGuardarResultadoVarios');
+    btnGuardarResultadoVarios.addEventListener('click', ()=> {
+        F.Confirmacion('Está seguro de guardar el examen?')
+        .then((value) => {
+            if(value==true) {
+
+                let importe = document.getElementById("FloatImporteResultadoVarios").value || '';
+                if(importe==''){F.AvisoError("Ingrese el valor del IMPORTE!!!"); return};
+
+                let examenResultadoVarios = document.getElementById("txtExamenResultadoVarios").value || '';
+                if(examenResultadoVarios==''){F.AvisoError("Ingrese el valor del EXAMEN!!!"); return};
+                let resultadoDeResultadoVarios = document.getElementById("txtResultadoResultadoVarios").value || '';
+                if(resultadoDeResultadoVarios==''){F.AvisoError("Ingrese el valor de RESULTADO!!!"); return};
+                let valorNormalResultadoVarios = document.getElementById("txtvalorNormalResultadoVarios").value || '';
+                if(valorNormalResultadoVarios==''){F.AvisoError("Ingrese el valor de VALOR NORMAL")};
+
+                let analisisResultadosVariosGrupoSanguineo = document.getElementById("txtAnalisisResultadoVariosGrupoSanguineo").value || '';
+                if(analisisResultadosVariosGrupoSanguineo==''){F.AvisoError("Ingrese el valor de ANALISIS GRUPO SANGUINEO")};
+                let rhResultadosVariosGrupoSanguineo = document.getElementById("txtRhResultadoVariosGrupoSanguineo").value || '';
+                if(rhResultadosVariosGrupoSanguineo==''){F.AvisoError("Ingrese el valor de RH GRUPO SANGUINEO")};
+                
+                let examenWidalResultadoVariosInmunoserologia = document.getElementById("txtInmunoserologiaExamenWidalResultadosVarios").value || '';
+                if(examenWidalResultadoVariosInmunoserologia==''){F.AvisoError("Ingrese el valor de EXAMEN WIDAL")};
+                let resultadoInmunoserologia = document.getElementById("txtInmunoserologiaResultadoResultadosVarios").value || '';
+                if(resultadoInmunoserologia==''){F.AvisoError("Ingrese el valor de RESULTADO INMUNOSEROLOGIA")};
+                let valorNormalInmunoserologia = document.getElementById("txtInmunoserologiaVarlorNormalResultadosVarios").value || '';
+                if(valorNormalInmunoserologia==''){F.AvisoError("Ingrese el valor de VALOR NORMAL INMUNOSEROLOGIA")};
+                
+                let analisisDengue = document.getElementById("txtAnalisisDengueResultadosVarios").value || '';
+                if(analisisDengue==''){F.AvisoError("Ingrese el valor de ANALISIS DENGUE")};
+                let resultadoDengue = document.getElementById("txtResultadoDengueResultadosVarios").value || '';
+                if(resultadoDengue==''){F.AvisoError("Ingrese el valor de RESULTADO DENGUE")};
+                let valorNormalDengue = document.getElementById("txtValorNormalDengueResultadosVarios").value || '';
+                if(valorNormalDengue==''){F.AvisoError("Ingrese el valor de VALOR NORMAL DENGUE")};
+                
+
+                btnGuardarResultadoVarios.disabled = true;
+                btnGuardarResultadoVarios.innerHTML = `<i class="fal fa-spin"></i>`;
+
+                insertDatosResultadosVarios()
+                .then(() => {
+                    F.Aviso("Examen guardado exitosamente!!!");
+                    limpiarDatosResultadosVarios();
+                    btnGuardarResultadoVarios.disabled = false;
+                    btnGuardarResultadoVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                    
+                })
+                .catch((e) => {
+                    if (e instanceof TypeError) {
+                        F.AvisoError("Error de conexión. Revise su red.");
+                    } else {
+                        F.AvisoError("No se pudo guardar el examen: " + e.message);
+                    }
+                    console.error("Error detallado:", e);
+                })
+                .finally(() => {
+                    btnGuardarResultadoVarios.disabled = false;
+                    btnGuardarResultadoVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                })
+            }
+        })
+    })
+
+}
+
+function limpiarDatosResultadosVarios(){
+    document.getElementById("FloatImporteResultadoVarios").value = '';
+    document.getElementById("txtExamenResultadoVarios").value = '';
+    document.getElementById("txtResultadoResultadoVarios").value = '';
+    document.getElementById("txtvalorNormalResultadoVarios").value = '';
+    document.getElementById("txtAnalisisResultadoVariosGrupoSanguineo").value = '';
+    document.getElementById("txtRhResultadoVariosGrupoSanguineo").value = '';
+    document.getElementById("txtInmunoserologiaExamenWidalResultadosVarios").value = '';
+    document.getElementById("txtInmunoserologiaResultadoResultadosVarios").value = '';
+    document.getElementById("txtInmunoserologiaVarlorNormalResultadosVarios").value = '';
+    document.getElementById("txtAnalisisDengueResultadosVarios").value = '';
+    document.getElementById("txtResultadoDengueResultadosVarios").value = '';
+    document.getElementById("txtValorNormalDengueResultadosVarios").value = '';          
 }
 
 function modalAgregarNuevoUsuarioPruebasEspeciales(){
@@ -5023,6 +5100,70 @@ function insertDatosQuimicaSanguinea() {
         })
         .finally(() => {
             console.info("Datos de examenes hcg cuantitativa Finalizados");
+        })
+    })
+}
+
+function insertDatosResultadosVarios() {
+
+    let fechaResultadoVariosTomarMesyAnio =  new Date(document.getElementById("fechaPaciente").value);
+    let tipoExamenResultadoVarios = document.getElementById("txtTipoResultadosVarios").querySelector('strong').textContent;
+    let importeRVarios = document.getElementById("FloatImporteResultadoVarios").value;
+    let medicoTratante = document.getElementById("txtMedicoPaciente").value;
+    let fechaResultadosVarios = F.devuelveFecha("fechaPaciente");
+    let anioResultadoVarios = fechaResultadoVariosTomarMesyAnio.getFullYear();
+    let mesResultadoVarios = fechaResultadoVariosTomarMesyAnio.getUTCMonth()+1;
+
+    let examenResultadoVarios = document.getElementById("txtExamenResultadoVarios").value;
+    let resultadoDeResultadoVarios = document.getElementById("txtResultadoResultadoVarios").value;
+    let valorNormalResultadoVarios = document.getElementById("txtvalorNormalResultadoVarios").value;
+
+    let analisisResultadosVariosGrupoSanguineo = document.getElementById("txtAnalisisResultadoVariosGrupoSanguineo").value;
+    let rhResultadosVariosGrupoSanguineo = document.getElementById("txtRhResultadoVariosGrupoSanguineo").value;
+
+    let examenWidalResultadoVariosInmunoserologia = document.getElementById("txtInmunoserologiaExamenWidalResultadosVarios").value;
+    let resultadoInmunoserologia = document.getElementById("txtInmunoserologiaResultadoResultadosVarios").value;
+    let valorNormalInmunoserologia = document.getElementById("txtInmunoserologiaVarlorNormalResultadosVarios").value;
+
+    let analisisDengue = document.getElementById("txtAnalisisDengueResultadosVarios").value;
+    let resultadoDengue = document.getElementById("txtResultadoDengueResultadosVarios").value;
+    let valorNormalDengue = document.getElementById("txtValorNormalDengueResultadosVarios").value;
+
+    return new Promise((resolve, reject) => {
+        axios.post("/insert_examen_resultados_varios", {
+            tipo_examen: tipoExamenResultadoVarios,
+            paciente_id: GlobalIdPaciente,
+            importe: importeRVarios,
+            medico_tratante:medicoTratante || 'Sin medico referido',
+            fecha: fechaResultadosVarios,
+            anio: anioResultadoVarios,
+            mes: mesResultadoVarios,
+            resultados_varios_examen:examenResultadoVarios,
+            resultados_varios_resultado:resultadoDeResultadoVarios,
+            resultados_varios_valor_normal:valorNormalResultadoVarios,
+            resultados_varios_grupo_sanguineo_analisis:analisisResultadosVariosGrupoSanguineo,
+            resultados_varios_grupo_sanguineo_rh:rhResultadosVariosGrupoSanguineo,
+            resultados_varios_inmunoserologia_examen_widal:examenWidalResultadoVariosInmunoserologia,
+            resultados_varios_inmunoserologia_resultado:resultadoInmunoserologia,
+            resultados_varios_inmunoserologia_valor_normal:valorNormalInmunoserologia,
+            resultados_varios_dengue_analisis:analisisDengue,
+            resultados_varios_dengue_resultado:resultadoDengue,
+            resultados_varios_dengue_valor_normal:valorNormalDengue            
+        })
+        .then((response) => {
+            let data = response.data;
+            if(data && data.affectedRows > 0){
+                resolve(data);
+            } else {
+                reject();
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            reject(err);
+        })
+        .finally(() => {
+            console.info("Datos de examenes RESULTADOS VARIOS CON EXITO");
         })
     })
 }

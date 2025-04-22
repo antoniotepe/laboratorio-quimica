@@ -616,17 +616,17 @@ app.post("/insert_examen_quimica_sanguinea", (req, res) => {
 })
 
 app.post("/insert_examen_resultados_varios", (req, res) => {
-  const { tipo_examen, pacientes_id, importe, medico_tratante, fecha, anio, mes, resultados_varios_examen, resultados_varios_resultado, resultados_varios_valor_normal, resultados_varios_grupo_sanguineo_analisis, resultados_varios_grupo_sanguineo_rh, resultados_varios_inmunoserologia_examen_widal, resultados_varios_inmunoserologia_resultado, resultados_varios_inmunoserologia_valor_normal, resultados_varios_dengue_analisis, resultados_varios_dengue_resultado, resultados_varios_dengue_valor_normal } = req.body;
+  const { tipo_examen, paciente_id, importe, medico_tratante, fecha, anio, mes, resultados_varios_examen, resultados_varios_resultado, resultados_varios_valor_normal, resultados_varios_grupo_sanguineo_analisis, resultados_varios_grupo_sanguineo_rh, resultados_varios_inmunoserologia_examen_widal, resultados_varios_inmunoserologia_resultado, resultados_varios_inmunoserologia_valor_normal, resultados_varios_dengue_analisis, resultados_varios_dengue_resultado, resultados_varios_dengue_valor_normal } = req.body;
 
   let qry = `
     INSERT INTO EXAMENES
       (TIPO_EXAMEN, PACIENTE_ID, IMPORTE, MEDICO_TRATANTE, FECHA, ANIO, MES,
       RESULTADOS_VARIOS_EXAMEN, RESULTADOS_VARIOS_RESULTADO, RESULTADOS_VARIOS_VALOR_NORMAL, RESULTADOS_VARIOS_GRUPO_SANGUINEO_ANALISIS, RESULTADOS_VARIOS_GRUPO_SANGUINEO_RH, RESULTADOS_VARIOS_INMUNOSEROLOGIA_EXAMEN_WIDAL, RESULTADOS_VARIOS_INMUNOSEROLOGIA_RESULTADO, RESULTADOS_VARIOS_INMUNOSEROLOGIA_VALOR_NORMAL, RESULTADOS_VARIOS_DENGUE_ANALISIS, RESULTADOS_VARIOS_DENGUE_RESULTADO, RESULTADOS_VARIOS_DENGUE_VALOR_NORMAL)
       VALUES
-      ('${tipo_examen}', ${pacientes_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${resultados_varios_examen}', '${resultados_varios_resultado}', '${resultados_varios_valor_normal}', '${resultados_varios_grupo_sanguineo_analisis}', '${resultados_varios_grupo_sanguineo_rh}', '${resultados_varios_inmunoserologia_examen_widal}', '${resultados_varios_inmunoserologia_resultado}', '${resultados_varios_inmunoserologia_valor_normal}', '${resultados_varios_dengue_analisis}', '${resultados_varios_dengue_resultado}', '${resultados_varios_dengue_valor_normal}')
+      ('${tipo_examen}', ${paciente_id}, ${importe}, '${medico_tratante}', '${fecha}', '${anio}', '${mes}', '${resultados_varios_examen}', '${resultados_varios_resultado}', '${resultados_varios_valor_normal}', '${resultados_varios_grupo_sanguineo_analisis}', '${resultados_varios_grupo_sanguineo_rh}', '${resultados_varios_inmunoserologia_examen_widal}', '${resultados_varios_inmunoserologia_resultado}', '${resultados_varios_inmunoserologia_valor_normal}', '${resultados_varios_dengue_analisis}', '${resultados_varios_dengue_resultado}', '${resultados_varios_dengue_valor_normal}')
   `;
   execute.Query(res, qry);
-  console.log(qry);
+
 })
 
 // Obtener examenes de administracion
@@ -1072,8 +1072,140 @@ app.post("/datos_examenes_para_pdf", (req, res) => {
           indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
         },
     });
+    } else if (examen.tipo_examen === 'QUIMICA SANGUINEA') {
 
-    }
+      // Tabla de resultados
+      const tableResultadosHCG = {
+      headers: [
+          { label: "EXAMEN", property: 'examen_quimica', width: 200, headerColor: "#de0606", headerOpacity: 0.15 },
+          { label: "RESULTADO", property: 'resultado_quimica', width: 150, headerColor: "#de0606", headerOpacity: 0.15 },
+          { label: "VALOR NORMAL", property: 'valor_normal_quimica', width: 150, headerColor: "#de0606", headerOpacity: 0.15 }
+      ],
+      datas: [
+          {
+              examen_quimica: examen.quimica_sanguinea_examen || 'No especificado',
+              resultado_quimica: examen.quimica_sanguinea_resultado || 'No especificado',
+              valor_normal_quimica: examen.quimica_sanguinea_valor_normal || 'No especificado',
+          }
+      ]
+  };
+
+  doc.table(tableResultadosHCG, {
+      prepareHeader: () => doc.font("Helvetica-Bold").fontSize(8),
+      prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+        doc.font("Helvetica-Bold").fontSize(8);
+        indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+      },
+  });
+  } else if (examen.tipo_examen === 'RESULTADOS VARIOS') {
+
+    doc.fontSize(11).text("RESULTADOS VARIOS:", { align: "center" });
+    doc.moveDown();
+    const tableResultadosVarios = {
+      headers: [
+        { label: "EXAMEN", property: 'examen_resultados_varios', width: 180, headerColor: "#de0606", headerOpacity: 0.15 },
+        { label: "RESULTADOS", property: 'resultados_de_resultados_varios', width: 180, headerColor: "#de0606", headerOpacity: 0.15 },
+        { label: "VALOR NORMAL", property: 'valor_normal_resultados_varios', width: 180, headerColor: "#de0606", headerOpacity: 0.15 },
+      ],
+      datas: [
+        {
+          examen_resultados_varios: examen.resultados_varios_examen || 'No especificado',
+          resultados_de_resultados_varios: examen.resultados_varios_resultado || 'No especificado',
+          valor_normal_resultados_varios: examen.resultados_varios_valor_normal || 'No especificado',
+        },
+      ],
+    };
+
+    doc.table(tableResultadosVarios, {
+      prepareHeader: () => doc.font("Helvetica").fontSize(8),
+      prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+        doc.font("Helvetica-Bold").fontSize(8);
+        indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+      },
+    });
+
+   
+    doc.moveDown(2);
+    doc.fontSize(11).text("GRUPO SANGUINEO:", { align: "center" });
+    doc.moveDown();
+
+    const tableGrupoSanguineo = {
+      headers: [
+        { label: "ANALISIS", property: 'analisis_grupo_sanguineo', width: 250, headerColor: "#64fd00", headerOpacity: 0.15 },
+        { label: "RH", property: 'rh_grupo_sanguineo', width: 250, headerColor: "#64fd00", headerOpacity: 0.15 },
+      ],
+      datas: [
+        {
+          analisis_grupo_sanguineo: examen.resultados_varios_grupo_sanguineo_analisis || 'No especificado',
+          rh_grupo_sanguineo: examen.resultados_varios_grupo_sanguineo_rh || 'No especificado',
+        },
+      ],
+    };
+
+    doc.table(tableGrupoSanguineo, {
+      prepareHeader: () => doc.font("Helvetica").fontSize(8),
+      prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+        doc.font("Helvetica-Bold").fontSize(8);
+        indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+      },
+    });
+
+    
+    doc.moveDown(2);
+    doc.fontSize(11).text("INMUNOSEROLOGIA", { align: "center" });
+    doc.moveDown();
+
+    const tableInmunoserologia = {
+      headers: [
+        { label: "EXAMEN WIDAL", property: 'examen_widal_inmunoserologia', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+        { label: "RESULTADO", property: 'resultado_inmunoserologia', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+        { label: "VALOR NORMAL", property: 'valor_normal_inmunoserologia', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+      ],
+      datas: [
+        {
+          examen_widal_inmunoserologia: examen.resultados_varios_inmunoserologia_examen_widal || 'No especificado',
+          resultado_inmunoserologia: examen.resultados_varios_inmunoserologia_resultado || 'No especificado',
+          valor_normal_inmunoserologia: examen.resultados_varios_inmunoserologia_valor_normal || 'No especificado',
+        },
+      ],
+    };
+
+    doc.table(tableInmunoserologia, {
+      prepareHeader: () => doc.font("Helvetica").fontSize(8),
+      prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+        doc.font("Helvetica-Bold").fontSize(8);
+        indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+      },
+    });
+
+    doc.moveDown(2);
+    doc.fontSize(11).text("DENGUE", { align: "center" });
+    doc.moveDown();
+
+    const tableDengue = {
+      headers: [
+        { label: "ANALISIS", property: 'analisis_dengue', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+        { label: "RESULTADO", property: 'resultado_dengue', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+        { label: "VALOR NORMAL", property: 'valor_normal_dengue', width: 180, headerColor: "#053a91", headerOpacity: 0.15 },
+      ],
+      datas: [
+        {
+          analisis_dengue: examen.resultados_varios_dengue_analisis || 'No especificado',
+          resultado_dengue: examen.resultados_varios_dengue_resultado || 'No especificado',
+          valor_normal_dengue: examen.resultados_varios_dengue_valor_normal || 'No especificado',
+        },
+      ],
+    };
+
+    doc.table(tableDengue, {
+      prepareHeader: () => doc.font("Helvetica").fontSize(8),
+      prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
+        doc.font("Helvetica-Bold").fontSize(8);
+        indexColumn === 0 && doc.addBackground(rectRow, 'white', 0.15);
+      },
+    });
+
+  }
 
         // Finalizar el PDF
         doc.end();
