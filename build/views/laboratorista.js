@@ -2837,7 +2837,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenEnfermedadesInfecc.disabled = false;
                     btnGuardarExamenEnfermedadesInfecc.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosExamenEnfermedades();
                 })
                 .catch((e) => {
                     if (e instanceof TypeError) {
@@ -2882,7 +2882,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!")
                     btnGuardarExamenBacteriologicos.disabled = false;
                     btnGuardarExamenBacteriologicos.innerHTML = `<i class="fal fa-save fa-spin"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosExamenBacteriologicos();
                 })
                 .catch((errr) => {
                     if (errr instanceof TypeError) {
@@ -2936,7 +2936,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenHemoglobinaGlicosilada.disabled = false;
                     btnGuardarExamenHemoglobinaGlicosilada.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosExamenHemoglobinaGlicosilada();
                 })
                 .catch((e) => {
                     if (e instanceof TypeError) {
@@ -2978,7 +2978,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarExamenPruebasEspeciales.disabled = false;
                     btnGuardarExamenPruebasEspeciales.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosExamenPruebasEspeciales();
                 })
                 .catch((e) => {
                     if (e instanceof TypeError) {
@@ -3022,7 +3022,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarHcgCuantitativa.disabled = false;
                     btnGuardarHcgCuantitativa.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosHcgCuantitativa();
                 })
                 .catch((e) => {
                     if (e instanceof TypeError) {
@@ -3065,7 +3065,7 @@ function addListeners(){
                     F.Aviso("Examen guardado exitosamente!!!");
                     btnGuardarQuimicaSanguinea.disabled = false;
                     btnGuardarQuimicaSanguinea.innerHTML = `<i class="fal fa-save"></i>`;
-                    Navegar.laboratorista();
+                    limpiarDatosQuimicaSanguinea();
                 })
                 .catch((e) => {
                     if (e instanceof TypeError) {
@@ -3125,9 +3125,9 @@ function addListeners(){
                 insertDatosResultadosVarios()
                 .then(() => {
                     F.Aviso("Examen guardado exitosamente!!!");
-                    limpiarDatosResultadosVarios();
                     btnGuardarResultadoVarios.disabled = false;
                     btnGuardarResultadoVarios.innerHTML = `<i class="fal fa-save"></i>`;
+                    limpiarDatosResultadosVarios();
                     
                 })
                 .catch((e) => {
@@ -3162,6 +3162,53 @@ function limpiarDatosResultadosVarios(){
     document.getElementById("txtResultadoDengueResultadosVarios").value = '';
     document.getElementById("txtValorNormalDengueResultadosVarios").value = '';          
 }
+
+function limpiarDatosExamenEnfermedades(){
+    document.getElementById("floatImporteEnfInfecciosas").value = '';
+    document.getElementById("txtAnalisisEnfermedadesInfecciosas").value = '';
+    document.getElementById("txtResultadosEnfermedadesInfecciosas").value = '';
+    document.getElementById("txtValorReferenciaEnfermedadesInfecciosas").value = '';
+}
+
+function limpiarDatosExamenBacteriologicos() {
+    document.getElementById("floatImporteExamenesBacteriologicos").value = '';
+    document.getElementById("txtExamenesExamenesBacteriologicos").value = '';
+    document.getElementById("txtResultadosExamenesBacteriologicos").value = '';
+    document.getElementById("txtValorReferenciaExamenesBacteriologicos").value = '';
+}
+
+
+function limpiarDatosExamenHemoglobinaGlicosilada() {
+    document.getElementById("FloatImporteHemoglobinaGlicosilada").value = '';
+    document.getElementById("txtExamenHemoglobinaGlicosilada").value = '';
+    document.getElementById("txtResultadoHemoglobinaGlicosilada").value = '';
+    document.getElementById("txtvalorNormalHemoglobinaGlicosilada").value = '';
+    document.getElementById("txtPruebaDeHba1c").value = '';
+    document.getElementById("txtPromedioDeGlicemia").value = '';
+    document.getElementById("txtCalificacionGlicemia").value = '';
+}
+
+function limpiarDatosExamenPruebasEspeciales() {
+    document.getElementById("floatImportePruebasEspeciales").value = '';
+    document.getElementById("txtExamenResultadoPruebasEspeciales").value = '';
+    document.getElementById("txtResultadoPruebasEspeciales").value = '';
+    document.getElementById("txtvalorReferenciaPruebasEspeciales").value = '';
+}
+
+function limpiarDatosHcgCuantitativa(){
+    document.getElementById("FloatImporteHcgCuantitativa").value = '';
+    document.getElementById("txtAnalisisHcgCuantitativa").value = '';
+    document.getElementById("txtResultadoHcgCuantitativa").value = '';
+    document.getElementById("txtvalorDeReferenciaHcgCuantitativa").value = '';
+}
+
+function limpiarDatosQuimicaSanguinea(){
+    document.getElementById("FloatImporteQuimicaSanguinea").value = '';
+    document.getElementById("txtExamenQuimicaSanguinea").value = '';
+    document.getElementById("txtResultadoQuimicaSanguinea").value = '';
+    document.getElementById("txtvalorNormalQuimicaSanguinea").value = '';
+}
+
 
 function modalAgregarNuevoUsuarioPruebasEspeciales(){
     $("#modal_agregar_paciente_pruebas_especiales").modal('show'); 
