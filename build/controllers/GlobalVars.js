@@ -17,6 +17,7 @@ let GlobalPass = '';
 let GlobalNivelUsuario = 0;
 let GlobalRolUsuario = '';
 let GlobalIdPaciente = 0;
+let GlobalNombrePaciente = '';
 let GlobalFechaAActualizar = '';
 
 let selected_codcliente = 0;

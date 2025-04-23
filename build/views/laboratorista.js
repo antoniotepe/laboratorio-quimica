@@ -154,7 +154,7 @@ function getView(){
                             <div class="col-12 col-md-3 mt-3 mb-2">
                                 <div class="input-group">
                                     <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" value="FEB25-001" id="txtReferenciaDeExamenPaciente">
+                                    <input type="text" class="form-control negrita bg-amarillo" placeholder="Ingrese el NO de referencia..." id="txtReferenciaDeExamenPaciente">
                                 </div>
                             </div>
                             <div class="col-12 col-md-3 mt-3 mb-2">
@@ -293,9 +293,37 @@ function getView(){
         vista_ciproanalisis:()=>{
             return `
                 <div class="container-fluid mt-4">
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteCopro" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteCopro" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteCopro" disabled>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteCopro" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
-                       <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoExamenCopro">
+                       <div class="col-12 col-md-6 mt-1">
+                            <div class="h5" id="txtTipoExamenCopro">
                                 <strong>COPROLOGÍA</strong>
                             </div>    
                        </div>
@@ -473,10 +501,37 @@ function getView(){
         vista_uroanalisis:()=> {
             return `
                 <div class="container-fluid mt-4">
-                
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteUro" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteUro" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteUro" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteUro" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
-                       <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoExamenUrologia">
+                       <div class="col-12 col-md-6 mt-1">
+                            <div class="h5" id="txtTipoExamenUrologia">
                                 <strong>UROLOGIA</strong>
                             </div>
                        </div>
@@ -737,10 +792,37 @@ function getView(){
             return `
                 <div class="container-fluid mt-4">
                
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteEnfeInfecciosas" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteEnfeInfecciosas" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteEnfeInfecciosas" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteEnfeInfecciosas" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
-                   
-                    <div class="col-12 col-md-6 mt-3">
-                        <div class="h3" id="txtTipoExamenEmfeInfecciosas">
+                    <div class="col-12 col-md-6 mt-2">
+                        <div class="h5" id="txtTipoExamenEmfeInfecciosas">
                             <strong>ENFERMEDADES INFECCIOSAS</strong>
                         </div>
                     </div>
@@ -790,11 +872,39 @@ function getView(){
         vista_enfermedades_bacteriologicos:()=> {
             return `
                 <div class="container-fluid mt-4">
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteEnfeBacteriologicos" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteEnfeBacteriologicos" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteEnfeBacteriologicos" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteEnfeBacteriologicos" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                
                 <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                    
-                    <div class="col-12 col-md-6 mt-3">
-                        <div class="h3" id="txtTipoExamenBacteriologicos">
+                    <div class="col-12 col-md-6 mt-2">
+                        <div class="h5" id="txtTipoExamenBacteriologicos">
                             <strong>EXAMENES BACTERIOLOGICOS</strong>
                         </div>
                     </div>
@@ -845,9 +955,39 @@ function getView(){
         vista_hemoglobina_glicosilada:()=> {
             return `
                 <div class="container-fluid mt-4">
+
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteHemoGlico" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteHemoGlico" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteHemoGlico" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteHemoGlico" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
-                       <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoHemoglobinaGlicosilada">
+                       <div class="col-12 col-md-6 mt-2">
+                            <div class="h5" id="txtTipoHemoglobinaGlicosilada">
                                 <strong>HEMOGLOBINA GLICOSILADA</strong>
                             </div>    
                        </div>
@@ -941,10 +1081,39 @@ function getView(){
             return `
                 <div class="container-fluid mt-4">
 
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacientePruebasEspeciales" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacientePruebasEspeciales" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacientePruebasEspeciales" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacientePruebasEspeciales" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                     
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoHcgCualitativa">
+                        <div class="col-12 col-md-6 mt-2">
+                            <div class="h5" id="txtTipoHcgCualitativa">
                                 <strong>HCG CUALITATIVA</strong>
                             </div>
                         </div>
@@ -999,10 +1168,39 @@ function getView(){
         vista_examenes_hcg_cuantitativa:() => {
             return `
                 <div class="container-fluid">
+                    
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteHgcCuantitativa" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteHgcCuantitativa" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteHgcCuantitativa" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteHgcCuantitativa" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
-                       <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoHcgCuantitativa">
+                       <div class="col-12 col-md-6 mt-2">
+                            <div class="h5" id="txtTipoHcgCuantitativa">
                                 <strong>HCG CUANTITATIVA</strong>
                             </div>    
                        </div>
@@ -1075,10 +1273,39 @@ function getView(){
             return `
                 <div class="container-fluid">
 
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteQuimicaSanguinea" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteQuimicaSanguinea" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteQuimicaSanguinea" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteQuimicaSanguinea" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                     
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoQuimicaSanguinea">
+                        <div class="col-12 col-md-6 mt-2">
+                            <div class="h5" id="txtTipoQuimicaSanguinea">
                                 <strong>QUIMICA SANGUINEA</strong>
                             </div>
                         </div>
@@ -1133,10 +1360,39 @@ function getView(){
             return `
                 <div class="container-fluid">
 
+                    <div class="container-fluid mt-5">
+                        <div class="row rounded d-flex justify-content-between">
+                            <div class="col-12- col-md-3 mt-3 mb-2">    
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Nombre:</label>
+                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienterRS" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Tratante:</label>
+                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteRS" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">REFERENCIA:</label>
+                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteRS" disabled />
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-3 mt-3 mb-2">
+                                <div class="input-group">
+                                    <label class="col-form-label text-info">Fecha:</label>
+                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteRS" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">
                     
-                        <div class="col-12 col-md-6 mt-3">
-                            <div class="h3" id="txtTipoResultadosVarios">
+                        <div class="col-12 col-md-6 mt-2">
+                            <div class="h5" id="txtTipoResultadosVarios">
                                 <strong>RESULTADOS VARIOS</strong>
                             </div>
                         </div>
@@ -2606,7 +2862,16 @@ function addListeners(){
 
                 // Actualizar el campo de búsqueda con el nombre del paciente
                 document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
-                F.slideAnimationTabs();
+                document.getElementById("txtFiltrarPacientesPacienteCopro").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteUro").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteEnfeInfecciosas").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteEnfeBacteriologicos").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteHemoGlico").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacientePruebasEspeciales").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteHgcCuantitativa").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienteQuimicaSanguinea").value = nombrePaciente;
+                document.getElementById("txtFiltrarPacientesPacienterRS").value = nombrePaciente;
+                
                 const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
                 const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
                 tabLink.show();
@@ -3146,6 +3411,92 @@ function addListeners(){
         })
     })
 
+    // Almacenamiento temporal
+const datosExamen = {
+    tratante: '',
+    referencia: '',
+    fecha: ''
+  };
+  
+  // Escuchar cambios en los inputs de origen
+  document.getElementById('txtMedicoPaciente')?.addEventListener('input', function() {
+    datosExamen.tratante = this.value;
+    document.getElementById('txtMedicoPacienteCopro').value = this.value;
+    document.getElementById('txtMedicoPacienteUro').value = this.value;
+    document.getElementById('txtMedicoPacienteEnfeInfecciosas').value = this.value;
+    document.getElementById('txtMedicoPacienteEnfeBacteriologicos').value = this.value;
+    document.getElementById('txtMedicoPacienteHemoGlico').value = this.value;
+    document.getElementById('txtMedicoPacientePruebasEspeciales').value = this.value;
+    document.getElementById('txtMedicoPacienteHgcCuantitativa').value = this.value;
+    document.getElementById('txtMedicoPacienteQuimicaSanguinea').value = this.value;
+    document.getElementById('txtMedicoPacienteRS').value = this.value;
+  });
+  
+  document.getElementById('txtReferenciaDeExamenPaciente')?.addEventListener('input', function() {
+    datosExamen.referencia = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteCopro').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteUro').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteEnfeInfecciosas').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteEnfeBacteriologicos').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteHemoGlico').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacientePruebasEspeciales').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteHgcCuantitativa').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteQuimicaSanguinea').value = this.value;
+    document.getElementById('txtReferenciaDeExamenPacienteRS').value = this.value;
+  });
+  
+  document.getElementById('fechaPaciente')?.addEventListener('change', function() {
+    datosExamen.fecha = this.value;
+    document.getElementById('fechaPacienteCopro').value = this.value;
+    document.getElementById('fechaPacienteUro').value = this.value;
+    document.getElementById('fechaPacienteEnfeInfecciosas').value = this.value;
+    document.getElementById('fechaPacienteEnfeBacteriologicos').value = this.value;
+    document.getElementById('fechaPacienteHemoGlico').value = this.value;
+    document.getElementById('fechaPacientePruebasEspeciales').value = this.value;
+    document.getElementById('fechaPacienteHgcCuantitativa').value = this.value;
+    document.getElementById('fechaPacienteQuimicaSanguinea').value = this.value;
+    document.getElementById('fechaPacienteRS').value = this.value;
+  });
+  
+  // Modificar el evento click de los botones para asegurar la transferencia
+  document.addEventListener('click', function(e) {
+    if(e.target.closest('#tblPacientesParaExamenes .btn-rounded')) {
+      const boton = e.target.closest('.btn-rounded');
+      setTimeout(() => {
+        document.getElementById('txtMedicoPacienteCopro').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteUro').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteEnfeInfecciosas').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteEnfeBacteriologicos').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteHemoGlico').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacientePruebasEspeciales').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteHgcCuantitativa').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteQuimicaSanguinea').value = datosExamen.tratante;
+        document.getElementById('txtMedicoPacienteRS').value = datosExamen.tratante;
+
+        document.getElementById('txtReferenciaDeExamenPacienteCopro').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteUro').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteEnfeInfecciosas').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteEnfeBacteriologicos').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteHemoGlico').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacientePruebasEspeciales').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteHgcCuantitativa').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteQuimicaSanguinea').value = datosExamen.referencia;
+        document.getElementById('txtReferenciaDeExamenPacienteRS').value = datosExamen.referencia;
+        
+        document.getElementById('fechaPacienteCopro').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteUro').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteEnfeInfecciosas').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteEnfeBacteriologicos').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteHemoGlico').value = datosExamen.fecha;
+        document.getElementById('fechaPacientePruebasEspeciales').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteHgcCuantitativa').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteQuimicaSanguinea').value = datosExamen.fecha;
+        document.getElementById('fechaPacienteRS').value = datosExamen.fecha;
+        
+      }, 50);
+    }
+  });
+    
 }
 
 function limpiarDatosResultadosVarios(){
@@ -3431,7 +3782,16 @@ function dibujarTablaPacientes(data) {
 
             // Actualizar el campo de búsqueda con el nombre del paciente
             document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
-            F.slideAnimationTabs();
+            document.getElementById("txtFiltrarPacientesPacienteCopro").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteUro").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteEnfeInfecciosas").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteEnfeBacteriologicos").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteHemoGlico").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacientePruebasEspeciales").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteHgcCuantitativa").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienteQuimicaSanguinea").value = nombrePaciente;
+            document.getElementById("txtFiltrarPacientesPacienterRS").value = nombrePaciente;
+            
             const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
             const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
             tabLink.show();
