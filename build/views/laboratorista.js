@@ -252,11 +252,11 @@ function getView(){
                                 <h3 class="text-center mt-5">Listado de pacientes</h3>
                             </div>
                         </div>
-                        <div class="row justify-content-left">
-                            <div class="col-12 col-md-3 mt-2">
+                       <div class="row justify-content-left">
+                            <div class="col-12 col-md-6 mt-2">
                                 <div class="input-group">
-                                    <input type="search" class="form-control" placeholder="Buscar paciente por nombre..." id="txtFiltrarBusquedaDePaciente" />
-                                    <button class="btn btn-info btn-sm hand shadow">
+                                    <input type="search" class="form-control" placeholder="Buscar por DPI, nombre, fecha (DD/MM/AAAA) o empresa..." id="txtFiltrarBusquedaDePaciente" />
+                                    <button class="btn btn-info btn-sm hand shadow" id="btnBuscarPaciente">
                                         <i class="fal fa-search"></i> 
                                     </button>
                                 </div>
@@ -3496,6 +3496,67 @@ const datosExamen = {
       }, 50);
     }
   });
+
+  // Variable para almacenar todos los pacientes
+let todosLosPacientes = [];
+
+// Función para filtrar pacientes
+function filtrarPacientes(textoBusqueda) {
+    if (!textoBusqueda) {
+        dibujarTablaPacientes(todosLosPacientes);
+        return;
+    }
+
+    const texto = textoBusqueda.toLowerCase();
+    const pacientesFiltrados = todosLosPacientes.filter(paciente => {
+        // Buscar en DPI (si existe)
+        if (paciente.no_dpi && paciente.no_dpi.toLowerCase().includes(texto)) {
+            return true;
+        }
+        
+        // Buscar en nombre
+        if (paciente.nombre_paciente.toLowerCase().includes(texto)) {
+            return true;
+        }
+        
+        // Buscar en empresa
+        if (paciente.nombre_empresa.toLowerCase().includes(texto)) {
+            return true;
+        }
+        
+        // Buscar en fecha de nacimiento (formateada)
+        const fechaFormateada = F.formatearFechaANormal(paciente.fecha_nacimiento);
+        if (fechaFormateada.includes(texto)) {
+            return true;
+        }
+        
+        return false;
+    });
+
+    dibujarTablaPacientes(pacientesFiltrados);
+}
+
+// Modifica la función catalogoPacientesParaNuevoExamen
+catalogoPacientesParaNuevoExamen()
+    .then((data) => {
+        todosLosPacientes = data; // Guarda todos los pacientes
+        dibujarTablaPacientes(data);
+    })
+    .catch((error) => {
+        console.error("Error al obtener los pacientes:", error);
+        document.getElementById("tblPacientesParaExamenes").innerHTML = '<tr><td colspan="5">No hay pacientes disponibles</td></tr>';
+    });
+
+// Configura el evento de búsqueda
+document.getElementById('txtFiltrarBusquedaDePaciente').addEventListener('input', function() {
+    filtrarPacientes(this.value);
+});
+
+// Opcional: También puedes usar el botón de búsqueda
+document.getElementById('btnBuscarPaciente').addEventListener('click', function() {
+    const inputBusqueda = document.getElementById('txtFiltrarBusquedaDePaciente');
+    filtrarPacientes(inputBusqueda.value);
+});
     
 }
 
@@ -3600,7 +3661,9 @@ function modalAgregarNuevoUsuarioPruebasEspeciales(){
                     })
                 }
             })
-    });        
+    });
+    
+    
 };
 
 function initView(){
@@ -3746,20 +3809,20 @@ function limpiarDatosDeExamenCoprologia() {
 function dibujarTablaPacientes(data) {
     let strTable = '';
     
-    if (data.length === 0) {
-        strTable = '<tr><td colspan="5">No se encontraron pacientes</td></tr>';
+    if (!data || data.length === 0) {
+        strTable = '<tr><td colspan="5" class="text-center">No se encontraron pacientes</td></tr>';
     } else {
-        data.forEach(pacientesExamen => {
+        data.forEach(paciente => {
             strTable += `
                 <tr>
-                    <td class="negrita">${pacientesExamen.no_dpi || 'Sin Documento de identificación'}</td>
-                    <td class="negrita">${pacientesExamen.nombre_paciente}</td>
-                    <td class="negrita">${F.formatearFechaANormal(pacientesExamen.fecha_nacimiento)}</td>
-                    <td class="negrita">${pacientesExamen.nombre_empresa}</td>
+                    <td class="negrita">${paciente.no_dpi || 'Sin Documento de identificación'}</td>
+                    <td class="negrita">${paciente.nombre_paciente}</td>
+                    <td class="negrita">${F.formatearFechaANormal(paciente.fecha_nacimiento)}</td>
+                    <td class="negrita">${paciente.nombre_empresa}</td>
                     <td>
                         <button class="btn btn-sm btn-success btn-rounded"
-                            data-nombre="${pacientesExamen.nombre_paciente}"
-                            data-id="${pacientesExamen.id}">
+                            data-nombre="${paciente.nombre_paciente}"
+                            data-id="${paciente.id}">
                             <i class="fal fa-plus"></i>
                         </button>
                     </td>  
@@ -3770,35 +3833,45 @@ function dibujarTablaPacientes(data) {
     
     document.getElementById("tblPacientesParaExamenes").innerHTML = strTable;
     
-    // Agregar evento de click a los botones de agregar
+    // Configura los eventos de los botones
+    configurarBotonesAgregar();
+}
+
+// Función separada para configurar los eventos de los botones
+function configurarBotonesAgregar() {
     const botonesAgregar = document.querySelectorAll("#tblPacientesParaExamenes .btn-rounded");
+    
     botonesAgregar.forEach((boton) => {
         boton.addEventListener("click", () => {
             const nombrePaciente = boton.getAttribute("data-nombre");
             const idPaciente = boton.getAttribute("data-id");
 
-            // Guardar el ID del paciente en la variable global
             GlobalIdPaciente = idPaciente;
 
-            // Actualizar el campo de búsqueda con el nombre del paciente
-            document.getElementById("txtFiltrarPacientesPaciente").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteCopro").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteUro").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteEnfeInfecciosas").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteEnfeBacteriologicos").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteHemoGlico").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacientePruebasEspeciales").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteHgcCuantitativa").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienteQuimicaSanguinea").value = nombrePaciente;
-            document.getElementById("txtFiltrarPacientesPacienterRS").value = nombrePaciente;
-            
-            const tabTres = document.getElementById("tab-doce"); // Selecciona la pestaña "dos"
-            const tabLink = new bootstrap.Tab(tabTres); // Usamos Bootstrap Tab para cambiar de pestaña
-            tabLink.show();
-            // document.getElementById("nombrePaciente").value = nombrePaciente;
+            // Actualizar todos los campos de nombre de paciente
+            const camposNombre = [
+                "txtFiltrarPacientesPaciente",
+                "txtFiltrarPacientesPacienteCopro",
+                "txtFiltrarPacientesPacienteUro",
+                "txtFiltrarPacientesPacienteEnfeInfecciosas",
+                "txtFiltrarPacientesPacienteEnfeBacteriologicos",
+                "txtFiltrarPacientesPacienteHemoGlico",
+                "txtFiltrarPacientesPacientePruebasEspeciales",
+                "txtFiltrarPacientesPacienteHgcCuantitativa",
+                "txtFiltrarPacientesPacienteQuimicaSanguinea",
+                "txtFiltrarPacientesPacienterRS"
+            ];
 
-            // Cerrar el modal (si estás usando Bootstrap)
-            // $("#modal_catalogo_pacientes_coprologia").modal('hide');
+            camposNombre.forEach(id => {
+                const campo = document.getElementById(id);
+                if (campo) campo.value = nombrePaciente;
+            });
+
+            // Cambiar a la pestaña deseada
+            const tabTres = document.getElementById("tab-doce");
+            if (tabTres) {
+                new bootstrap.Tab(tabTres).show();
+            }
         });
     });
 }
