@@ -139,30 +139,51 @@ function getView(){
             return `
                 <div class="container-fluid mt-5">
                     <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPaciente" disabled />
-                                </div>
+                        <div class="col-12 col-md-3 mt-3 mb-2">    
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                <input class="form-control negrita shadow-sm border-2 border-primary-subtle rounded-3" 
+                                    type="search" 
+                                    placeholder="Buscar paciente..." 
+                                    autocomplete="off" 
+                                    id="txtFiltrarPacientesPaciente" 
+                                    disabled />
+                                <div class="form-text small text-muted">Ingrese el nombre completo</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPaciente" />
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                <input class="form-control negrita shadow-sm border-2 border-primary-subtle rounded-3" 
+                                    type="text" 
+                                    placeholder="Dr. Juan Pérez" 
+                                    autocomplete="off" 
+                                    id="txtMedicoPaciente" />
+                                <div class="form-text small text-muted">Nombre del profesional</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" placeholder="Ingrese el NO de referencia..." id="txtReferenciaDeExamenPaciente">
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                <input type="text" 
+                                    class="form-control negrita shadow-sm border-2 border-primary-subtle rounded-3" 
+                                    placeholder="Ej: REF-2025-001" 
+                                    id="txtReferenciaDeExamenPaciente">
+                                <div class="form-text small text-muted">Código único de referencia</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPaciente">
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                <input type="date" 
+                                    class="form-control negrita shadow-sm border-2 border-primary-subtle rounded-3" 
+                                    id="fechaPaciente">
+                                <div class="form-text small text-muted">Fecha del examen</div>
                             </div>
+                        </div>
                     </div>
                     <div class="row text-center">
                         <div class="col-12 col-md-6">
@@ -295,28 +316,52 @@ function getView(){
                 <div class="container-fluid mt-4">
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteCopro" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteCopro" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteCopro" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Dr. Juan Pérez" 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteCopro" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteCopro" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ej: COP-2025-001"
+                                        id="txtReferenciaDeExamenPacienteCopro"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteCopro" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                    <input type="date" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacienteCopro"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -502,33 +547,57 @@ function getView(){
             return `
                 <div class="container-fluid mt-4">
                     <div class="container-fluid mt-5">
-                        <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteUro" disabled />
-                                </div>
+                    <div class="row rounded d-flex justify-content-between">
+                        <div class="col-12 col-md-3 mt-3 mb-2">    
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                    type="search" 
+                                    placeholder="Buscar paciente..." 
+                                    autocomplete="off" 
+                                    id="txtFiltrarPacientesPacienteUro" 
+                                    disabled />
+                                <div class="form-text small text-muted">Nombre completo del paciente</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteUro" disabled />
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                    type="text" 
+                                    placeholder="Dr. Juan Pérez" 
+                                    autocomplete="off" 
+                                    id="txtMedicoPacienteUro" 
+                                    disabled />
+                                <div class="form-text small text-muted">Médico referente</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteUro" disabled />
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                <input type="text" 
+                                    class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                    placeholder="Ej: URO-2025-001"
+                                    id="txtReferenciaDeExamenPacienteUro"
+                                    disabled>
+                                <div class="form-text small text-muted">Código único del estudio</div>
                             </div>
-                            <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteUro" disabled>
-                                </div>
+                        </div>
+                        
+                        <div class="col-12 col-md-3 mt-3 mb-2">
+                            <div class="form-group modern-input">
+                                <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                <input type="date" 
+                                    class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                    id="fechaPacienteUro"
+                                    disabled>
+                                <div class="form-text small text-muted">Fecha de solicitud</div>
                             </div>
                         </div>
                     </div>
+                </div>
                 <div class="row text-white p-1 mb-3 rounded d-flex bg-info justify-content-between">                        
                        <div class="col-12 col-md-6 mt-1">
                             <div class="h5" id="txtTipoExamenUrologia">
@@ -794,28 +863,52 @@ function getView(){
                
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteEnfeInfecciosas" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..."  
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteEnfeInfecciosas" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteEnfeInfecciosas" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Dr. Juan Pérez" 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteEnfeInfecciosas" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteEnfeInfecciosas" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ej: ENFER INFECCIOSAS-2025-001"
+                                        id="txtReferenciaDeExamenPacienteEnfeInfecciosas"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteEnfeInfecciosas" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                    <input type="date" 
+                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacienteEnfeInfecciosas"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -872,30 +965,54 @@ function getView(){
         vista_enfermedades_bacteriologicos:()=> {
             return `
                 <div class="container-fluid mt-4">
-                    <div class="container-fluid mt-5">
+                    <div class="container-fluid mt-4">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteEnfeBacteriologicos" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteEnfeBacteriologicos" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteEnfeBacteriologicos" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Dr. Microbiólogo" 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteEnfeBacteriologicos" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteEnfeBacteriologicos" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ej: BAC-2025-001"
+                                        id="txtReferenciaDeExamenPacienteEnfeBacteriologicos"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteEnfeBacteriologicos" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                    <input type="date" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacienteEnfeBacteriologicos"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -958,28 +1075,52 @@ function getView(){
 
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteHemoGlico" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre del Paciente</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteHemoGlico" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteHemoGlico" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Médico Tratante</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Dr. Endocrinólogo" 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteHemoGlico" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteHemoGlico" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">N° de Referencia</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ej: GLU-2025-001"
+                                        id="txtReferenciaDeExamenPacienteHemoGlico"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteHemoGlico" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha</label>
+                                    <input type="date" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacienteHemoGlico"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -1083,28 +1224,52 @@ function getView(){
 
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacientePruebasEspeciales" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre:</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacientePruebasEspeciales" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacientePruebasEspeciales" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Tratante:</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Ingrese el nombre del medico..." 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacientePruebasEspeciales" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacientePruebasEspeciales" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">REFERENCIA:</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ingrese el NO de referencia..."
+                                        id="txtReferenciaDeExamenPacientePruebasEspeciales"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacientePruebasEspeciales" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha:</label>
+                                    <input type="date" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacientePruebasEspeciales"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -1171,28 +1336,52 @@ function getView(){
                     
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteHgcCuantitativa" disabled />
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Nombre:</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteHgcCuantitativa" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteHgcCuantitativa" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Tratante:</label>
+                                    <input class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        type="text" 
+                                        placeholder="Ingrese el nombre del medico..." 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteHgcCuantitativa" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteHgcCuantitativa" disabled />
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">REFERENCIA:</label>
+                                    <input type="text" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        placeholder="Ingrese el NO de referencia..."
+                                        id="txtReferenciaDeExamenPacienteHgcCuantitativa"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
-                                    <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteHgcCuantitativa" disabled>
+                                <div class="form-group modern-input">
+                                    <label class="form-label text-primary fw-semibold small">Fecha:</label>
+                                    <input type="date" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        id="fechaPacienteHgcCuantitativa"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -1275,28 +1464,52 @@ function getView(){
 
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienteQuimicaSanguinea" disabled />
+                                    <input class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienteQuimicaSanguinea" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteQuimicaSanguinea" disabled />
+                                    <input class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        type="text" 
+                                        placeholder="Ingrese el nombre del medico..." 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteQuimicaSanguinea" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteQuimicaSanguinea" disabled />
+                                    <input type="text" 
+                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        placeholder="Ingrese el NO de referencia..."
+                                        id="txtReferenciaDeExamenPacienteQuimicaSanguinea"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteQuimicaSanguinea" disabled>
+                                    <input type="date" 
+                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        id="fechaPacienteQuimicaSanguinea"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
@@ -1362,28 +1575,52 @@ function getView(){
 
                     <div class="container-fluid mt-5">
                         <div class="row rounded d-flex justify-content-between">
-                            <div class="col-12- col-md-3 mt-3 mb-2">    
-                                <div class="input-group">
+                            <div class="col-12 col-md-3 mt-3 mb-2">    
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Nombre:</label>
-                                    <input class="form-control negrita bg-amarillo" type="search" placeholder="Buscar paciente..." autocomplete="off" id="txtFiltrarPacientesPacienterRS" disabled />
+                                    <input class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        type="search" 
+                                        placeholder="Buscar paciente..." 
+                                        autocomplete="off" 
+                                        id="txtFiltrarPacientesPacienterRS" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Nombre completo del paciente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Tratante:</label>
-                                    <input class="form-control  bg-amarillo negrita" type="text" placeholder="Ingrese el nombre del medico..." autocomplete="off" id="txtMedicoPacienteRS" disabled />
+                                    <input class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        type="text" 
+                                        placeholder="Ingrese el nombre del medico..." 
+                                        autocomplete="off" 
+                                        id="txtMedicoPacienteRS" 
+                                        disabled />
+                                    <div class="form-text small text-muted">Médico referente</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">REFERENCIA:</label>
-                                    <input type="text" class="form-control negrita bg-amarillo" id="txtReferenciaDeExamenPacienteRS" disabled />
+                                    <input type="text" 
+                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        placeholder="Ingrese el NO de referencia..."
+                                        id="txtReferenciaDeExamenPacienteRS"
+                                        disabled>
+                                    <div class="form-text small text-muted">Código único del estudio</div>
                                 </div>
                             </div>
+                            
                             <div class="col-12 col-md-3 mt-3 mb-2">
-                                <div class="input-group">
+                                <div class="form-group modern-input">
                                     <label class="col-form-label text-info">Fecha:</label>
-                                    <input type="date" class="form-control negrita bg-amarillo" id="fechaPacienteRS" disabled>
+                                    <input type="date" 
+                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light negrita" 
+                                        id="fechaPacienteRS"
+                                        disabled>
+                                    <div class="form-text small text-muted">Fecha de solicitud</div>
                                 </div>
                             </div>
                         </div>
