@@ -905,7 +905,7 @@ function getView(){
                                 <div class="form-group modern-input">
                                     <label class="form-label text-primary fw-semibold small">Fecha</label>
                                     <input type="date" 
-                                        class="form-control shadow-sm border-2 border-secondary rounded-3 bg-light" 
+                                        class="form-control negrita shadow-sm border-2 border-secondary rounded-3 bg-light" 
                                         id="fechaPacienteEnfeInfecciosas"
                                         disabled>
                                     <div class="form-text small text-muted">Fecha de solicitud</div>
