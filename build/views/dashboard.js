@@ -89,11 +89,16 @@ function getView(){
         },
         vista_tabla_usuarios:()=>{
             return `
-            <div class="card card-rounded shadow">
-                <div class="card-body p-2">
-                    <div class="table-responsive col-12">
-                        <table class="table table-responsive table-hover col-12">
-                            <thead class="bg-naranja text-white">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-6 text-center mt-2">
+                        <h3 class="text-center mt-5">Listado de Usuarios</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-responsive">
+                        <table class="table table-bordered h-full">
+                            <thead class="thead-primary text-white">
                                 <tr>
                                     <td>NOMBRE</td>
                                     <td>CLAVE</td>
@@ -104,17 +109,16 @@ function getView(){
                             <tbody id="tblLabUsuarios">
                             </tbody>
                         </table>
-                        
-                        <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="document.getElementById('tab-uno').click()">
-                            <i class="fal fa-arrow-left"></i>
-                        </button>
-
-                        <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" id="btnAgregarUsuario">
-                            <i class="fal fa-plus"></i>
-                        </button>
                     </div>
                 </div>
             </div>
+            <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l hand shadow" onclick="document.getElementById('tab-uno').click()">
+                <i class="fal fa-arrow-left"></i>
+            </button>
+
+            <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" id="btnAgregarUsuario">
+                <i class="fal fa-plus"></i>
+            </button>
             `
         },
         vista_examenes_por_fechas:()=> {
@@ -460,9 +464,9 @@ function get_lista_usuarios() {
             data.map((usuario) => { 
                 str += `
                     <tr>
-                        <td>${usuario.NOMBRE}</td>
-                        <td>${usuario.CLAVE}</td>
-                        <td>${usuario.TIPO}</td>
+                        <td class="negrita">${usuario.NOMBRE}</td>
+                        <td class="negrita">${usuario.CLAVE}</td>
+                        <td class="negrita">${usuario.TIPO}</td>
                         <td>
                             <button class="btn btn-info btn-circle btn-md hand shadow" onclick="get_datos_update_usuario('${usuario.NO_DPI}', '${usuario.NOMBRE}', '${usuario.CLAVE}', '${usuario.TIPO}')">
                                 <i class="fal fa-edit"></i>
