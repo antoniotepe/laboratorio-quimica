@@ -303,7 +303,7 @@ function getView(){
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" onclick="Navegar.laboratorista()">
+                    <button class="btn btn-circle btn-xl btn-secondary btn-bottom-l  hand shadow" id="idRetrocederVistaPrincipalLaboratorio">
                         <i class="fal fa-arrow-left"></i>
                     </button>
                     <button class="btn btn-circle btn-xl btn-success btn-bottom-r hand shadow" onclick="btnAgregarPacienteModal()">
@@ -3974,6 +3974,10 @@ function navegacionPage() {
         //F.slideAnimationTabs();
         document.getElementById("tab-once").click();
     });
+
+    document.getElementById("idRetrocederVistaPrincipalLaboratorio").addEventListener("click", ()=> {
+        document.getElementById("tab-uno").click();
+    })
 
     document.getElementById("idRetrocederDeVistaExamenCoprologia").addEventListener('click', ()=> {
         //F.slideAnimationTabs();

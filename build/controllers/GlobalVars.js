@@ -1,6 +1,6 @@
 
 
-let versionapp = "Modif: 24.04.2025";
+let versionapp = "Modif: 29.04.2025";
 let byAuthor = "Antonio";
 
 

@@ -49,13 +49,7 @@ function getView(){
                     </div>
                 </div>
 
-
-
-
-                
-
-                
-
+                <small class="negrita text-naranja text-end">By ${byAuthor} (${versionapp})</small>
             `
         },
         vista_nuevo:()=>{
